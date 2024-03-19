@@ -1,13 +1,17 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "structural-methods"
+  title: "Econ8502"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+      - text: Assignments
+        menu:
+          - assignments/Assignment-1.qmd
 
 format:
   html:
