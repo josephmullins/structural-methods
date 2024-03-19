@@ -8,7 +8,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
       - text: Assignments
         menu:
           - assignments/Assignment-1.qmd
