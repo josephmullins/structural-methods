@@ -5,6 +5,8 @@ bibliography: CourseBibliography.bib
 
 Welcome to this course! Find details on the syllabus here, and check out the menu to find other materials.
 
+[Here is a link](https://github.com/josephmullins/structural-methods) to the git repo for this course, which by cloning is probably the simplest way for you to get access to the data, code, and assignments. I will continue to add materials throughout the course. You may prefer to selectively download these materials.
+
 ## Topics
 
 ### Identification, Credible Inference, and Marschak's Maxim
