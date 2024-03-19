@@ -54,7 +54,7 @@ Here is the proposed timeline of due dates. Submissions **must** be made through
 
 | Assignment | Due Date |
 | ---------- | -------- |
-| Assignment 1 | March 22 |
+| [Assignment 1](assignments/Assignment-1.qmd) | March 22 |
 | Assignment 2 | March 29 | 
 | Assignment 3 | April 5 | 
 | Assignment 4 | April 12 | 
