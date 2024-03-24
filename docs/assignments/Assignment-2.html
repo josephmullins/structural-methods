@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Econ8502 - Assignment 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Econ8502</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-1.html">
+ <span class="dropdown-text">Assignment 1</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setup-code-for-mle" id="toc-setup-code-for-mle" class="nav-link active" data-scroll-target="#setup-code-for-mle">Setup: Code for MLE</a>
+  <ul class="collapse">
+  <li><a href="#reading-in-data" id="toc-reading-in-data" class="nav-link" data-scroll-target="#reading-in-data">Reading in Data</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The Model</a></li>
+  </ul></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We are building toward estimating a dynamic discrete choice model with persistent unobserved heterogeneity. To make a start, in this problem set you will estimate a static discrete choice problem on the data.</p>
+<section id="setup-code-for-mle" class="level2">
+<h2 class="anchored" data-anchor-id="setup-code-for-mle">Setup: Code for MLE</h2>
+<section id="reading-in-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-in-data">Reading in Data</h3>
+<p>You are going to build on the code below that estimates a <em>very</em> simple model of labor supply and program participation.</p>
+<p>First, here is a chunk of code to read in the data and prepare it. The variables in <code>julia</code> DataFrames are typically not type stable which can slow down your code considerably. So you will note that in the final step here I bring the variables I want to use out of a DataFrame and into a named tuple with vectors containing a fixed type.</p>
+<div id="6ba19716" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">DataFramesMeta</span>, <span class="bu">Optim</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"../children-cash-transfers/src/Transfers.jl"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for this simple model we can just drop missing data. When we estimate the model with persistent latent heterogeneity, we will need complete panels (including years where choices are missing).</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="pp">@chain</span> <span class="cf">begin</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    CSV.<span class="fu">read</span>(<span class="st">"../children-cash-transfers/data/MainPanelFile.csv"</span>,DataFrame,missingstring <span class="op">=</span> <span class="st">"NA"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#@select :MID :year :wage :hrs :earn :SOI :CPIU :WelfH :FSInd :num_child :age</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@subset</span> <span class="op">:</span>year<span class="op">.&gt;=</span><span class="fl">1985</span> <span class="op">:</span>year<span class="op">.&lt;=</span><span class="fl">2010</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@transform</span> <span class="op">:</span>AFDC <span class="op">=</span> <span class="op">:</span>WelfH<span class="op">.&gt;</span><span class="fl">0</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@rename</span> <span class="op">:</span>FS <span class="op">=</span> <span class="op">:</span>FSInd</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@transform</span> <span class="op">:</span>P  <span class="op">=</span> <span class="op">:</span>FS <span class="op">+</span> <span class="op">:</span>AFDC <span class="op">:</span>H <span class="op">=</span> <span class="fu">min</span>.(<span class="fl">2</span>,<span class="fu">round</span>.(<span class="dt">Union</span>{<span class="dt">Int64</span>, <span class="dt">Missing</span>},<span class="op">:</span>hrs <span class="op">/</span> (<span class="fl">52</span><span class="op">*</span><span class="fl">20</span>)))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@subset</span> .!<span class="fu">ismissing</span>.(<span class="op">:</span>P) <span class="op">.&amp;&amp;</span> .!<span class="fu">ismissing</span>.(<span class="op">:</span>H)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@transform</span> <span class="pp">@byrow</span> <span class="op">:</span>wage <span class="op">=</span> <span class="cf">begin</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">:</span>hrs<span class="op">&gt;</span><span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="op">:</span>earn<span class="op">&gt;</span><span class="fl">0</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="op">:</span>earn <span class="op">/</span> <span class="op">:</span>hrs <span class="op">/</span> <span class="op">:</span>CPIU</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="cn">missing</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>data_mle <span class="op">=</span> (;P <span class="op">=</span> <span class="fu">Int64</span>.(data.P), H <span class="op">=</span> <span class="fu">Int64</span>.(data.H), year <span class="op">=</span> data.year, age <span class="op">=</span> data.age,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            soi <span class="op">=</span> data.SOI, num_kids <span class="op">=</span> data.num_child, cpi <span class="op">=</span> data.CPIU,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            logwage <span class="op">=</span> <span class="fu">log</span>.(<span class="fu">coalesce</span>.(data.wage,<span class="fl">1</span>.)),wage_missing <span class="op">=</span> <span class="fu">ismissing</span>.(data.wage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING: replacing module Transfers.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>(P = [2, 2, 2, 1, 0, 0, 0, 2, 1, 0  …  2, 2, 1, 2, 0, 0, 1, 1, 1, 1], H = [0, 0, 0, 0, 0, 0, 0, 0, 0, 2  …  0, 0, 2, 2, 2, 2, 0, 0, 0, 0], year = [1994, 1995, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 1990  …  1991, 1992, 1991, 1992, 1991, 1992, 1991, 1992, 1991, 1992], age = [21, 22, 23, 25, 27, 29, 31, 33, 35, 17  …  21, 22, 23, 24, 39, 40, 30, 31, 25, 26], soi = [43, 43, 43, 43, 43, 43, 43, 43, 43, 17  …  44, 44, 7, 7, 5, 5, 39, 39, 39, 39], num_kids = [2, 2, 3, 3, 3, 3, 3, 3, 3, 1  …  2, 2, 2, 2, 3, 3, 4, 4, 2, 2], cpi = [0.860812349005761, 0.884959812302546, 0.910948243820851, 0.946664188812488, 1.0, 1.04457233785542, 1.09707768072849, 1.17054218546739, 1.25008130459022, 0.758792510685746  …  0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336], logwage = [0.0, 0.0, 0.0, 0.0, 1.2039728043259361, 0.0, 0.0, 0.0, 0.0, 0.8230555833449215  …  0.0, 0.0, 2.6512574120409043, 2.3314412292534223, 1.265948758245773, 1.8744481199656744, 0.0, 0.0, 0.0, 0.0], wage_missing = Bool[1, 1, 1, 1, 0, 1, 1, 1, 1, 0  …  1, 1, 0, 0, 0, 0, 1, 1, 1, 1])</code></pre>
+</div>
+</div>
+</section>
+<section id="the-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-model">The Model</h3>
+<p>Consider a static model with 9 discrete choices. Hours choices are given by <span class="math inline">\(H_{j}\in\{0,20,40\}\)</span> and participation choices indicated by <span class="math inline">\(P_{j}\in\{0,1,2\}\)</span>. Individuals may choose any combination of these, with a Type I extreme value distributed shock <span class="math inline">\(\epsilon_{j}\)</span> for choice <span class="math inline">\(j\)</span> that is iid over time and across individuals. The scale of these shocks is given by <span class="math inline">\(\sigma\)</span>.</p>
+<p>Utility for individual <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span> is given by:</p>
+<p><span class="math display">\[ U_{itj} = \log(\max\{50,Y_{it}(W_{it}H_{j})\}) + \alpha_{l}\log(112 - H_{j}) - \alpha_{P,1}\mathbf{1}\{P_{j}&gt;0\} - \alpha_{P,2}\mathbf{1}\{P_{j}&gt;1\} \]</span></p>
+<p>where <span class="math inline">\(Y_{it}\)</span> is a net income function for individual <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span> and depends on their earnings (<span class="math inline">\(W_{it}H_{j}\)</span>), the number of children in the household, and the policy environment in the individual’s state of residence.</p>
+<p>Wages are a deterministic function of age only:</p>
+<p><span class="math display">\[ \log(W_{it}) = \gamma_{0} + \gamma_{1}\text{Age}_{it} + \gamma_{2}\text{Age}_{it}^2 \]</span></p>
+<p>and are measured with normally distributed iid measurement error:</p>
+<p><span class="math display">\[ \log(W^{o}_{it}) = \log(W_{it}) + \zeta_{it},\qquad\zeta_{it}\sim\mathcal{N}(0,\sigma^2_{W}) \]</span></p>
+<p>The code below calculates utility and indexes choices.</p>
+<div id="06302fda" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">j_idx</span>(p,h) <span class="op">=</span> p<span class="op">*</span><span class="fl">3</span> <span class="op">+</span> h <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">utility</span>(p,h,soi,cpi,year,num_kids,wage,pars)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (;αl,Hgrid,σ,αP) <span class="op">=</span> pars</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    hrs <span class="op">=</span> Hgrid[<span class="fl">1</span><span class="op">+</span>h]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    earn <span class="op">=</span> wage <span class="op">*</span> hrs</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> <span class="fu">max</span>(<span class="fl">50</span>.,Transfers.<span class="fu">budget</span>(earn,<span class="fl">0</span>.,soi,year,num_kids,cpi,p))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">log</span>(net_income) <span class="op">+</span> <span class="fu">αl*log</span>(<span class="fl">112</span><span class="op">-</span>hrs) <span class="op">-</span> αP[<span class="fl">1</span>]<span class="fu">*</span>(p<span class="op">&gt;</span><span class="fl">0</span>) <span class="op">-</span> αP[<span class="fl">2</span>]<span class="fu">*</span>(p<span class="op">&gt;</span><span class="fl">1</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> (;αl <span class="op">=</span> <span class="fl">1</span>., σ <span class="op">=</span> <span class="fl">1</span>., σW <span class="op">=</span> <span class="fl">1</span>., γ <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">3</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    Hgrid <span class="op">=</span> [<span class="fl">0</span>,<span class="fl">20</span>.,<span class="fl">40</span>.],αP <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>(αl = 1.0, σ = 1.0, σW = 1.0, γ = [0.0, 0.0, 0.0], Hgrid = [0.0, 20.0, 40.0], αP = [0.0, 0.0])</code></pre>
+</div>
+</div>
+<p>Choice probabilities are given by the logit formula.</p>
+<div id="b1eddfce" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (;σ,γ) <span class="op">=</span> pars</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    wage <span class="op">=</span> <span class="fu">exp</span>(γ[<span class="fl">1</span>] <span class="op">+</span> γ[<span class="fl">2</span>] <span class="op">*</span> data.age[it] <span class="op">+</span> γ[<span class="fl">3</span>] <span class="op">*</span> data.age[it]<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fl">0</span>.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    umax <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> h <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> <span class="fu">j_idx</span>(p,h)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            u <span class="op">=</span> <span class="fu">utility</span>(p,h,data.soi[it],data.cpi[it],data.year[it],data.num_kids[it],wage,pars)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            logP[j] <span class="op">=</span> u <span class="op">/</span> σ</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            umax <span class="op">=</span> u<span class="op">&gt;</span>umax ? u <span class="op">:</span> umax</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    logP[<span class="op">:</span>] <span class="op">.-=</span> umax <span class="op">/</span> σ</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fu">log</span>(<span class="fu">sum</span>(<span class="fu">exp</span>.(logP)))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    logP[<span class="op">:</span>] <span class="op">.-=</span> denom <span class="co">#&lt;- nornalize choice probabilities</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>choice_prob! (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>And so the log-likelihood takes a simple form.</p>
+<div id="abc4dd81" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    (;γ,σW) <span class="op">=</span> pars</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !data.wage_missing[it]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">-</span>((data.logwage[it] <span class="op">-</span> γ[<span class="fl">1</span>] <span class="op">-</span> γ[<span class="fl">2</span>]<span class="op">*</span>data.age[it] <span class="op">-</span> γ[<span class="fl">3</span>]<span class="op">*</span>data.age[it]<span class="op">^</span><span class="fl">2</span>) <span class="op">/</span> σW)<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu">log</span>(σW)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="fu">j_idx</span>(data.P[it],data.H[it])</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">+=</span> logP[j]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">update</span>(x,p)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    αl <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">1</span>])</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    σ <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">2</span>])</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    γ <span class="op">=</span> x[<span class="fl">3</span><span class="op">:</span><span class="fl">5</span>]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    σW <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">6</span>])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    αP <span class="op">=</span> x[<span class="fl">7</span><span class="op">:</span><span class="fl">8</span>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (;p<span class="op">...</span>,αl,σ,σW,αP,γ)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(x,data,pars)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    pars <span class="op">=</span> <span class="fu">update</span>(x,pars)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    logP <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">eltype</span>(x),<span class="fl">9</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> it <span class="kw">in</span> <span class="fu">eachindex</span>(data.P)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>log_likelihood (generic function with 2 methods)</code></pre>
+</div>
+</div>
+<p>We can use <code>Optim</code> to maximize the log-likelihood:</p>
+<div id="7164a510" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">8</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> [<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fu">log</span>(<span class="fl">10</span>.),<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">optimize</span>(<span class="fu">x-&gt;-log_likelihood</span>(x,data_mle,pars),x0,<span class="fu">BFGS</span>(),autodiff<span class="op">=:</span>forward,Optim.<span class="fu">Options</span>(show_trace <span class="op">=</span> <span class="cn">true</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> <span class="fu">update</span>(res.minimizer,pars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iter     Function value   Gradient norm 
+     0     7.729550e+04     1.005681e+06
+ * time: 8.106231689453125e-5
+     1     7.728174e+04     1.362621e+05
+ * time: 0.19171905517578125
+     2     7.678584e+04     2.375208e+05
+ * time: 0.33513593673706055
+     3     7.041391e+04     1.155246e+07
+ * time: 0.6238150596618652
+     4     7.033009e+04     1.359653e+07
+ * time: 0.8826398849487305
+     5     6.446005e+04     1.276115e+07
+ * time: 1.2482399940490723
+     6     6.440142e+04     1.297836e+07
+ * time: 1.4615979194641113
+     7     6.388572e+04     1.316915e+07
+ * time: 1.5232429504394531
+     8     6.363983e+04     1.197498e+07
+ * time: 1.585402011871338
+     9     6.306659e+04     1.217467e+07
+ * time: 1.6306350231170654
+    10     5.970071e+04     6.242068e+06
+ * time: 1.69073486328125
+    11     5.913225e+04     1.838362e+06
+ * time: 1.73317289352417
+    12     5.898860e+04     3.725160e+05
+ * time: 1.7773070335388184
+    13     5.897031e+04     1.146177e+03
+ * time: 1.839087963104248
+    14     5.893098e+04     3.213296e+05
+ * time: 1.902716875076294
+    15     5.889641e+04     4.670839e+05
+ * time: 1.9707958698272705
+    16     5.886231e+04     6.564625e+05
+ * time: 2.0362579822540283
+    17     5.883989e+04     2.067935e+05
+ * time: 2.099200963973999
+    18     5.883335e+04     1.143504e+05
+ * time: 2.141633987426758
+    19     5.883128e+04     1.938827e+05
+ * time: 2.2063469886779785
+    20     5.872181e+04     2.425773e+06
+ * time: 2.5095090866088867
+    21     5.871558e+04     2.659735e+06
+ * time: 2.7132408618927
+    22     5.869667e+04     2.948221e+06
+ * time: 2.7586669921875
+    23     5.866938e+04     3.241386e+06
+ * time: 2.847506046295166
+    24     5.860059e+04     3.320767e+06
+ * time: 2.890687942504883
+    25     5.853216e+04     3.310494e+06
+ * time: 2.9314959049224854
+    26     5.829643e+04     2.687666e+06
+ * time: 2.976212978363037
+    27     5.802855e+04     7.037545e+05
+ * time: 3.0186538696289062
+    28     5.799332e+04     3.111438e+05
+ * time: 3.0619630813598633
+    29     5.798341e+04     9.587529e+04
+ * time: 3.1051669120788574
+    30     5.797958e+04     2.198829e+05
+ * time: 3.1493279933929443
+    31     5.797779e+04     2.395297e+05
+ * time: 3.194516897201538
+    32     5.797510e+04     1.735846e+05
+ * time: 3.2641448974609375
+    33     5.797480e+04     2.058438e+04
+ * time: 3.308682918548584
+    34     5.797478e+04     1.438637e+03
+ * time: 3.3508589267730713
+    35     5.797478e+04     4.051164e+02
+ * time: 3.3946938514709473
+    36     5.797478e+04     2.580092e+01
+ * time: 3.461169958114624
+    37     5.797478e+04     5.659174e+00
+ * time: 3.529015064239502
+    38     5.797478e+04     2.421590e-01
+ * time: 3.5727410316467285
+    39     5.797478e+04     2.800754e-02
+ * time: 3.61545991897583
+    40     5.797478e+04     1.614311e-03
+ * time: 3.6594839096069336
+    41     5.797478e+04     6.378983e-06
+ * time: 3.7032408714294434
+    42     5.797478e+04     4.206356e-09
+ * time: 3.7728278636932373</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>(αl = 2.854623378392939, σ = 0.9509286759263789, σW = 1.0217495087252684, γ = [-0.02362075058294272, 0.10877398375255734, -0.0012722347394313303], Hgrid = [0.0, 20.0, 40.0], αP = [2.0353016361355447, 1.0137619542631433])</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Write code to calculate the standard errors for these parameters and present the estimates with standard errors in a table.</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>What sources of variation are identifying <span class="math inline">\(\sigma\)</span>, the responsiveness of choices to changes in the payoffs? How is the responsivess of program participation and labor supply to changes in incentives limited in this framework?</p>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Re-estimate the model with a one layer <em>nested logit</em> structure, where the individual first makes one of the three participation choices before making one of the three hours choices. That is, if the choices can be ordered as: <span class="math display">\[ \{P_{j}\}_{j=1}^9 = \{0,0,0,1,1,1,2,2,2\}, \{H_{j}\}_{j=1}^9 = \{0,20,40,0,20,40,0,20,40\} \]</span></p>
+<p>then the partition is:</p>
+<p><span class="math display">\[ \mathcal{B} = \{\{1,2,3\},\{4,5,6\},\{7,8,9\}\} \]</span></p>
+<p>Let <span class="math inline">\(\sigma_{H}\)</span> be the dispersion of shocks within each partition and <span class="math inline">\(\sigma_{P}\)</span> be the dispersion of shocks across partitions. Intuitively, how are these shocks identified? (Hint: think first about the responsiveness of labor supply conditional on a participation choice).</p>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>What sort of variation do you think is in the data that we are failing to put in our model? What do you think are the implications for key parameter estimates?</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

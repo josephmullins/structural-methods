@@ -1,0 +1,170 @@
+---
+title: "Assignment 2"
+---
+
+We are building toward estimating a dynamic discrete choice model with persistent unobserved heterogeneity. To make a start, in this problem set you will estimate a static discrete choice problem on the data.
+
+## Setup: Code for MLE
+
+### Reading in Data
+
+You are going to build on the code below that estimates a *very* simple model of labor supply and program participation.
+
+First, here is a chunk of code to read in the data and prepare it. The variables in `julia` DataFrames are typically not type stable which can slow down your code considerably. So you will note that in the final step here I bring the variables I want to use out of a DataFrame and into a named tuple with vectors containing a fixed type.
+
+```{julia}
+using CSV, DataFrames, DataFramesMeta, Optim
+include("../children-cash-transfers/src/Transfers.jl")
+
+# for this simple model we can just drop missing data. When we estimate the model with persistent latent heterogeneity, we will need complete panels (including years where choices are missing).
+
+data = @chain begin
+    CSV.read("../children-cash-transfers/data/MainPanelFile.csv",DataFrame,missingstring = "NA")
+    #@select :MID :year :wage :hrs :earn :SOI :CPIU :WelfH :FSInd :num_child :age
+    @subset :year.>=1985 :year.<=2010
+    @transform :AFDC = :WelfH.>0 
+    @rename :FS = :FSInd
+    @transform :P  = :FS + :AFDC :H = min.(2,round.(Union{Int64, Missing},:hrs / (52*20)))
+    @subset .!ismissing.(:P) .&& .!ismissing.(:H)
+    @transform @byrow :wage = begin
+        if :hrs>0 && :earn>0
+            return :earn / :hrs / :CPIU
+        else
+            return missing
+        end
+    end
+end
+
+data_mle = (;P = Int64.(data.P), H = Int64.(data.H), year = data.year, age = data.age,
+            soi = data.SOI, num_kids = data.num_child, cpi = data.CPIU,
+            logwage = log.(coalesce.(data.wage,1.)),wage_missing = ismissing.(data.wage))
+
+```
+
+### The Model
+
+Consider a static model with 9 discrete choices. Hours choices are given by $H_{j}\in\{0,20,40\}$ and participation choices indicated by $P_{j}\in\{0,1,2\}$. Individuals may choose any combination of these, with a Type I extreme value distributed shock $\epsilon_{j}$ for choice $j$ that is iid over time and across individuals. The scale of these shocks is given by $\sigma$.
+
+Utility for individual $i$ at time $t$ is given by:
+
+$$ U_{itj} = \log(\max\{50,Y_{it}(W_{it}H_{j})\}) + \alpha_{l}\log(112 - H_{j}) - \alpha_{P,1}\mathbf{1}\{P_{j}>0\} - \alpha_{P,2}\mathbf{1}\{P_{j}>1\} $$
+
+where $Y_{it}$ is a net income function for individual $i$ at time $t$ and depends on their earnings ($W_{it}H_{j}$), the number of children in the household, and the policy environment in the individual's state of residence.
+
+Wages are a deterministic function of age only:
+
+$$ \log(W_{it}) = \gamma_{0} + \gamma_{1}\text{Age}_{it} + \gamma_{2}\text{Age}_{it}^2 $$
+
+and are measured with normally distributed iid measurement error:
+
+$$ \log(W^{o}_{it}) = \log(W_{it}) + \zeta_{it},\qquad\zeta_{it}\sim\mathcal{N}(0,\sigma^2_{W}) $$
+
+The code below calculates utility and indexes choices.
+
+```{julia}
+j_idx(p,h) = p*3 + h + 1
+function utility(p,h,soi,cpi,year,num_kids,wage,pars)
+    (;αl,Hgrid,σ,αP) = pars
+    hrs = Hgrid[1+h]
+    earn = wage * hrs
+    net_income = max(50.,Transfers.budget(earn,0.,soi,year,num_kids,cpi,p))
+    return log(net_income) + αl*log(112-hrs) - αP[1]*(p>0) - αP[2]*(p>1)
+end
+
+pars = (;αl = 1., σ = 1., σW = 1., γ = zeros(3),
+    Hgrid = [0,20.,40.],αP = zeros(2))
+```
+
+Choice probabilities are given by the logit formula.
+
+```{julia}
+function choice_prob!(logP,it,data,pars)
+    (;σ,γ) = pars
+    wage = exp(γ[1] + γ[2] * data.age[it] + γ[3] * data.age[it]^2)
+    denom = 0.
+    umax = -Inf
+    for p in 0:2
+        for h in 0:2
+            j = j_idx(p,h)
+            u = utility(p,h,data.soi[it],data.cpi[it],data.year[it],data.num_kids[it],wage,pars)
+            logP[j] = u / σ
+            umax = u>umax ? u : umax
+        end
+    end
+    logP[:] .-= umax / σ
+    denom = log(sum(exp.(logP)))
+    logP[:] .-= denom #<- nornalize choice probabilities
+end
+```
+
+And so the log-likelihood takes a simple form.
+
+```{julia}
+
+
+function log_likelihood(logP,it,data,pars)
+    (;γ,σW) = pars
+    ll = 0.
+    if !data.wage_missing[it]
+        ll += -((data.logwage[it] - γ[1] - γ[2]*data.age[it] - γ[3]*data.age[it]^2) / σW)^2 - log(σW)
+    end
+    choice_prob!(logP,it,data,pars)
+    j = j_idx(data.P[it],data.H[it])
+    ll += logP[j]
+    return ll
+end
+
+function update(x,p)
+    αl = exp(x[1])
+    σ = exp(x[2])
+    γ = x[3:5]
+    σW = exp(x[6])
+    αP = x[7:8]
+    return (;p...,αl,σ,σW,αP,γ)
+end
+
+function log_likelihood(x,data,pars)
+    pars = update(x,pars)
+    logP = zeros(eltype(x),9)
+    ll = 0.
+    for it in eachindex(data.P)
+        ll += log_likelihood(logP,it,data,pars)
+    end
+    return ll
+end
+
+```
+
+We can use `Optim` to maximize the log-likelihood:
+
+```{julia}
+x0 = zeros(8)
+x0 = [0.,0.,log(10.),0.,0.,0.,0.,0.]
+res = optimize(x->-log_likelihood(x,data_mle,pars),x0,BFGS(),autodiff=:forward,Optim.Options(show_trace = true))
+pars = update(res.minimizer,pars)
+
+```
+
+
+## Question 1
+
+Write code to calculate the standard errors for these parameters and present the estimates with standard errors in a table.
+
+## Question 2
+
+What sources of variation are identifying $\sigma$, the responsiveness of choices to changes in the payoffs? How is the responsivess of program participation and labor supply to changes in incentives limited in this framework?
+
+## Question 3
+
+Re-estimate the model with a one layer *nested logit* structure, where the individual first makes one of the three participation choices before making one of the three hours choices. That is, if the choices can be ordered as:
+$$ \{P_{j}\}_{j=1}^9 = \{0,0,0,1,1,1,2,2,2\}, \{H_{j}\}_{j=1}^9 = \{0,20,40,0,20,40,0,20,40\} $$
+
+then the partition is: 
+
+$$ \mathcal{B} = \{\{1,2,3\},\{4,5,6\},\{7,8,9\}\} $$
+
+Let $\sigma_{H}$ be the dispersion of shocks within each partition and $\sigma_{P}$ be the dispersion of shocks across partitions. Intuitively, how are these shocks identified? (Hint: think first about the responsiveness of labor supply conditional on a participation choice).
+
+## Question 4
+
+What sort of variation do you think is in the data that we are failing to put in our model? What do you think are the implications for key parameter estimates?
