@@ -164,6 +164,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../assignments/Assignment-1.html">
  <span class="dropdown-text">Assignment 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-2.html">
+ <span class="dropdown-text">Assignment 2</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -223,7 +227,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="reading-in-data">Reading in Data</h3>
 <p>You are going to build on the code below that estimates a <em>very</em> simple model of labor supply and program participation.</p>
 <p>First, here is a chunk of code to read in the data and prepare it. The variables in <code>julia</code> DataFrames are typically not type stable which can slow down your code considerably. So you will note that in the final step here I bring the variables I want to use out of a DataFrame and into a named tuple with vectors containing a fixed type.</p>
-<div id="6ba19716" class="cell" data-execution_count="1">
+<div id="d2625d98" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">DataFramesMeta</span>, <span class="bu">Optim</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"../children-cash-transfers/src/Transfers.jl"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -249,10 +253,7 @@ window.Quarto = {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>data_mle <span class="op">=</span> (;P <span class="op">=</span> <span class="fu">Int64</span>.(data.P), H <span class="op">=</span> <span class="fu">Int64</span>.(data.H), year <span class="op">=</span> data.year, age <span class="op">=</span> data.age,</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            soi <span class="op">=</span> data.SOI, num_kids <span class="op">=</span> data.num_child, cpi <span class="op">=</span> data.CPIU,</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            logwage <span class="op">=</span> <span class="fu">log</span>.(<span class="fu">coalesce</span>.(data.wage,<span class="fl">1</span>.)),wage_missing <span class="op">=</span> <span class="fu">ismissing</span>.(data.wage))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>WARNING: replacing module Transfers.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>(P = [2, 2, 2, 1, 0, 0, 0, 2, 1, 0  …  2, 2, 1, 2, 0, 0, 1, 1, 1, 1], H = [0, 0, 0, 0, 0, 0, 0, 0, 0, 2  …  0, 0, 2, 2, 2, 2, 0, 0, 0, 0], year = [1994, 1995, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 1990  …  1991, 1992, 1991, 1992, 1991, 1992, 1991, 1992, 1991, 1992], age = [21, 22, 23, 25, 27, 29, 31, 33, 35, 17  …  21, 22, 23, 24, 39, 40, 30, 31, 25, 26], soi = [43, 43, 43, 43, 43, 43, 43, 43, 43, 17  …  44, 44, 7, 7, 5, 5, 39, 39, 39, 39], num_kids = [2, 2, 3, 3, 3, 3, 3, 3, 3, 1  …  2, 2, 2, 2, 3, 3, 4, 4, 2, 2], cpi = [0.860812349005761, 0.884959812302546, 0.910948243820851, 0.946664188812488, 1.0, 1.04457233785542, 1.09707768072849, 1.17054218546739, 1.25008130459022, 0.758792510685746  …  0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336, 0.790785866939231, 0.8148346032336], logwage = [0.0, 0.0, 0.0, 0.0, 1.2039728043259361, 0.0, 0.0, 0.0, 0.0, 0.8230555833449215  …  0.0, 0.0, 2.6512574120409043, 2.3314412292534223, 1.265948758245773, 1.8744481199656744, 0.0, 0.0, 0.0, 0.0], wage_missing = Bool[1, 1, 1, 1, 0, 1, 1, 1, 1, 0  …  1, 1, 0, 0, 0, 0, 1, 1, 1, 1])</code></pre>
 </div>
 </div>
@@ -268,177 +269,177 @@ window.Quarto = {
 <p>and are measured with normally distributed iid measurement error:</p>
 <p><span class="math display">\[ \log(W^{o}_{it}) = \log(W_{it}) + \zeta_{it},\qquad\zeta_{it}\sim\mathcal{N}(0,\sigma^2_{W}) \]</span></p>
 <p>The code below calculates utility and indexes choices.</p>
-<div id="06302fda" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">j_idx</span>(p,h) <span class="op">=</span> p<span class="op">*</span><span class="fl">3</span> <span class="op">+</span> h <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">utility</span>(p,h,soi,cpi,year,num_kids,wage,pars)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (;αl,Hgrid,σ,αP) <span class="op">=</span> pars</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    hrs <span class="op">=</span> Hgrid[<span class="fl">1</span><span class="op">+</span>h]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    earn <span class="op">=</span> wage <span class="op">*</span> hrs</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> <span class="fu">max</span>(<span class="fl">50</span>.,Transfers.<span class="fu">budget</span>(earn,<span class="fl">0</span>.,soi,year,num_kids,cpi,p))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">log</span>(net_income) <span class="op">+</span> <span class="fu">αl*log</span>(<span class="fl">112</span><span class="op">-</span>hrs) <span class="op">-</span> αP[<span class="fl">1</span>]<span class="fu">*</span>(p<span class="op">&gt;</span><span class="fl">0</span>) <span class="op">-</span> αP[<span class="fl">2</span>]<span class="fu">*</span>(p<span class="op">&gt;</span><span class="fl">1</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> (;αl <span class="op">=</span> <span class="fl">1</span>., σ <span class="op">=</span> <span class="fl">1</span>., σW <span class="op">=</span> <span class="fl">1</span>., γ <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">3</span>),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    Hgrid <span class="op">=</span> [<span class="fl">0</span>,<span class="fl">20</span>.,<span class="fl">40</span>.],αP <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div id="db76970e" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">j_idx</span>(p,h) <span class="op">=</span> p<span class="op">*</span><span class="fl">3</span> <span class="op">+</span> h <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">utility</span>(p,h,soi,cpi,year,num_kids,wage,pars)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (;αl,Hgrid,σ,αP) <span class="op">=</span> pars</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    hrs <span class="op">=</span> Hgrid[<span class="fl">1</span><span class="op">+</span>h]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    earn <span class="op">=</span> wage <span class="op">*</span> hrs</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    net_income <span class="op">=</span> <span class="fu">max</span>(<span class="fl">50</span>.,Transfers.<span class="fu">budget</span>(earn,<span class="fl">0</span>.,soi,year,num_kids,cpi,p))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">log</span>(net_income) <span class="op">+</span> <span class="fu">αl*log</span>(<span class="fl">112</span><span class="op">-</span>hrs) <span class="op">-</span> αP[<span class="fl">1</span>]<span class="fu">*</span>(p<span class="op">&gt;</span><span class="fl">0</span>) <span class="op">-</span> αP[<span class="fl">2</span>]<span class="fu">*</span>(p<span class="op">&gt;</span><span class="fl">1</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> (;αl <span class="op">=</span> <span class="fl">1</span>., σ <span class="op">=</span> <span class="fl">1</span>., σW <span class="op">=</span> <span class="fl">1</span>., γ <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">3</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    Hgrid <span class="op">=</span> [<span class="fl">0</span>,<span class="fl">20</span>.,<span class="fl">40</span>.],αP <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(αl = 1.0, σ = 1.0, σW = 1.0, γ = [0.0, 0.0, 0.0], Hgrid = [0.0, 20.0, 40.0], αP = [0.0, 0.0])</code></pre>
 </div>
 </div>
 <p>Choice probabilities are given by the logit formula.</p>
-<div id="b1eddfce" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (;σ,γ) <span class="op">=</span> pars</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    wage <span class="op">=</span> <span class="fu">exp</span>(γ[<span class="fl">1</span>] <span class="op">+</span> γ[<span class="fl">2</span>] <span class="op">*</span> data.age[it] <span class="op">+</span> γ[<span class="fl">3</span>] <span class="op">*</span> data.age[it]<span class="op">^</span><span class="fl">2</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fl">0</span>.</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    umax <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> h <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> <span class="fu">j_idx</span>(p,h)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            u <span class="op">=</span> <span class="fu">utility</span>(p,h,data.soi[it],data.cpi[it],data.year[it],data.num_kids[it],wage,pars)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            logP[j] <span class="op">=</span> u <span class="op">/</span> σ</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            umax <span class="op">=</span> u<span class="op">&gt;</span>umax ? u <span class="op">:</span> umax</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    logP[<span class="op">:</span>] <span class="op">.-=</span> umax <span class="op">/</span> σ</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fu">log</span>(<span class="fu">sum</span>(<span class="fu">exp</span>.(logP)))</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    logP[<span class="op">:</span>] <span class="op">.-=</span> denom <span class="co">#&lt;- nornalize choice probabilities</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div id="7a3ff891" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (;σ,γ) <span class="op">=</span> pars</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    wage <span class="op">=</span> <span class="fu">exp</span>(γ[<span class="fl">1</span>] <span class="op">+</span> γ[<span class="fl">2</span>] <span class="op">*</span> data.age[it] <span class="op">+</span> γ[<span class="fl">3</span>] <span class="op">*</span> data.age[it]<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fl">0</span>.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    umax <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> h <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> <span class="fu">j_idx</span>(p,h)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            u <span class="op">=</span> <span class="fu">utility</span>(p,h,data.soi[it],data.cpi[it],data.year[it],data.num_kids[it],wage,pars)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            logP[j] <span class="op">=</span> u <span class="op">/</span> σ</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            umax <span class="op">=</span> u<span class="op">&gt;</span>umax ? u <span class="op">:</span> umax</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    logP[<span class="op">:</span>] <span class="op">.-=</span> umax <span class="op">/</span> σ</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fu">log</span>(<span class="fu">sum</span>(<span class="fu">exp</span>.(logP)))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    logP[<span class="op">:</span>] <span class="op">.-=</span> denom <span class="co">#&lt;- nornalize choice probabilities</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>choice_prob! (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>And so the log-likelihood takes a simple form.</p>
-<div id="abc4dd81" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    (;γ,σW) <span class="op">=</span> pars</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !data.wage_missing[it]</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">-</span>((data.logwage[it] <span class="op">-</span> γ[<span class="fl">1</span>] <span class="op">-</span> γ[<span class="fl">2</span>]<span class="op">*</span>data.age[it] <span class="op">-</span> γ[<span class="fl">3</span>]<span class="op">*</span>data.age[it]<span class="op">^</span><span class="fl">2</span>) <span class="op">/</span> σW)<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu">log</span>(σW)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="fu">j_idx</span>(data.P[it],data.H[it])</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">+=</span> logP[j]</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">update</span>(x,p)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    αl <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">1</span>])</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    σ <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">2</span>])</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    γ <span class="op">=</span> x[<span class="fl">3</span><span class="op">:</span><span class="fl">5</span>]</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    σW <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">6</span>])</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    αP <span class="op">=</span> x[<span class="fl">7</span><span class="op">:</span><span class="fl">8</span>]</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (;p<span class="op">...</span>,αl,σ,σW,αP,γ)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(x,data,pars)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    pars <span class="op">=</span> <span class="fu">update</span>(x,pars)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    logP <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">eltype</span>(x),<span class="fl">9</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> it <span class="kw">in</span> <span class="fu">eachindex</span>(data.P)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div id="479f37c8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    (;γ,σW) <span class="op">=</span> pars</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !data.wage_missing[it]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">-</span>((data.logwage[it] <span class="op">-</span> γ[<span class="fl">1</span>] <span class="op">-</span> γ[<span class="fl">2</span>]<span class="op">*</span>data.age[it] <span class="op">-</span> γ[<span class="fl">3</span>]<span class="op">*</span>data.age[it]<span class="op">^</span><span class="fl">2</span>) <span class="op">/</span> σW)<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu">log</span>(σW)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="fu">j_idx</span>(data.P[it],data.H[it])</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">+=</span> logP[j]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">update</span>(x,p)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    αl <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">1</span>])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    σ <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">2</span>])</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    γ <span class="op">=</span> x[<span class="fl">3</span><span class="op">:</span><span class="fl">5</span>]</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    σW <span class="op">=</span> <span class="fu">exp</span>(x[<span class="fl">6</span>])</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    αP <span class="op">=</span> x[<span class="fl">7</span><span class="op">:</span><span class="fl">8</span>]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (;p<span class="op">...</span>,αl,σ,σW,αP,γ)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(x,data,pars)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    pars <span class="op">=</span> <span class="fu">update</span>(x,pars)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    logP <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">eltype</span>(x),<span class="fl">9</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> it <span class="kw">in</span> <span class="fu">eachindex</span>(data.P)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>log_likelihood (generic function with 2 methods)</code></pre>
 </div>
 </div>
 <p>We can use <code>Optim</code> to maximize the log-likelihood:</p>
-<div id="7164a510" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">8</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> [<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fu">log</span>(<span class="fl">10</span>.),<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">optimize</span>(<span class="fu">x-&gt;-log_likelihood</span>(x,data_mle,pars),x0,<span class="fu">BFGS</span>(),autodiff<span class="op">=:</span>forward,Optim.<span class="fu">Options</span>(show_trace <span class="op">=</span> <span class="cn">true</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> <span class="fu">update</span>(res.minimizer,pars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dab67980" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">8</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> [<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fu">log</span>(<span class="fl">10</span>.),<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">optimize</span>(<span class="fu">x-&gt;-log_likelihood</span>(x,data_mle,pars),x0,<span class="fu">BFGS</span>(),autodiff<span class="op">=:</span>forward,Optim.<span class="fu">Options</span>(show_trace <span class="op">=</span> <span class="cn">true</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> <span class="fu">update</span>(res.minimizer,pars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iter     Function value   Gradient norm 
      0     7.729550e+04     1.005681e+06
- * time: 8.106231689453125e-5
+ * time: 0.0067348480224609375
      1     7.728174e+04     1.362621e+05
- * time: 0.19171905517578125
+ * time: 0.46323084831237793
      2     7.678584e+04     2.375208e+05
- * time: 0.33513593673706055
+ * time: 0.5899059772491455
      3     7.041391e+04     1.155246e+07
- * time: 0.6238150596618652
+ * time: 0.848891019821167
      4     7.033009e+04     1.359653e+07
- * time: 0.8826398849487305
+ * time: 1.0774779319763184
      5     6.446005e+04     1.276115e+07
- * time: 1.2482399940490723
+ * time: 1.3872449398040771
      6     6.440142e+04     1.297836e+07
- * time: 1.4615979194641113
+ * time: 1.5771429538726807
      7     6.388572e+04     1.316915e+07
- * time: 1.5232429504394531
+ * time: 1.633699893951416
      8     6.363983e+04     1.197498e+07
- * time: 1.585402011871338
+ * time: 1.6910300254821777
      9     6.306659e+04     1.217467e+07
- * time: 1.6306350231170654
+ * time: 1.7291948795318604
     10     5.970071e+04     6.242068e+06
- * time: 1.69073486328125
+ * time: 1.7861368656158447
     11     5.913225e+04     1.838362e+06
- * time: 1.73317289352417
+ * time: 1.8247549533843994
     12     5.898860e+04     3.725160e+05
- * time: 1.7773070335388184
+ * time: 1.862968921661377
     13     5.897031e+04     1.146177e+03
- * time: 1.839087963104248
+ * time: 1.920003890991211
     14     5.893098e+04     3.213296e+05
- * time: 1.902716875076294
+ * time: 1.9772908687591553
     15     5.889641e+04     4.670839e+05
- * time: 1.9707958698272705
+ * time: 2.0341718196868896
     16     5.886231e+04     6.564625e+05
- * time: 2.0362579822540283
+ * time: 2.0910239219665527
     17     5.883989e+04     2.067935e+05
- * time: 2.099200963973999
+ * time: 2.148289918899536
     18     5.883335e+04     1.143504e+05
- * time: 2.141633987426758
+ * time: 2.186215877532959
     19     5.883128e+04     1.938827e+05
- * time: 2.2063469886779785
+ * time: 2.2432708740234375
     20     5.872181e+04     2.425773e+06
- * time: 2.5095090866088867
+ * time: 2.5086259841918945
     21     5.871558e+04     2.659735e+06
- * time: 2.7132408618927
+ * time: 2.6778719425201416
     22     5.869667e+04     2.948221e+06
- * time: 2.7586669921875
+ * time: 2.715939998626709
     23     5.866938e+04     3.241386e+06
- * time: 2.847506046295166
+ * time: 2.792001962661743
     24     5.860059e+04     3.320767e+06
- * time: 2.890687942504883
+ * time: 2.829859972000122
     25     5.853216e+04     3.310494e+06
- * time: 2.9314959049224854
+ * time: 2.8678648471832275
     26     5.829643e+04     2.687666e+06
- * time: 2.976212978363037
+ * time: 2.9062747955322266
     27     5.802855e+04     7.037545e+05
- * time: 3.0186538696289062
+ * time: 2.9442379474639893
     28     5.799332e+04     3.111438e+05
- * time: 3.0619630813598633
+ * time: 2.9819729328155518
     29     5.798341e+04     9.587529e+04
- * time: 3.1051669120788574
+ * time: 3.019860029220581
     30     5.797958e+04     2.198829e+05
- * time: 3.1493279933929443
+ * time: 3.0580317974090576
     31     5.797779e+04     2.395297e+05
- * time: 3.194516897201538
+ * time: 3.096052885055542
     32     5.797510e+04     1.735846e+05
- * time: 3.2641448974609375
+ * time: 3.1561620235443115
     33     5.797480e+04     2.058438e+04
- * time: 3.308682918548584
+ * time: 3.195523977279663
     34     5.797478e+04     1.438637e+03
- * time: 3.3508589267730713
+ * time: 3.2377889156341553
     35     5.797478e+04     4.051164e+02
- * time: 3.3946938514709473
+ * time: 3.278334856033325
     36     5.797478e+04     2.580092e+01
- * time: 3.461169958114624
+ * time: 3.3357489109039307
     37     5.797478e+04     5.659174e+00
- * time: 3.529015064239502
+ * time: 3.393019914627075
     38     5.797478e+04     2.421590e-01
- * time: 3.5727410316467285
+ * time: 3.4309909343719482
     39     5.797478e+04     2.800754e-02
- * time: 3.61545991897583
+ * time: 3.4690258502960205
     40     5.797478e+04     1.614311e-03
- * time: 3.6594839096069336
+ * time: 3.5067529678344727
     41     5.797478e+04     6.378983e-06
- * time: 3.7032408714294434
+ * time: 3.544942855834961
     42     5.797478e+04     4.206356e-09
- * time: 3.7728278636932373</code></pre>
+ * time: 3.601470947265625</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(αl = 2.854623378392939, σ = 0.9509286759263789, σW = 1.0217495087252684, γ = [-0.02362075058294272, 0.10877398375255734, -0.0012722347394313303], Hgrid = [0.0, 20.0, 40.0], αP = [2.0353016361355447, 1.0137619542631433])</code></pre>
 </div>
 </div>
@@ -457,7 +458,7 @@ window.Quarto = {
 <p>Re-estimate the model with a one layer <em>nested logit</em> structure, where the individual first makes one of the three participation choices before making one of the three hours choices. That is, if the choices can be ordered as: <span class="math display">\[ \{P_{j}\}_{j=1}^9 = \{0,0,0,1,1,1,2,2,2\}, \{H_{j}\}_{j=1}^9 = \{0,20,40,0,20,40,0,20,40\} \]</span></p>
 <p>then the partition is:</p>
 <p><span class="math display">\[ \mathcal{B} = \{\{1,2,3\},\{4,5,6\},\{7,8,9\}\} \]</span></p>
-<p>Let <span class="math inline">\(\sigma_{H}\)</span> be the dispersion of shocks within each partition and <span class="math inline">\(\sigma_{P}\)</span> be the dispersion of shocks across partitions. Intuitively, how are these shocks identified? (Hint: think first about the responsiveness of labor supply conditional on a participation choice).</p>
+<p>Let <span class="math inline">\(\sigma_{H}\)</span> be the dispersion of shocks within each partition and <span class="math inline">\(\sigma_{P}\)</span> be the dispersion of shocks across partitions. Intuitively, how are these dispersion parameters identified? (Hint: think about what is changing payoffs across observations and think about the two dimensions of the discrete choice).</p>
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>

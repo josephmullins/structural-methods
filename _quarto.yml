@@ -11,6 +11,7 @@ website:
       - text: Assignments
         menu:
           - assignments/Assignment-1.qmd
+          - assignments/Assignment-2.qmd
 
 format:
   html:

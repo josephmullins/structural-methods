@@ -163,7 +163,7 @@ then the partition is:
 
 $$ \mathcal{B} = \{\{1,2,3\},\{4,5,6\},\{7,8,9\}\} $$
 
-Let $\sigma_{H}$ be the dispersion of shocks within each partition and $\sigma_{P}$ be the dispersion of shocks across partitions. Intuitively, how are these shocks identified? (Hint: think first about the responsiveness of labor supply conditional on a participation choice).
+Let $\sigma_{H}$ be the dispersion of shocks within each partition and $\sigma_{P}$ be the dispersion of shocks across partitions. Intuitively, how are these dispersion parameters identified? (Hint: think about what is changing payoffs across observations and think about the two dimensions of the discrete choice). 
 
 ## Question 4
 
