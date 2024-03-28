@@ -227,7 +227,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="reading-in-data">Reading in Data</h3>
 <p>You are going to build on the code below that estimates a <em>very</em> simple model of labor supply and program participation.</p>
 <p>First, here is a chunk of code to read in the data and prepare it. The variables in <code>julia</code> DataFrames are typically not type stable which can slow down your code considerably. So you will note that in the final step here I bring the variables I want to use out of a DataFrame and into a named tuple with vectors containing a fixed type.</p>
-<div id="d2625d98" class="cell" data-execution_count="1">
+<div id="667e642c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">DataFramesMeta</span>, <span class="bu">Optim</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"../children-cash-transfers/src/Transfers.jl"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -269,7 +269,7 @@ window.Quarto = {
 <p>and are measured with normally distributed iid measurement error:</p>
 <p><span class="math display">\[ \log(W^{o}_{it}) = \log(W_{it}) + \zeta_{it},\qquad\zeta_{it}\sim\mathcal{N}(0,\sigma^2_{W}) \]</span></p>
 <p>The code below calculates utility and indexes choices.</p>
-<div id="db76970e" class="cell" data-execution_count="2">
+<div id="a967b019" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">j_idx</span>(p,h) <span class="op">=</span> p<span class="op">*</span><span class="fl">3</span> <span class="op">+</span> h <span class="op">+</span> <span class="fl">1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">utility</span>(p,h,soi,cpi,year,num_kids,wage,pars)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (;αl,Hgrid,σ,αP) <span class="op">=</span> pars</span>
@@ -286,7 +286,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Choice probabilities are given by the logit formula.</p>
-<div id="7a3ff891" class="cell" data-execution_count="3">
+<div id="35d8bcd3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (;σ,γ) <span class="op">=</span> pars</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    wage <span class="op">=</span> <span class="fu">exp</span>(γ[<span class="fl">1</span>] <span class="op">+</span> γ[<span class="fl">2</span>] <span class="op">*</span> data.age[it] <span class="op">+</span> γ[<span class="fl">3</span>] <span class="op">*</span> data.age[it]<span class="op">^</span><span class="fl">2</span>)</span>
@@ -309,12 +309,12 @@ window.Quarto = {
 </div>
 </div>
 <p>And so the log-likelihood takes a simple form.</p>
-<div id="479f37c8" class="cell" data-execution_count="4">
+<div id="ae632867" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    (;γ,σW) <span class="op">=</span> pars</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !data.wage_missing[it]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">-</span>((data.logwage[it] <span class="op">-</span> γ[<span class="fl">1</span>] <span class="op">-</span> γ[<span class="fl">2</span>]<span class="op">*</span>data.age[it] <span class="op">-</span> γ[<span class="fl">3</span>]<span class="op">*</span>data.age[it]<span class="op">^</span><span class="fl">2</span>) <span class="op">/</span> σW)<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu">log</span>(σW)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        ll <span class="op">+=</span> <span class="fu">-</span>(<span class="fl">0.5</span><span class="fu">*</span>(data.logwage[it] <span class="op">-</span> γ[<span class="fl">1</span>] <span class="op">-</span> γ[<span class="fl">2</span>]<span class="op">*</span>data.age[it] <span class="op">-</span> γ[<span class="fl">3</span>]<span class="op">*</span>data.age[it]<span class="op">^</span><span class="fl">2</span>) <span class="op">/</span> σW)<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu">log</span>(σW)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="fu">j_idx</span>(data.P[it],data.H[it])</span>
@@ -345,102 +345,76 @@ window.Quarto = {
 </div>
 </div>
 <p>We can use <code>Optim</code> to maximize the log-likelihood:</p>
-<div id="dab67980" class="cell" data-execution_count="5">
+<div id="2b4367e8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">8</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> [<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fu">log</span>(<span class="fl">10</span>.),<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">optimize</span>(<span class="fu">x-&gt;-log_likelihood</span>(x,data_mle,pars),x0,<span class="fu">BFGS</span>(),autodiff<span class="op">=:</span>forward,Optim.<span class="fu">Options</span>(show_trace <span class="op">=</span> <span class="cn">true</span>))</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pars <span class="op">=</span> <span class="fu">update</span>(res.minimizer,pars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iter     Function value   Gradient norm 
-     0     7.729550e+04     1.005681e+06
- * time: 0.0067348480224609375
-     1     7.728174e+04     1.362621e+05
- * time: 0.46323084831237793
-     2     7.678584e+04     2.375208e+05
- * time: 0.5899059772491455
-     3     7.041391e+04     1.155246e+07
- * time: 0.848891019821167
-     4     7.033009e+04     1.359653e+07
- * time: 1.0774779319763184
-     5     6.446005e+04     1.276115e+07
- * time: 1.3872449398040771
-     6     6.440142e+04     1.297836e+07
- * time: 1.5771429538726807
-     7     6.388572e+04     1.316915e+07
- * time: 1.633699893951416
-     8     6.363983e+04     1.197498e+07
- * time: 1.6910300254821777
-     9     6.306659e+04     1.217467e+07
- * time: 1.7291948795318604
-    10     5.970071e+04     6.242068e+06
- * time: 1.7861368656158447
-    11     5.913225e+04     1.838362e+06
- * time: 1.8247549533843994
-    12     5.898860e+04     3.725160e+05
- * time: 1.862968921661377
-    13     5.897031e+04     1.146177e+03
- * time: 1.920003890991211
-    14     5.893098e+04     3.213296e+05
- * time: 1.9772908687591553
-    15     5.889641e+04     4.670839e+05
- * time: 2.0341718196868896
-    16     5.886231e+04     6.564625e+05
- * time: 2.0910239219665527
-    17     5.883989e+04     2.067935e+05
- * time: 2.148289918899536
-    18     5.883335e+04     1.143504e+05
- * time: 2.186215877532959
-    19     5.883128e+04     1.938827e+05
- * time: 2.2432708740234375
-    20     5.872181e+04     2.425773e+06
- * time: 2.5086259841918945
-    21     5.871558e+04     2.659735e+06
- * time: 2.6778719425201416
-    22     5.869667e+04     2.948221e+06
- * time: 2.715939998626709
-    23     5.866938e+04     3.241386e+06
- * time: 2.792001962661743
-    24     5.860059e+04     3.320767e+06
- * time: 2.829859972000122
-    25     5.853216e+04     3.310494e+06
- * time: 2.8678648471832275
-    26     5.829643e+04     2.687666e+06
- * time: 2.9062747955322266
-    27     5.802855e+04     7.037545e+05
- * time: 2.9442379474639893
-    28     5.799332e+04     3.111438e+05
- * time: 2.9819729328155518
-    29     5.798341e+04     9.587529e+04
- * time: 3.019860029220581
-    30     5.797958e+04     2.198829e+05
- * time: 3.0580317974090576
-    31     5.797779e+04     2.395297e+05
- * time: 3.096052885055542
-    32     5.797510e+04     1.735846e+05
- * time: 3.1561620235443115
-    33     5.797480e+04     2.058438e+04
- * time: 3.195523977279663
-    34     5.797478e+04     1.438637e+03
- * time: 3.2377889156341553
-    35     5.797478e+04     4.051164e+02
- * time: 3.278334856033325
-    36     5.797478e+04     2.580092e+01
- * time: 3.3357489109039307
-    37     5.797478e+04     5.659174e+00
- * time: 3.393019914627075
-    38     5.797478e+04     2.421590e-01
- * time: 3.4309909343719482
-    39     5.797478e+04     2.800754e-02
- * time: 3.4690258502960205
-    40     5.797478e+04     1.614311e-03
- * time: 3.5067529678344727
-    41     5.797478e+04     6.378983e-06
- * time: 3.544942855834961
-    42     5.797478e+04     4.206356e-09
- * time: 3.601470947265625</code></pre>
+     0     6.987119e+04     4.124831e+06
+ * time: 0.006826162338256836
+     1     6.951735e+04     2.460288e+06
+ * time: 0.47319912910461426
+     2     5.626821e+04     3.303480e+06
+ * time: 0.6827201843261719
+     3     5.398215e+04     5.441953e+06
+ * time: 0.90323805809021
+     4     4.960169e+04     1.564578e+06
+ * time: 1.2746100425720215
+     5     4.884538e+04     1.273430e+05
+ * time: 1.4945001602172852
+     6     4.853118e+04     6.283683e+05
+ * time: 1.7257850170135498
+     7     4.829499e+04     7.697150e+05
+ * time: 1.9934401512145996
+     8     4.798108e+04     8.457877e+05
+ * time: 2.0523362159729004
+     9     4.651434e+04     4.529355e+06
+ * time: 2.0923080444335938
+    10     4.594551e+04     6.493576e+05
+ * time: 2.1314849853515625
+    11     4.584673e+04     3.261686e+05
+ * time: 2.170725107192993
+    12     4.582297e+04     1.709823e+05
+ * time: 2.211158037185669
+    13     4.581988e+04     3.680442e+05
+ * time: 2.25351619720459
+    14     4.580312e+04     6.389673e+05
+ * time: 2.3333420753479004
+    15     4.577167e+04     2.880106e+05
+ * time: 2.391576051712036
+    16     4.576241e+04     8.710960e+04
+ * time: 2.432741165161133
+    17     4.576223e+04     3.636794e+03
+ * time: 2.4721171855926514
+    18     4.576222e+04     6.869559e+01
+ * time: 2.512456178665161
+    19     4.576222e+04     2.446185e+01
+ * time: 2.551814079284668
+    20     4.576222e+04     3.051868e+01
+ * time: 2.5911881923675537
+    21     4.576222e+04     3.578926e+00
+ * time: 2.6317811012268066
+    22     4.576222e+04     6.649761e-03
+ * time: 2.673603057861328
+    23     4.576222e+04     5.108241e-04
+ * time: 2.714679002761841
+    24     4.576222e+04     1.092524e-04
+ * time: 2.758763074874878
+    25     4.576222e+04     1.972051e-06
+ * time: 2.8003032207489014
+    26     4.576222e+04     1.043577e-08
+ * time: 2.8442680835723877
+    27     4.576222e+04     1.560539e-08
+ * time: 2.8886020183563232
+    28     4.576222e+04     1.935842e-08
+ * time: 2.9298670291900635
+    29     4.576222e+04     9.989606e-09
+ * time: 2.974558115005493</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>(αl = 2.854623378392939, σ = 0.9509286759263789, σW = 1.0217495087252684, γ = [-0.02362075058294272, 0.10877398375255734, -0.0012722347394313303], Hgrid = [0.0, 20.0, 40.0], αP = [2.0353016361355447, 1.0137619542631433])</code></pre>
+<pre><code>(αl = 2.854623378392949, σ = 0.950928675926386, σW = 0.5108747543626335, γ = [-0.023620750582811604, 0.10877398375254944, -0.0012722347394312182], Hgrid = [0.0, 20.0, 40.0], αP = [2.035301636135556, 1.0137619542631446])</code></pre>
 </div>
 </div>
 </section>
