@@ -168,6 +168,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../assignments/Assignment-2.html">
  <span class="dropdown-text">Assignment 2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-3.html">
+ <span class="dropdown-text">Assignment 3 - Solving the Dynamic Program</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -192,6 +196,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#setting-exogenous-state-variables" id="toc-setting-exogenous-state-variables" class="nav-link" data-scroll-target="#setting-exogenous-state-variables">Setting exogenous state variables</a></li>
   <li><a href="#nested-logit-probabilities" id="toc-nested-logit-probabilities" class="nav-link" data-scroll-target="#nested-logit-probabilities">Nested Logit Probabilities</a></li>
+  <li><a href="#indexing-the-state" id="toc-indexing-the-state" class="nav-link" data-scroll-target="#indexing-the-state">Indexing the State</a></li>
   <li><a href="#transition-probabilities" id="toc-transition-probabilities" class="nav-link" data-scroll-target="#transition-probabilities">Transition Probabilities</a></li>
   </ul></li>
   <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
@@ -246,58 +251,64 @@ window.Quarto = {
 <section id="setting-exogenous-state-variables" class="level3">
 <h3 class="anchored" data-anchor-id="setting-exogenous-state-variables">Setting exogenous state variables</h3>
 <p>Recall that in the model there are only three state variables to track: (1) the individual’s type (<span class="math inline">\(k\)</span>); (2) the wage shock (<span class="math inline">\(\varepsilon\)</span>); and (3) cumulative welfare use (<span class="math inline">\(\omega\)</span>). Below we define a struct called <code>model_data</code> that contains all of the exogenous state variables that are taken as given for each individual in the data. The struct is defined in <code>/children-cash-transfers/src/model.jl</code>, but we repeat the definition here:</p>
-<p>```julia .noeval struct model_data # T::Int64 #&lt;- length of problem</p>
-<pre><code>y0::Int64 #&lt;- year to begin problem
-age0::Int64 # &lt;- mother's age at start of problem
-SOI::Vector{Int64} #&lt;- state SOI in each year
-num_kids::Vector{Int64} #&lt;- number of kids in household that are between age 0 and 17
-TotKids::Int64 #&lt;- indicares the total number of children that the mother will have over the available panel
-age_kid::Matrix{Int64} #&lt; age_kid[f,t] is the age of child f at time t. Will be negative if child not born yet.
-cpi::Vector{Float64} #&lt;- cpi
-
-R::Vector{Int64} #&lt;- indicates if work requirement in time t
-Kω::Int64 #&lt;- indicates length of time limit once introduced
-TL::Vector{Bool} #&lt;- indicating that time limit is in place</code></pre>
-<p>end</p>
-<pre><code>
-Eventually we will have one of these objects for every mother we observe in the data, and we'll solve resulting dynamic program for each of them. To test our functions below we can create a test version by calling:
-
-```julia .noeval
-md = test_model()</code></pre>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> model_data</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    T<span class="op">::</span><span class="dt">Int64 </span><span class="co">#&lt;- length of problem</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    y0<span class="op">::</span><span class="dt">Int64 </span><span class="co">#&lt;- year to begin problem</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    age0<span class="op">::</span><span class="dt">Int64 </span><span class="co"># &lt;- mother's age at start of problem</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    SOI<span class="op">::</span><span class="dt">Vector{Int64} </span><span class="co">#&lt;- state SOI in each year</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    num_kids<span class="op">::</span><span class="dt">Vector{Int64} </span><span class="co">#&lt;- number of kids in household that are between age 0 and 17</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    TotKids<span class="op">::</span><span class="dt">Int64 </span><span class="co">#&lt;- indicares the total number of children that the mother will have over the available panel</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    age_kid<span class="op">::</span><span class="dt">Matrix{Int64} </span><span class="co">#&lt; age_kid[f,t] is the age of child f at time t. Will be negative if child not born yet.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    cpi<span class="op">::</span><span class="dt">Vector{Float64} </span><span class="co">#&lt;- cpi</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    R<span class="op">::</span><span class="dt">Vector{Int64} </span><span class="co">#&lt;- indicates if work requirement in time t</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    Kω<span class="op">::</span><span class="dt">Int64 </span><span class="co">#&lt;- indicates length of time limit once introduced</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    TL<span class="op">::</span><span class="dt">Vector{Bool} </span><span class="co">#&lt;- indicating that time limit is in place</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Eventually we will have one of these objects for every mother we observe in the data, and we’ll solve the resulting dynamic program for each of them. To test our functions below we can create a test version of this struct as well as some default parameters:</p>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>md <span class="op">=</span> <span class="fu">test_model</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">pars</span>(<span class="fl">2</span>,<span class="fl">6</span>) <span class="co">#&lt;- set Kτ = 2 and Kε = 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="nested-logit-probabilities" class="level3">
 <h3 class="anchored" data-anchor-id="nested-logit-probabilities">Nested Logit Probabilities</h3>
 <p>The function <code>nested_logit</code> takes the value of each choice <code>vj</code> and fills log-choice probabilities into a pre-allocated vector <code>logP</code>. It also returns the inclusive value (the “emax” or continuation value). The input <span class="math inline">\(B=(B_1,B_2,...,B_L)\)</span> specifies the partitions in each layer of the tree, while the input <span class="math inline">\(C\)</span> reports the final choices that are ultimately contained in each node in each layer. By definition, at the highest layer, the partition takes the trivial form <span class="math inline">\(B_L=\{\{1,2,...K_L\}\}\)</span> where <span class="math inline">\(K_L\)</span> is the number of partitions in layer <span class="math inline">\(L-1\)</span>. Similarly at the lowest layer, <span class="math inline">\(C_{1}\)</span> must take the form <span class="math inline">\(C_{1} = \{\{1\},\{2\},...,\{J\}\}\)</span>. For this model with three participation choices that lead into an extensive marginal labor supply choice, the structure is:</p>
-<p>```julia .noeval B₁ = [[1,2],[3,4],[5,6]] C₁ = [[1,],[2,],[3,],[4,],[5,],[6,]]</p>
-<p>B₂ = [[1,2,3]] C₂ = [[1,2],[3,4],[5,6]]</p>
-<p>B = (B₁,B₂) C = (C₁,C₂)</p>
-<pre><code>
-This is defined in `src/model/choices.jl`. This is for your understanding, but these inputs are all given to you so you can use the function naively if that is all your time allows for.
-
-### Indexing the State
-
-You may find the following objects useful for iterating over the state variables. Let $k_{\tau}\in\{1,...,K_{\tau}\}$ index latent types, let $k_{\varepsilon}\in\{1,...,K_{\varepsilon}\}$ index wage shocks, and let $k_{\omega} = \omega+1$ index cumulative time use. The total size of the state space is $K=K_\tau\times K_{\varepsilon} \times K_{\omega}$.
-
-One way to do simple indexing is to just work with multi-dimensional arrays and build this into every function. However if you want to add state variables later on it will make it cumbersome to change. Another option is to use `LinearIndices` objects and their converse, `CartesianIndices`.
-
-Here's a demonstration:
-
-::: {#cell-4 .cell execution_count=2}
-``` {.julia .cell-code}
-# Hypothetical state space dimensions:
-Kε = 5
-Kτ = 5
-Kω = 6
-
-k_idx = LinearIndices((Kτ,Kε,Kω))
-k_inv = CartesianIndices(k_idx)
-
-# To get the aggregate index k, call:
-k = k_idx[2,3,2]
-@show k
-# Then if we have k we can work back with:
-k_tuple = Tuple(k_inv[k])
-@show k_tuple</code></pre>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>B₁ <span class="op">=</span> [[<span class="fl">1</span>,<span class="fl">2</span>],[<span class="fl">3</span>,<span class="fl">4</span>],[<span class="fl">5</span>,<span class="fl">6</span>]]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>C₁ <span class="op">=</span> [[<span class="fl">1</span>,],[<span class="fl">2</span>,],[<span class="fl">3</span>,],[<span class="fl">4</span>,],[<span class="fl">5</span>,],[<span class="fl">6</span>,]]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>B₂ <span class="op">=</span> [[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>C₂ <span class="op">=</span> [[<span class="fl">1</span>,<span class="fl">2</span>],[<span class="fl">3</span>,<span class="fl">4</span>],[<span class="fl">5</span>,<span class="fl">6</span>]]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> (B₁,B₂)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> (C₁,C₂)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is defined in <code>src/model/choices.jl</code>. This is for your understanding, but these inputs are all given to you so you can use the function naively if that is all your time allows for.</p>
+</section>
+<section id="indexing-the-state" class="level3">
+<h3 class="anchored" data-anchor-id="indexing-the-state">Indexing the State</h3>
+<p>You may find the following objects useful for iterating over the state variables. Let <span class="math inline">\(k_{\tau}\in\{1,...,K_{\tau}\}\)</span> index latent types, let <span class="math inline">\(k_{\varepsilon}\in\{1,...,K_{\varepsilon}\}\)</span> index wage shocks, and let <span class="math inline">\(k_{\omega} = \omega+1\)</span> index cumulative time use. The total size of the state space is <span class="math inline">\(K=K_\tau\times K_{\varepsilon} \times K_{\omega}\)</span>.</p>
+<p>One way to do simple indexing is to just work with multi-dimensional arrays and build this into every function. However if you want to add state variables later on it will make it cumbersome to change. Another option is to use <code>LinearIndices</code> objects and their converse, <code>CartesianIndices</code>.</p>
+<p>Here’s a demonstration:</p>
+<div id="cell-10" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hypothetical state space dimensions:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Kε <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Kτ <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Kω <span class="op">=</span> <span class="fl">6</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>k_idx <span class="op">=</span> <span class="fu">LinearIndices</span>((Kτ,Kε,Kω))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>k_inv <span class="op">=</span> <span class="fu">CartesianIndices</span>(k_idx)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># To get the aggregate index k, call:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> k_idx[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> k</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Then if we have k we can work back with:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>k_tuple <span class="op">=</span> <span class="fu">Tuple</span>(k_inv[k])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> k_tuple</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>k = 37
 k_tuple = (2, 3, 2)</code></pre>
@@ -305,22 +316,22 @@ k_tuple = (2, 3, 2)</code></pre>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>(2, 3, 2)</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>So when iterating, you could think about passing around state indices along with instances of these linear and cartesian indices that allow you to convert back and forth.</p>
 </section>
 <section id="transition-probabilities" class="level3">
 <h3 class="anchored" data-anchor-id="transition-probabilities">Transition Probabilities</h3>
 <p>In the paper, wage shocks are parameterized with a single parameter <span class="math inline">\(\pi_{W}\)</span> that dictates the probability that an individual remains in the same place on the grid space, with symmetric probabilities of moving up or down. The function <code>fε</code> in <code>states_transitions.jl</code> takes the current wage shock <code>kε</code> and the total number of shocks <code>Kε</code>, along with <code>πW</code> and returns two tuples. The first tuple is the set of grid points that are possible and the second is the probability of being in each of those points.</p>
 <p>For example:</p>
-<div id="cell-6" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fε</span>(<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-12" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fε</span>(<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>((2, 3, 4), (0.04999999999999999, 0.9, 0.04999999999999999))</code></pre>
 </div>
 </div>
 <p>So the function is telling me that when I’m in state 3 I can move to states 3, 4, or 5 next period with probabilities (0.05,0.9,0.05). When we are at the bottom or the top of the grid space, the probabilities are slightly different:</p>
-<div id="cell-8" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fε</span>(<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-14" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fε</span>(<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>((1, 2), (0.04999999999999999, 0.95))</code></pre>
 </div>
@@ -334,12 +345,12 @@ k_tuple = (2, 3, 2)</code></pre>
 <ul>
 <li><code>j</code>: the discrete choice</li>
 <li><code>t</code>: the time period in the model</li>
-<li><code>state</code>: a tuple that contains the state <span class="math inline">\((k_\tau,k_\varepesilon,k_\omega)\)</span> as well as a linear indexing rule</li>
+<li><code>state</code>: a tuple that contains the state <span class="math inline">\((k_\tau,k_\varepsilon,k_\omega)\)</span> as well as a linear indexing rule</li>
 <li><code>V</code>: a vector that contains the continuation value for each state at time <span class="math inline">\(t+1\)</span></li>
 <li><code>pars</code>: the parameters of the model</li>
 <li><code>md</code>: an instance of the model_data object that holds all relevant state variables</li>
 </ul>
-<p>Verify that your function works by testing it on the <code>model_data</code> instance created by <code>test_model</code>. Use the <span class="citation" data-cites="time">@time</span> macro to look at evaluation time and memory allocations.</p>
+<p>Verify that your function works by testing it on the <code>model_data</code> instance created by <code>test_model</code>. Use the <code>@time</code> macro to look at evaluation time and memory allocations.</p>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
@@ -353,7 +364,7 @@ k_tuple = (2, 3, 2)</code></pre>
 <li><code>pars</code>: model parameters</li>
 <li><code>md</code>: <code>model_data</code> for the problem</li>
 </ul>
-<p>Verify that your function works by testing it on the <code>model_data</code> instance created by <code>test_model</code>. Use the <span class="citation" data-cites="time">@time</span> macro to look at evaluation time and memory allocations.</p>
+<p>Verify that your function works by testing it on the <code>model_data</code> instance created by <code>test_model</code>. Use the <code>@time</code> macro to look at evaluation time and memory allocations.</p>
 </section>
 <section id="part-3" class="level2">
 <h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
@@ -365,7 +376,7 @@ k_tuple = (2, 3, 2)</code></pre>
 <li><code>pars</code>: model parameters</li>
 <li><code>md</code>: an instance of <code>model_data</code></li>
 </ul>
-<p>Verify that your function works by testing it on the <code>model_data</code> instance created by <code>test_model</code>. Use the <span class="citation" data-cites="time">@time</span> macro to look at evaluation time and memory allocations.</p>
+<p>Verify that your function works by testing it on the <code>model_data</code> instance created by <code>test_model</code>. Use the <code>@time</code> macro to look at evaluation time and memory allocations.</p>
 
 
 </section>
