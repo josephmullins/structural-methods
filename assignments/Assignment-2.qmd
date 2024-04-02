@@ -106,7 +106,7 @@ function log_likelihood(logP,it,data,pars)
     (;γ,σW) = pars
     ll = 0.
     if !data.wage_missing[it]
-        ll += -(0.5*(data.logwage[it] - γ[1] - γ[2]*data.age[it] - γ[3]*data.age[it]^2) / σW)^2 - log(σW)
+        ll += -0.5((data.logwage[it] - γ[1] - γ[2]*data.age[it] - γ[3]*data.age[it]^2) / σW)^2 - log(σW)
     end
     choice_prob!(logP,it,data,pars)
     j = j_idx(data.P[it],data.H[it])

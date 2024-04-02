@@ -1,0 +1,260 @@
+---
+title: "Assignment 2 - Solutions"
+---
+
+Read in the data as before.
+```{julia}
+using CSV, DataFrames, DataFramesMeta, Optim
+include("../children-cash-transfers/src/Transfers.jl")
+
+# for this simple model we can just drop missing data. When we estimate the model with persistent latent heterogeneity, we will need complete panels (including years where choices are missing).
+
+data = @chain begin
+    CSV.read("../children-cash-transfers/data/MainPanelFile.csv",DataFrame,missingstring = "NA")
+    #@select :MID :year :wage :hrs :earn :SOI :CPIU :WelfH :FSInd :num_child :age
+    @subset :year.>=1985 :year.<=2010
+    @transform :AFDC = :WelfH.>0 
+    @rename :FS = :FSInd
+    @transform :P  = :FS + :AFDC :H = min.(2,round.(Union{Int64, Missing},:hrs / (52*20)))
+    @subset .!ismissing.(:P) .&& .!ismissing.(:H)
+    @transform @byrow :wage = begin
+        if :hrs>0 && :earn>0
+            return :earn / :hrs / :CPIU
+        else
+            return missing
+        end
+    end
+end
+
+data_mle = (;P = Int64.(data.P), H = Int64.(data.H), year = data.year, age = data.age,
+            soi = data.SOI, num_kids = data.num_child, cpi = data.CPIU,
+            logwage = log.(coalesce.(data.wage,1.)),wage_missing = ismissing.(data.wage))
+
+```
+
+Utility and indexing:
+
+```{julia}
+j_idx(p,h) = p*3 + h + 1
+function utility(p,h,soi,cpi,year,num_kids,wage,pars)
+    (;αl,Hgrid,σ,αP) = pars
+    hrs = Hgrid[1+h]
+    earn = wage * hrs
+    net_income = max(50.,Transfers.budget(earn,0.,soi,year,num_kids,cpi,p))
+    return log(net_income) + αl*log(112-hrs) - αP[1]*(p>0) - αP[2]*(p>1)
+end
+
+pars = (;αl = 1., σ = 1., σW = 1., γ = zeros(3),
+    Hgrid = [0,20.,40.],αP = zeros(2))
+```
+
+Choice probabilities are given by the logit formula.
+
+```{julia}
+function choice_prob!(logP,it,data,pars)
+    (;σ,γ) = pars
+    wage = exp(γ[1] + γ[2] * data.age[it] + γ[3] * data.age[it]^2)
+    denom = 0.
+    umax = -Inf
+    for p in 0:2
+        for h in 0:2
+            j = j_idx(p,h)
+            u = utility(p,h,data.soi[it],data.cpi[it],data.year[it],data.num_kids[it],wage,pars)
+            logP[j] = u / σ
+            umax = u>umax ? u : umax
+        end
+    end
+    logP[:] .-= umax / σ
+    denom = log(sum(exp.(logP)))
+    logP[:] .-= denom #<- nornalize choice probabilities
+end
+```
+
+And so the log-likelihood:
+
+```{julia}
+
+
+function log_likelihood(logP,it,data,pars)
+    (;γ,σW) = pars
+    ll = 0.
+    if !data.wage_missing[it]
+        ll += -0.5 * ((data.logwage[it] - γ[1] - γ[2]*data.age[it] - γ[3]*data.age[it]^2) / σW)^2 - log(σW)
+    end
+    choice_prob!(logP,it,data,pars)
+    j = j_idx(data.P[it],data.H[it])
+    ll += logP[j]
+    return ll
+end
+
+function update(x,p)
+    αl = exp(x[1])
+    σ = exp(x[2])
+    γ = x[3:5]
+    σW = exp(x[6])
+    αP = x[7:8]
+    return (;p...,αl,σ,σW,αP,γ)
+end
+
+function log_likelihood(x,data,pars)
+    pars = update(x,pars)
+    logP = zeros(eltype(x),9)
+    ll = 0.
+    for it in eachindex(data.P)
+        ll += log_likelihood(logP,it,data,pars)
+    end
+    return ll
+end
+
+```
+
+We can use `Optim` to maximize the log-likelihood:
+
+```{julia}
+x0 = zeros(8)
+x0 = [0.,0.,log(10.),0.,0.,0.,0.,0.]
+res = optimize(x->-log_likelihood(x,data_mle,pars),x0,BFGS(),autodiff=:forward,Optim.Options(show_trace = true))
+pars = update(res.minimizer,pars)
+
+```
+
+
+## Question 1
+
+Let's use the Hessian of the average log-likelihood to estimate the standard errors.
+
+```{julia}
+using ForwardDiff
+N = length(data_mle.age)
+H = ForwardDiff.hessian(x->log_likelihood(x,data_mle,pars),res.minimizer) / N
+V = - H / N
+```
+
+Now we can make the table, but we have to be careful because some of our parameters are transformations of the vector `res.minimizer` (so we use the delta method to get the standard error of the transformed value)
+
+```{julia}
+using LinearAlgebra
+p_str = ["αl","σ","γ₁","γ₂","γ₃","σW","αP₁","αP₂"]
+p_est = [pars.αl ; pars.σ ; pars.γ ; pars.σW ; pars.αP]
+se = sqrt.(diag(V))
+p_se = [se[1:2].*p_est[1:2] ; se[3:5] ; se[6].*p_est[6] ; se[7:8]]
+d = DataFrame(par = p_str, est = p_est, se = p_se)
+
+```
+
+
+## Question 2
+
+What sources of variation are identifying $\sigma$, the responsiveness of choices to changes in the payoffs? How is the responsivess of program participation and labor supply to changes in incentives limited in this framework?
+
+Some comments we went over in class:
+
+- $\sigma$ is identified to by covariation in the probability of making particular decisions with changes in the financial returns to those decisions, these in turn are driven by 
+- The responsiveness of labor supply and program participation are therefore both dictated by $\sigma$
+
+## Question 3
+
+First we'll write the function to calculate nested logit probabilities given a vector of utilities `u` and a partition `B`. 
+
+From next week I'll introduce a function for evaluating the nested logit for a general number of layers. This function will work for any nested logit with only two layers.
+
+```{julia}
+
+function nested_logit(logP,u,σ,B)
+    # calculate nest probabilities and inclusive values
+    for k in eachindex(B)
+        Bₖ = B[k]
+        # find the max
+        vmax = -Inf
+        for j in Bₖ
+            vmax = u[j] > vmax ? u[j] : vmax
+        end
+        # calculate choice probs
+        iv = 0.
+        for j in Bₖ
+            logP[j] += (u[j] - vmax) / σ[2]
+            iv += exp((u[j] - vmax) / σ[2])
+        end
+        logP[Bₖ] .-= log(iv)
+        u[k] = vmax + σ[2] * log(iv) #<- fill in inclusive value
+    end
+    # now calculate the partition probabilities
+    vmax = -Inf
+    for k in eachindex(B)
+        vmax = u[k] > vmax ? u[k] : vmax
+    end
+    iv = 0.
+    for k in eachindex(B)
+        iv += exp((u[k]-vmax) / σ[1])
+        for j in B[k]
+            logP[j] += (u[k]-vmax) / σ[1]
+        end
+    end
+    logP[:] .-= log(iv)
+    V = vmax + σ[1] * log(iv)
+end
+```
+
+Now let's write a new set of log-likelihood routines.
+```{julia}
+function fill_utilities!(u,it,data,pars)
+    (;γ) = pars
+    wage = exp(γ[1] + γ[2]*data.age[it] + γ[3]*data.age[it]^2)
+    for p in 0:2
+        for h in 0:2
+            j = j_idx(p,h)
+            u[j] = utility(p,h,data.soi[1],data.cpi[1],data.year[1],data.num_kids[1],wage,pars)
+        end
+    end
+end
+function log_likelihood(logP,u,it,data,pars)
+    (;γ,σW,σ,B) = pars
+    ll = 0.
+    if !data.wage_missing[it]
+        ll += -0.5 * ((data.logwage[it] - γ[1] - γ[2]*data.age[it] - γ[3]*data.age[it]^2) / σW)^2 - log(σW)
+    end
+    fill_utilities!(u,it,data,pars)
+    V = nested_logit(logP,u,σ,B)
+    j = j_idx(data.P[it],data.H[it])
+    ll += logP[j]
+    return ll
+end
+
+function update(x,p)
+    αl = exp(x[1])
+    σ = exp.(x[2:3])
+    γ = x[4:6]
+    σW = exp(x[7])
+    αP = x[8:9]
+    return (;p...,αl,σ,σW,αP,γ)
+end
+
+function log_likelihood(x,data,pars)
+    pars = update(x,pars)
+    logP = zeros(eltype(x),9)
+    u = zeros(eltype(x),9)
+    ll = 0.
+    for it in eachindex(data.P)
+        fill!(logP,0.)
+        ll += log_likelihood(logP,u,it,data,pars)
+    end
+    return ll
+end
+
+```
+
+And here is code to maximize the log-likelihood. Notice that we get very different participation elasticities vs labor force elasticities.
+
+```{julia}
+B = [[1,2,3],[4,5,6],[7,8,9]]
+pars = (;αl = 1., σ = [1.,1.], σW = 1., γ = zeros(3),
+    Hgrid = [0,20.,40.],αP = zeros(2), B)
+x0 = zeros(9)
+x0 = [0.,0.,log(10.),0.,0.,0.,0.,0.,0.]
+res = optimize(x->-log_likelihood(x,data_mle,pars),x0,BFGS(),autodiff=:forward,Optim.Options(show_trace = true))
+pars = update(res.minimizer,pars)
+```
+
+## Question 4
+
+We discussed this in class but let me know if you would like this to be discussed further.
