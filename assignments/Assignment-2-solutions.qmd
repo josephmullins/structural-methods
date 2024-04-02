@@ -156,7 +156,7 @@ Some comments we went over in class:
 
 First we'll write the function to calculate nested logit probabilities given a vector of utilities `u` and a partition `B`. 
 
-From next week I'll introduce a function for evaluating the nested logit for a general number of layers. This function will work for any nested logit with only two layers.
+In the next problem set I'll introduce a function for evaluating the nested logit for a general number of layers. The function below will work for any nested logit with only two layers (i.e. one partition).
 
 ```{julia}
 
