@@ -13,6 +13,7 @@ website:
           - assignments/Assignment-1.qmd
           - assignments/Assignment-2.qmd
           - assignments/Assignment-3.ipynb
+          - assignments/Assignment-4.qmd
 
 format:
   html:

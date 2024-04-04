@@ -1,0 +1,263 @@
+---
+title: "Assignment 4"
+---
+
+This week you will estimate a simple hidden markov model using Expectation-Maximization.
+
+Here is the model. There is a discrete state variable $k\in\{1,2,3,..,K\}$ and a binary outcome $j\in\{0,1\}$ that: 
+
+1. Is determined probabilistically by the state; and
+2. Moves the state up one grid point if $j=1$, i.e. $k_{t+1} = \min\{K,k_{t} + j\}$
+
+Let $p$ be a $K$-dimensional vector where $p_{k}$ holds the probability that $j=1$ given that the model is in state $k$.
+
+The state $k$ is never observed and the outcome $j$ is only observed half the time (i.e. it is missing with probability 0.5). Thus, define $j^*$ to be:
+
+$$ j^* = \left\{ \begin{array}{cl} j & \text{with probability}\ 0.5 \\ -1 & \text{with probability}\ 0.5 \end{array} \right. $$
+
+Your task is to estimate the vector of outcome probabilities $p$ non-parametrically using the EM algorithm with the Forward-Back routine to calculate the E-step.
+
+The chunk of code below parameterizes the true vector $p$ for this model and writes code to simulate panel data:
+
+$$ (j^*_{nt})_{t=1,n=1}^{T,N} $$
+
+To start with, we'll assume $k_{n,1} = 1$ for all $n$.
+
+```{julia}
+using Random, Distributions
+K = 5
+T = 10
+Pj = 1 ./ (1 .+ exp.(LinRange(-1,1,K))) #<- choice probability as a function of k
+knext(k,j,K) = min(K,k+j) 
+
+function simulate(N,T,Pj)
+    J = zeros(Int64,T,N)
+    K = length(Pj)
+    for n in axes(J,2)
+        k = 1
+        for t in axes(J,1)
+            j = rand()<Pj[k]
+            # record j probabilistically
+            if rand()<0.5
+                J[t,n] = -1
+            else
+                J[t,n] = j
+            end
+            # update state:
+            k = knext(k,j,K)
+        end
+    end
+    return J
+end
+
+N = 1000
+J_data = simulate(N,T,Pj)
+
+```
+
+Since the outcomes $j$ are periodically unobserved, there are two ways to set up the EM problem:
+
+1. Define a composite state variable $s = (k,j)$ that is partially unobserved and define your $\alpha$ and your $\beta$ over this composite state.
+2. Define your $\alpha$ and $\beta$ over $k$ only and sum over potential realizations of $j$ when missing.
+
+When the number of discrete outcomes is larger, it becomes more difficult to integrate them out when missing. Since $j$ is only binary here, this homework will step you through using the second approach. You can use the first approach if you prefer. 
+
+## Part 1
+
+Write a function that (given a guess of the parameters $p$) takes a sequence of $(j^*)^{T}_{t=1}$ and runs the forward-back algorithm. In doing so your function should fill in three objects: (1) A $K\times T$ array of backward looking probabilities ($\alpha$); (2) a $K\times T$ array of forward probabilities ($\beta$); and (3) a $K\times T$ array of posterior probabilities over each state $k$ ($Q$).
+
+Recall from class that (1) $\alpha$ is the joint probability of the state today with the sequence of outcomes up until today; and (2) $\beta$ is the conditional probability of future outcomes given the state today.
+
+$$ \alpha[k,s] = \mathbb{P}[k_{s}=k,(j^*)^{s}_{t=1}] $$
+
+$$ \beta[k,s] = \mathbb{P}[(j^*)_{t=s+1}^{T} | k_{s}=k] $$
+
+and
+
+$$ Q[k,s] = \mathbb{P}[k_{s}=k | (j^*)_{t=1}^{T} ] $$
+
+This is a problem where there is a lot of sparseness. For the size of this problem we won't have to worry about exploiting that, but it's something you want to think about for larger problems. I'll introduce you to a sparse implementation in class and in code.
+
+So, ignoring sparsenss, here is a function that gives transition probabilities given the three potential outcomes for $j^*$.
+```{julia}
+using LinearAlgebra
+# this function assumes Π is a K x K x 3 array of transition probabilities where
+function get_transitions!(Π,p)
+    fill!(Π,0.)
+    # for j^*=-1 (i.e. missing)
+    for k in axes(Π,2)
+        Π[k,k,1] += p[k]
+        k_up = min(K,k+1)
+        Π[k_up,k,1] += 1-p[k]
+    end
+    # for j^* = 0
+    Π[:,:,2] = I(K) #<- transitions are the identity matrix
+    # for j^*=1
+    for k in axes(Π,2)
+        k_up = min(K,k+1)
+        Π[k_up,k,3] = 1.
+    end
+end
+
+Π = zeros(K,K,3)
+get_transitions!(Π,Pj)
+```
+
+Now a function for the forward-back routine:
+
+```{julia}
+
+function forward_back!(Q,α,β,j_obs,Π,p)
+    K,T = size(α)
+    fill!(β,0.)
+    @views fill!(β[:,T],1.)
+    fill!(α,0.)
+    α[1,1] = 1. #<- since we know that all units begin in state 1
+    # run it forward
+    for t in 2:T
+        jlag_idx = 2 + j_obs[t-1]
+        for k in axes(α,1)
+            for klag in axes(α,1)
+                α[k,t] += Π[k,klag,jlag_idx] *  α[klag,t-1]
+            end
+            if j_obs[t]>-1
+                α[k,t] *= j_obs[t]*p[k] + (1-j_obs[t])*(1-p[k])
+            end
+        end
+    end
+    # run it back
+    for t in reverse(1:T-1)
+        j_idx = 2 + j_obs[t]
+        for k in axes(β,1)
+            for knext in axes(β,1)
+                if j_obs[t+1]!=-1
+                    pj = j_obs[t+1]*p[knext] + (1-j_obs[t+1])*(1-p[knext])
+                else
+                    pj = 1.
+                end
+                β[k,t] += pj * Π[knext,k,j_idx]
+            end
+        end
+    end
+    # calculate the posteriors
+    for t in axes(Q,2)
+        @views Q[:,t] .= α[:,t] .* β[:,t]
+        @views Q[:,t] ./= sum(Q[:,t])
+    end
+end
+
+α = zeros(K,T)
+β = zeros(K,T)
+Q = zeros(K,T)
+forward_back!(Q,α,β,J_data[:,1],Π,Pj)
+
+```
+
+
+## Part 2
+
+Write a function that iterates over all observations and calculates posterior state probabilities for every observation. i.e. fill in a $K\times T \times N$ array of posterior weights.
+
+I'll also add a line of code to update the transition matrices $\Pi$.
+```{julia}
+function forward_back!(Q,α,β,J_obs::Array{Int64},Π,p)
+    get_transitions!(Π,p)
+    for n in axes(J_obs,2)
+        @views forward_back!(Q[:,:,n],α,β,J_obs[:,n],Π,p)
+    end
+end
+
+Q = zeros(K,T,N)
+forward_back!(Q,α,β,J_data,Π,Pj)
+```
+
+## Part 3
+
+Take as given a set of posterior weights $q_{ntk} = Q[n,t,k]$. The expected log-likelihood for the M-step is:
+
+$$ \mathcal{L}(p) = \sum_{n}\sum_{t}\sum_{k}q_{ntk}\left(\mathbf{1}\{j^*_{nt}=1\}\log(p_{k}) + \mathbf{1}\{j^*_{nt}=0\}\log(1-p_{k})\right) $$
+
+Show that the non-parametric maximum likelihood estimate of $p$ given the posterior weights is a frequency estimator:
+
+$$ \hat{p}_{k} = \frac{\sum_{n}\sum_{t}\mathbf{1}\{j^*_{nt}=1\} q_{ntk}}{\sum_{n}\sum_{t}\mathbf{1}\{j^*_{nt}\neq -1\} q_{ntk}} $$
+
+Write a function to calculate this frequency estimator given posterior weights.
+
+```{julia}
+function m_step(Q,J_data)
+    K = size(Q,1)
+    p = zeros(K)
+    denom = zeros(K)
+    for n in axes(J_data,2)
+        for t in axes(J_data,1)
+            if J_data[t,n]!=-1
+                @views denom .+= Q[:,t,n]
+                if J_data[t,n]==1
+                    @views p .+= Q[:,t,n]
+                end
+            end
+        end
+    end
+    return p ./ denom
+end
+
+p_est = m_step(Q,J_data)
+
+```
+
+## Part 4
+
+Run the E-M routine by iterating on this E-step and M-step until you get convergence in $\hat{p}$. Does it look like you can recover the true parameters?
+
+```{julia}
+function EM_routine(p0,Π,data ; max_iter = 1000, tol = 1e-7, verbose = true)
+    (;α,β,Q,J_data) = data
+    err = Inf
+    iter = 0
+    while err>tol && iter<max_iter
+        forward_back!(Q,α,β,J_data,Π,p0)
+        p1 = m_step(Q,J_data)
+        err = maximum(abs.(p1 .- p0))
+        iter += 1
+        if mod(iter,10)==0 && verbose
+            println("Current error is $err")
+        end
+        p0 = p1
+    end
+    return p0
+end
+
+data = (;α,β,Q,J_data)
+
+# let's try using a 
+
+p_guess = fill(1 / K, K)
+p_est = EM_routine(p_guess,Π,data)
+
+[p_est Pj]
+
+```
+
+Looks good! You could test the estimator a bit more by running it over a number of samples to see how you do.
+
+```{julia}
+B = 100
+P_montecarlo = zeros(K,B)
+for b in axes(P_montecarlo,2)
+    J_data = simulate(N,T,Pj)
+    data = (;data...,J_data)
+    P_montecarlo[:,b] = EM_routine(p_guess,Π,data ; verbose = false)
+end
+```
+
+```{julia}
+using Plots
+histogram(P_montecarlo[1,:],legend = false)
+plot!([Pj[1],Pj[1]],[0,30],linewidth=3,legend = false)
+```
+
+We can see a little bit of bias, but then MLE is not guaranteed to be unbiased. You could re-run this with a larger sample size if you wanted to convince yourself of consistency.
+
+## Extra credit
+
+If you found this exercise too straightforward, try adjusting the model so that transitions depend probabilistically on the state $k$ and the choice $j$. This requires you to update also posterior transition probabilities and estimate those transition probabilities as part of the maximization step.
