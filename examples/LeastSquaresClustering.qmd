@@ -1,0 +1,163 @@
+---
+title: "Clustering with Coefficients"
+bibliography: ../CourseBibliography.bib
+---
+
+```{julia}
+using Random, Distributions, Clustering, LinearAlgebra
+```
+
+In class we discussed how to classify individuals by type based on moments or averages. There are ready-made packages for clustering based on sample means, but we have to be careful to choose moments that satisfy the "injectivity" property that we need for consistent classification of types.
+
+Consider the following model:
+
+$$ y_{nt} = \beta_{0,k} + \beta_{1,k}x_{nt} + \epsilon_{nt} $$
+
+
+where $x_{nt}$ is an AR(1) process:
+
+$$ x_{nt} = \rho x_{nt-1} + \xi_{nt}\qquad \xi_{nt}\sim\mathcal{N}(0,\sigma^2_\xi) $$
+
+## An Issue with Clustering on Means
+
+Notice that if we clustered based only averages of $y$, we could get a lot of misclassification because of persistent differences in $x$. 
+
+```{julia}
+function gen_data(T,N,pars)
+    (;ρ,β,σξ,σϵ) = pars
+    K = size(β,2)
+    X = zeros(T,N)
+    Y = zeros(T,N)
+    πk = fill(1/K,K)
+    type = rand(Categorical(πk),N)
+    σ_stat = sqrt(σξ^2/(1-ρ^2))
+    for n in axes(X,2)
+        k = type[n]
+        x = rand(Normal(0,σ_stat))
+        for t in axes(X,1)
+            X[t,n] = x
+            Y[t,n] = β[1,k] + β[2,k]*x + rand(Normal(0,σϵ))
+            x = ρ*x + rand(Normal(0,σξ))
+        end
+    end
+    return (;type,X,Y)
+end
+```
+
+```{julia}
+p = (;β = [0 0.5 ; 0.3 0.1],ρ = 0.95,σξ = 0.5,σϵ = 0.2)
+d = gen_data(10,1000,p)
+
+```
+
+Let's try clustering with k-means:
+
+```{julia}
+res = kmeans(d.Y,2)
+```
+
+We get a correct classification rate of:
+
+```{julia}
+function correct_rate(assignments,type) #<- to evaluate
+    K = maximum(type)
+    return [mean(assignments[type.==k].==mode(assignments[type.==k])) for k in 1:K]
+end
+correct_rate(res.assignments,d.type) 
+
+```
+
+So notice we are misclassifying many of the first type. A simple histogram shows us why:
+
+```{julia}
+using Plots
+histogram(mean(d.Y[:,d.type.==1],dims=1)[:])
+histogram!(mean(d.Y[:,d.type.==2],dims=1)[:])
+```
+
+Does this go away when we increase the panel dimension?
+
+```{julia}
+d = gen_data(20,1000,p)
+res = kmeans(d.Y,2)
+correct_rate(res.assignments,d.type) 
+
+```
+
+```{julia}
+histogram(mean(d.Y[:,d.type.==1],dims=1)[:])
+histogram!(mean(d.Y[:,d.type.==2],dims=1)[:])
+
+```
+
+A bit, yes, but things are still not looking great.
+
+**NOTE** I have to fix this! types are not identified up to permutation. need a different statistic for missclassification.
+
+## An Alternative
+
+An alternative would be to use the structure of the model and cluster based on the least squares criterion itself. We could derive a classification $\hat{\mathcal{K}}$ and coefficients $\hat{\beta}$ to solve:
+
+$$ \hat{\mathcal{K}},\hat{\beta} = \arg\min\sum_{n}\sum_{t}(Y_{nt} - \beta_{0,k} - \beta_{1,k}x_{nt})^2 $$
+
+which we could solve by iterating in the same way as K-means. The $m$th iteration would be:
+
+1. Estimate $\hat{\beta}^{m+1}$ by linear regression using $\hat{\mathcal{K}}^{m}$.
+2. Re-assign types as $k^{m+1}(n) = \arg\min\sum_t(Y_{nt} - \hat{\beta}^{m+1}_{0,k} - \hat{\beta}^{m+1}_{1,k}x_{nt})^2$
+
+Here's code to do that:
+
+```{julia}
+function assign!(type,data,β)
+    K = size(β,2)
+    lsq = zeros(K)
+    for n in axes(data.X,2)
+        x = view(data.X,:,n)
+        y = view(data.Y,:,n)
+        for k in axes(β,2)
+            @views lsq[k] = sum((y .- β[1,k] .- β[2,k]*x).^2)
+        end
+        type[n] = argmin(lsq)
+    end
+end
+function estimate!(type,data,β)
+    K = size(β,2)
+    T = size(data.X,1)
+    for k in axes(β,2)
+        Ik = type.==k
+        N = sum(Ik)
+        @views Y = data.Y[:,Ik][:]
+        @views X = [ones(N*T) data.X[:,Ik][:]]
+        β[:,k] = inv(X'*X)*X'*Y
+    end
+end
+
+function classify_least_squares!(type,β,data;maxiter = 100,e_tol = 1e-10)
+    err = Inf
+    iter = 1
+    while err>e_tol && iter<maxiter
+        β_old = copy(β)
+        estimate!(type,data,β)
+        assign!(type,data,β)
+        err = norm(β .- β_old,Inf)
+        iter += 1
+    end
+    if iter==maxiter
+        println("warning: maximum iterations reached, no convergence yet")
+    end
+end
+
+
+
+```
+
+```{julia}
+β = zeros(2,2)
+type = copy(res.assignments)
+# estimate!(type,d,β)
+# assign!(type,d,β)
+classify_least_squares!(type,β,d)
+correct_rate(type,d.type)
+```
+
+Notice how much better we do now!

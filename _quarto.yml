@@ -16,6 +16,9 @@ website:
           - assignments/Assignment-4.qmd
           - assignments/Assignment-5.qmd
           - assignments/Assignment-6.qmd
+      - text: Examples
+        menu:
+          - examples/LeastSquaresClustering.qmd
 
 format:
   html:
