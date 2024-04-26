@@ -1,6 +1,6 @@
 ---
 title: "Assignment 6"
-bibliography: CourseBibliography.bib
+bibliography: ../CourseBibliography.bib
 ---
 
 ## Introduction and Setup

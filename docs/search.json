@@ -306,5 +306,40 @@
     "title": "Assignment 5",
     "section": "Part 4",
     "text": "Part 4\nIf you can, write a monte-carlo simulation in which you repeatedly draw a sample of size \\(N=1000\\) and produce an estimate. Use this sample to look at how the estimates are distributed around the true parameters and therefore check that your estimator is working properly."
+  },
+  {
+    "objectID": "assignments/Assignment-6.html",
+    "href": "assignments/Assignment-6.html",
+    "title": "Assignment 6",
+    "section": "",
+    "text": "Let’s go back to the simple model of labor supply and program participation from Assignment 2.\nConsider the following extension to the model. Suppose that each individual \\(n\\) belongs to one of \\(K\\) finite types, \\(k(n)\\in\\{1,2,...,K\\}\\). Types determine differences in the cost of work and program participation as well as differences in wages:\n\\[ U_{itj} = \\log(\\max\\{50,Y_{it}(W_{it}H_{j})\\}) + \\alpha_{l,k}\\log(112 - H_{j}) - \\alpha_{P,k,1}\\mathbf{1}\\{P_{j}&gt;0\\} - \\alpha_{P,k,2}\\mathbf{1}\\{P_{j}&gt;1\\} \\]\nand \\[ \\log(W_{it}) = \\gamma_{k,0} + \\gamma_{k,1}\\text{Age}_{it} + \\gamma_{k,2}\\text{Age}_{it}^2 \\]\nSo the parameters \\(\\alpha_{l},\\alpha_{P},\\gamma\\) are now heterogeneous by type."
+  },
+  {
+    "objectID": "assignments/Assignment-6.html#introduction-and-setup",
+    "href": "assignments/Assignment-6.html#introduction-and-setup",
+    "title": "Assignment 6",
+    "section": "",
+    "text": "Let’s go back to the simple model of labor supply and program participation from Assignment 2.\nConsider the following extension to the model. Suppose that each individual \\(n\\) belongs to one of \\(K\\) finite types, \\(k(n)\\in\\{1,2,...,K\\}\\). Types determine differences in the cost of work and program participation as well as differences in wages:\n\\[ U_{itj} = \\log(\\max\\{50,Y_{it}(W_{it}H_{j})\\}) + \\alpha_{l,k}\\log(112 - H_{j}) - \\alpha_{P,k,1}\\mathbf{1}\\{P_{j}&gt;0\\} - \\alpha_{P,k,2}\\mathbf{1}\\{P_{j}&gt;1\\} \\]\nand \\[ \\log(W_{it}) = \\gamma_{k,0} + \\gamma_{k,1}\\text{Age}_{it} + \\gamma_{k,2}\\text{Age}_{it}^2 \\]\nSo the parameters \\(\\alpha_{l},\\alpha_{P},\\gamma\\) are now heterogeneous by type."
+  },
+  {
+    "objectID": "assignments/Assignment-6.html#part-1",
+    "href": "assignments/Assignment-6.html#part-1",
+    "title": "Assignment 6",
+    "section": "Part 1",
+    "text": "Part 1\nWrite a routine to classify individuals in the data into one of \\(K=3\\) types using K-means clustering. You may find the package Clustering.jl useful."
+  },
+  {
+    "objectID": "assignments/Assignment-6.html#part-2",
+    "href": "assignments/Assignment-6.html#part-2",
+    "title": "Assignment 6",
+    "section": "Part 2",
+    "text": "Part 2\nCalculate and plot average work and average program participation over time for each of these types. Comment on what you are seeing."
+  },
+  {
+    "objectID": "assignments/Assignment-6.html#part-3",
+    "href": "assignments/Assignment-6.html#part-3",
+    "title": "Assignment 6",
+    "section": "Part 3",
+    "text": "Part 3\nWrite code to estimate this extended model. You could just make a small extension to the maximum likelihood estimator you used in Assignment 2, or you could try another approach if you prefer."
   }
 ]
