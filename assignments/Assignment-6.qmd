@@ -1,0 +1,29 @@
+---
+title: "Assignment 6"
+bibliography: CourseBibliography.bib
+---
+
+## Introduction and Setup
+
+Let's go back to the simple model of labor supply and program participation from [Assignment 2](/assignments/Assignment-2.qmd).
+
+Consider the following extension to the model. Suppose that each individual $n$ belongs to one of $K$ finite types, $k(n)\in\{1,2,...,K\}$. Types determine differences in the cost of work and program participation as well as differences in wages:
+
+$$ U_{itj} = \log(\max\{50,Y_{it}(W_{it}H_{j})\}) + \alpha_{l,k}\log(112 - H_{j}) - \alpha_{P,k,1}\mathbf{1}\{P_{j}>0\} - \alpha_{P,k,2}\mathbf{1}\{P_{j}>1\} $$
+
+and
+$$ \log(W_{it}) = \gamma_{k,0} + \gamma_{k,1}\text{Age}_{it} + \gamma_{k,2}\text{Age}_{it}^2 $$
+
+So the parameters $\alpha_{l},\alpha_{P},\gamma$ are now **heterogeneous by type**.
+
+## Part 1
+
+Write a routine to classify individuals in the [data](/children-cash-transfers/data/MainPanelFile.csv) into one of $K=3$ types using K-means clustering. You may find the package `Clustering.jl` useful. 
+
+## Part 2
+
+Calculate and plot average work and average program participation over time for each of these types. Comment on what you are seeing.
+
+## Part 3
+
+Write code to estimate this extended model. You could just make a small extension to the maximum likelihood estimator you used in Assignment 2, or you could try another approach if you prefer.

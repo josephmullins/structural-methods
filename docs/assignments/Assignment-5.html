@@ -176,6 +176,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../assignments/Assignment-4.html">
  <span class="dropdown-text">Assignment 4</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-5.html">
+ <span class="dropdown-text">Assignment 5</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -234,7 +238,7 @@ window.Quarto = {
 
 <section id="introduction-and-setup" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-and-setup">Introduction and Setup</h2>
-<p>In this assignment you will implement two different choice probability estimators for a toy model of dynamic labor supply.</p>
+<p>In this assignment you will implement a choice probability estimator for a toy model of dynamic labor supply.</p>
 <section id="choices" class="level3">
 <h3 class="anchored" data-anchor-id="choices">Choices</h3>
 <p>Agents in the model make one of four choices (<span class="math inline">\(j \in \{0,1,2,3\}\)</span>) that correspond to a binary work decision (<span class="math inline">\(H_{j}\)</span>) and a binary program participation decision (<span class="math inline">\(P_{j}\)</span>):</p>
@@ -275,7 +279,7 @@ window.Quarto = {
 <section id="model-solution" class="level3">
 <h3 class="anchored" data-anchor-id="model-solution">Model Solution</h3>
 <p>Here is code to solve the model for a default set of parameters.</p>
-<div id="65d79b28" class="cell" data-execution_count="1">
+<div id="dbd8e349" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">10</span> <span class="co">#&lt;- length of life-cycle</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ϕ <span class="op">=</span> [<span class="fl">2</span>., <span class="fl">0.05</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Ω <span class="op">=</span> <span class="fl">4</span> <span class="co">#&lt;- time limit</span></span>

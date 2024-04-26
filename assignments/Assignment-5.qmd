@@ -3,7 +3,7 @@ title: "Assignment 5"
 ---
 ## Introduction and Setup
 
-In this assignment you will implement two different choice probability estimators for a toy model of dynamic labor supply. 
+In this assignment you will implement a choice probability estimator for a toy model of dynamic labor supply. 
 
 ### Choices 
 

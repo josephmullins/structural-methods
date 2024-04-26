@@ -1,0 +1,13 @@
+---
+title: "Assignment 7"
+bibliography: CourseBibliography.bib
+---
+
+Some ideas for this assignment:
+
+- extend previous week to case with time limits
+- walk them through a clustering routine using the wage equation only
+- have them make an identification argument for their chosen moments from last week?
+- have them estimate types using matrix diagonalization
+- have them evaluate model fit and comment on what they are missing
+- have them run a counterfactual with pre: welfare reform.

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.539">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -137,6 +137,10 @@ div.csl-indent {
     <a class="dropdown-item" href="./assignments/Assignment-5.html">
  <span class="dropdown-text">Assignment 5</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./assignments/Assignment-6.html">
+ <span class="dropdown-text">Assignment 6</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -257,7 +261,7 @@ div.csl-indent {
 <td><del>April 19</del> April 26</td>
 </tr>
 <tr class="even">
-<td>Assignment 6</td>
+<td><a href="./assignments/Assignment-6.html">Assignment 6</a></td>
 <td><del>April 26</del> May 3</td>
 </tr>
 <tr class="odd">
@@ -492,7 +496,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
