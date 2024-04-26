@@ -201,8 +201,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="introduction-and-setup">Introduction and Setup</h2>
 <p>Let’s go back to the simple model of labor supply and program participation from <a href="../assignments/Assignment-2.html">Assignment 2</a>.</p>
 <p>Consider the following extension to the model. Suppose that each individual <span class="math inline">\(n\)</span> belongs to one of <span class="math inline">\(K\)</span> finite types, <span class="math inline">\(k(n)\in\{1,2,...,K\}\)</span>. Types determine differences in the cost of work and program participation as well as differences in wages:</p>
-<p><span class="math display">\[ U_{itj} = \log(\max\{50,Y_{it}(W_{it}H_{j})\}) + \alpha_{l,k}\log(112 - H_{j}) - \alpha_{P,k,1}\mathbf{1}\{P_{j}&gt;0\} - \alpha_{P,k,2}\mathbf{1}\{P_{j}&gt;1\} \]</span></p>
-<p>and <span class="math display">\[ \log(W_{it}) = \gamma_{k,0} + \gamma_{k,1}\text{Age}_{it} + \gamma_{k,2}\text{Age}_{it}^2 \]</span></p>
+<p><span class="math display">\[ U_{ntj} = \log(\max\{50,Y_{nt}(W_{nt}H_{j})\}) + \alpha_{l,k}\log(112 - H_{j}) - \alpha_{P,k,1}\mathbf{1}\{P_{j}&gt;0\} - \alpha_{P,k,2}\mathbf{1}\{P_{j}&gt;1\} \]</span></p>
+<p>and <span class="math display">\[ \log(W_{nt}) = \gamma_{k,0} + \gamma_{k,1}\text{Age}_{nt} + \gamma_{k,2}\text{Age}_{nt}^2 \]</span></p>
 <p>So the parameters <span class="math inline">\(\alpha_{l},\alpha_{P},\gamma\)</span> are now <strong>heterogeneous by type</strong>.</p>
 </section>
 <section id="part-1" class="level2">
