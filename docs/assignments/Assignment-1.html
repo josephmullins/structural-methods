@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Econ8502 - Assignment 1</title>
+<title>Assignment 1 – Econ8502</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,44 +20,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -69,10 +35,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -120,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -129,12 +92,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Assignments</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
@@ -142,11 +101,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../assignments/Assignment-1.html">
  <span class="dropdown-text">Assignment 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-2.html">
+ <span class="dropdown-text">Assignment 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-3.html">
+ <span class="dropdown-text">Assignment 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-4.html">
+ <span class="dropdown-text">Assignment 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-5.html">
+ <span class="dropdown-text">Assignment 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-6.html">
+ <span class="dropdown-text">Assignment 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-examples" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Examples</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
+        <li>
+    <a class="dropdown-item" href="../examples/LeastSquaresClustering.html">
+ <span class="dropdown-text">Clustering with Coefficients</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -155,17 +145,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#setup-loading-the-data" id="toc-setup-loading-the-data" class="nav-link active" data-scroll-target="#setup-loading-the-data">Setup: Loading the Data</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -189,703 +170,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="setup-loading-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="setup-loading-the-data">Setup: Loading the Data</h2>
-<p>Here is code to load the dataset and do a little cleaning / filtering.</p>
-<p>The sample is all mothers in the PSID who are unmarried at the time of their first childbirth.</p>
-<div id="1fe7ce11" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">DataFramesMeta</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="pp">@chain</span> <span class="cf">begin</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    CSV.<span class="fu">read</span>(<span class="st">"../children-cash-transfers/data/MainPanelFile.csv"</span>,DataFrame,missingstring <span class="op">=</span> <span class="st">"NA"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@select</span> <span class="op">:</span>MID <span class="op">:</span>year <span class="op">:</span>wage <span class="op">:</span>hrs <span class="op">:</span>earn <span class="op">:</span>SOI <span class="op">:</span>CPIU <span class="op">:</span>WelfH <span class="op">:</span>FSInd</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@subset</span> <span class="op">:</span>year<span class="op">.&gt;=</span><span class="fl">1985</span> <span class="op">:</span>year<span class="op">.&lt;=</span><span class="fl">2010</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@transform</span> <span class="op">:</span>AFDC <span class="op">=</span> <span class="op">:</span>WelfH<span class="op">.&gt;</span><span class="fl">0</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@rename</span> <span class="op">:</span>FS <span class="op">=</span> <span class="op">:</span>FSInd</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div><div style="float: left;"><span>89747×10 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">89722 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
-<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">MID</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">wage</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">hrs</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">earn</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">SOI</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">CPIU</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">WelfH</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">FS</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">AFDC</th>
-</tr>
-<tr class="odd subheader headerLastRow">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Int64}">Int64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Float64}">Float64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Int64}">Int64?</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Bool}">Bool?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1990</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.758793</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1991</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.790786</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1992</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.814835</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1993</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.839034</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1994</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.860812</td>
-<td style="text-align: right;">1704.0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">true</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1995</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.88496</td>
-<td style="text-align: right;">1704.0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">true</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1996</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.910948</td>
-<td style="text-align: right;">1704.0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">true</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1997</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.932244</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1998</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.946664</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">1999</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">0.967426</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">2000</td>
-<td style="text-align: right;">3.33333</td>
-<td style="text-align: right;">120</td>
-<td style="text-align: right;">400.0</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">2001</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">1.02817</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">2002</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">1.04457</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">false</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89736</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">1999</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">0.967426</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89737</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2000</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89738</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2001</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.02817</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89739</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2002</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.04457</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89740</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2003</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.06857</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89741</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2004</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.09708</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89742</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2005</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.13401</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89743</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2006</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.17054</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89744</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2007</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.20414</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89745</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2008</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.25008</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89746</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2009</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.24608</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">89747</td>
-<td style="text-align: right;">9308002</td>
-<td style="text-align: right;">2010</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">1.26647</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-<td style="text-align: right; font-style: italic;">missing</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>You may be unfamiliar with some of these commands, which make use of <code>DataFrames</code> and <code>DataFramesMeta</code>. In particular, think of the <code>@chain</code> macro as a way to compose functions. So for example:</p>
-<div id="54d0d882" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> <span class="pp">@chain</span> d2 <span class="cf">begin</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">func1</span>(x)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">func2</span>(y)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">func3</span>(z)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>is equivalent to calling:</p>
-<div id="113660b3" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> <span class="fu">func3</span>(<span class="fu">func2</span>(<span class="fu">func1</span>(d2,x),y),z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>If you want to understand better, google is your friend!</p>
-</section>
-<section id="question-1" class="level2">
-<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>Calculate average welfare participation (<code>AFDC</code>) by year and plot it. What do you think happened with welfare participation in 1996 and after? If you don’t know the historical context, a quick search online or a read of <a href="../papers/DesigningCashTransfers_Children_Draft.pdf">this</a> paper should help you out.</p>
-<p>If you are new to <code>julia</code>, here is average hours calculated and plotted to get you started.</p>
-<div id="1b383dd1" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsPlots</span>, <span class="bu">Statistics</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="pp">@chain</span> data <span class="cf">begin</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">groupby</span>(<span class="op">:</span>year)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@combine</span> <span class="op">:</span>Hours <span class="op">=</span> <span class="fu">mean</span>(<span class="fu">skipmissing</span>(<span class="op">:</span>hrs))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@subset</span> .!<span class="fu">isnan</span>.(<span class="op">:</span>Hours)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="pp">@df</span> d <span class="fu">plot</span>(<span class="op">:</span>year,<span class="op">:</span>Hours, legend <span class="op">=</span> <span class="op">:</span>none, linewidth <span class="op">=</span> <span class="fl">2</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">"Year"</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">"Average Welfare Participation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<!--?xml version="1.0" encoding="utf-8"?-->
-<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
-<defs>
-  <clippath id="clip560">
-    <rect x="0" y="0" width="2688" height="1920"></rect>
-  </clippath>
-</defs>
-<path clip-path="url(#clip560)" d="M0 1920 L2688 1920 L2688 -4.26326e-14 L0 -4.26326e-14  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
-<defs>
-  <clippath id="clip561">
-    <rect x="537" y="0" width="1883" height="1883"></rect>
-  </clippath>
-</defs>
-<path clip-path="url(#clip560)" d="M268.826 1734.12 L2640.76 1734.12 L2640.76 47.2441 L268.826 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
-<defs>
-  <clippath id="clip562">
-    <rect x="268" y="47" width="2373" height="1688"></rect>
-  </clippath>
-</defs>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="335.956,1734.12 335.956,47.2441 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="783.49,1734.12 783.49,47.2441 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1231.02,1734.12 1231.02,47.2441 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1678.56,1734.12 1678.56,47.2441 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2126.09,1734.12 2126.09,47.2441 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2573.63,1734.12 2573.63,47.2441 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,1734.12 2640.76,1734.12 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="335.956,1734.12 335.956,1715.22 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="783.49,1734.12 783.49,1715.22 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1231.02,1734.12 1231.02,1715.22 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1678.56,1734.12 1678.56,1715.22 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2126.09,1734.12 2126.09,1715.22 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2573.63,1734.12 2573.63,1715.22 "></polyline>
-<path clip-path="url(#clip560)" d="M280.979 1794.89 L288.618 1794.89 L288.618 1768.52 L280.308 1770.19 L280.308 1765.93 L288.572 1764.26 L293.248 1764.26 L293.248 1794.89 L300.886 1794.89 L300.886 1798.82 L280.979 1798.82 L280.979 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M310.47 1798.1 L310.47 1793.84 Q312.229 1794.68 314.034 1795.12 Q315.84 1795.56 317.576 1795.56 Q322.206 1795.56 324.636 1792.46 Q327.09 1789.33 327.437 1782.99 Q326.095 1784.98 324.034 1786.04 Q321.974 1787.11 319.474 1787.11 Q314.289 1787.11 311.257 1783.98 Q308.247 1780.83 308.247 1775.4 Q308.247 1770.07 311.396 1766.85 Q314.544 1763.64 319.775 1763.64 Q325.77 1763.64 328.919 1768.24 Q332.09 1772.83 332.09 1781.58 Q332.09 1789.75 328.201 1794.63 Q324.335 1799.49 317.784 1799.49 Q316.025 1799.49 314.22 1799.15 Q312.414 1798.8 310.47 1798.1 M319.775 1783.45 Q322.923 1783.45 324.752 1781.3 Q326.604 1779.15 326.604 1775.4 Q326.604 1771.67 324.752 1769.52 Q322.923 1767.34 319.775 1767.34 Q316.627 1767.34 314.775 1769.52 Q312.946 1771.67 312.946 1775.4 Q312.946 1779.15 314.775 1781.3 Q316.627 1783.45 319.775 1783.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M350.493 1782.41 Q347.159 1782.41 345.238 1784.19 Q343.34 1785.97 343.34 1789.1 Q343.34 1792.22 345.238 1794.01 Q347.159 1795.79 350.493 1795.79 Q353.826 1795.79 355.747 1794.01 Q357.668 1792.2 357.668 1789.1 Q357.668 1785.97 355.747 1784.19 Q353.849 1782.41 350.493 1782.41 M345.817 1780.42 Q342.807 1779.68 341.118 1777.62 Q339.451 1775.56 339.451 1772.59 Q339.451 1768.45 342.391 1766.04 Q345.354 1763.64 350.493 1763.64 Q355.655 1763.64 358.594 1766.04 Q361.534 1768.45 361.534 1772.59 Q361.534 1775.56 359.844 1777.62 Q358.178 1779.68 355.192 1780.42 Q358.571 1781.21 360.446 1783.5 Q362.344 1785.79 362.344 1789.1 Q362.344 1794.12 359.266 1796.81 Q356.21 1799.49 350.493 1799.49 Q344.775 1799.49 341.696 1796.81 Q338.641 1794.12 338.641 1789.1 Q338.641 1785.79 340.539 1783.5 Q342.437 1781.21 345.817 1780.42 M344.104 1773.03 Q344.104 1775.72 345.77 1777.22 Q347.46 1778.73 350.493 1778.73 Q353.502 1778.73 355.192 1777.22 Q356.905 1775.72 356.905 1773.03 Q356.905 1770.35 355.192 1768.84 Q353.502 1767.34 350.493 1767.34 Q347.46 1767.34 345.77 1768.84 Q344.104 1770.35 344.104 1773.03 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M370.701 1764.26 L389.057 1764.26 L389.057 1768.2 L374.983 1768.2 L374.983 1776.67 Q376.002 1776.32 377.02 1776.16 Q378.039 1775.97 379.057 1775.97 Q384.844 1775.97 388.224 1779.15 Q391.603 1782.32 391.603 1787.73 Q391.603 1793.31 388.131 1796.41 Q384.659 1799.49 378.34 1799.49 Q376.164 1799.49 373.895 1799.12 Q371.65 1798.75 369.242 1798.01 L369.242 1793.31 Q371.326 1794.45 373.548 1795 Q375.77 1795.56 378.247 1795.56 Q382.252 1795.56 384.59 1793.45 Q386.928 1791.34 386.928 1787.73 Q386.928 1784.12 384.59 1782.02 Q382.252 1779.91 378.247 1779.91 Q376.372 1779.91 374.497 1780.33 Q372.645 1780.74 370.701 1781.62 L370.701 1764.26 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M728.015 1794.89 L735.654 1794.89 L735.654 1768.52 L727.344 1770.19 L727.344 1765.93 L735.608 1764.26 L740.284 1764.26 L740.284 1794.89 L747.923 1794.89 L747.923 1798.82 L728.015 1798.82 L728.015 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M757.506 1798.1 L757.506 1793.84 Q759.265 1794.68 761.071 1795.12 Q762.876 1795.56 764.612 1795.56 Q769.242 1795.56 771.673 1792.46 Q774.126 1789.33 774.473 1782.99 Q773.131 1784.98 771.071 1786.04 Q769.011 1787.11 766.511 1787.11 Q761.325 1787.11 758.293 1783.98 Q755.284 1780.83 755.284 1775.4 Q755.284 1770.07 758.432 1766.85 Q761.58 1763.64 766.811 1763.64 Q772.807 1763.64 775.955 1768.24 Q779.126 1772.83 779.126 1781.58 Q779.126 1789.75 775.237 1794.63 Q771.372 1799.49 764.821 1799.49 Q763.062 1799.49 761.256 1799.15 Q759.45 1798.8 757.506 1798.1 M766.811 1783.45 Q769.96 1783.45 771.788 1781.3 Q773.64 1779.15 773.64 1775.4 Q773.64 1771.67 771.788 1769.52 Q769.96 1767.34 766.811 1767.34 Q763.663 1767.34 761.812 1769.52 Q759.983 1771.67 759.983 1775.4 Q759.983 1779.15 761.812 1781.3 Q763.663 1783.45 766.811 1783.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M787.668 1798.1 L787.668 1793.84 Q789.427 1794.68 791.233 1795.12 Q793.038 1795.56 794.774 1795.56 Q799.404 1795.56 801.834 1792.46 Q804.288 1789.33 804.635 1782.99 Q803.293 1784.98 801.233 1786.04 Q799.172 1787.11 796.672 1787.11 Q791.487 1787.11 788.455 1783.98 Q785.446 1780.83 785.446 1775.4 Q785.446 1770.07 788.594 1766.85 Q791.742 1763.64 796.973 1763.64 Q802.969 1763.64 806.117 1768.24 Q809.288 1772.83 809.288 1781.58 Q809.288 1789.75 805.399 1794.63 Q801.534 1799.49 794.983 1799.49 Q793.223 1799.49 791.418 1799.15 Q789.612 1798.8 787.668 1798.1 M796.973 1783.45 Q800.122 1783.45 801.95 1781.3 Q803.802 1779.15 803.802 1775.4 Q803.802 1771.67 801.95 1769.52 Q800.122 1767.34 796.973 1767.34 Q793.825 1767.34 791.973 1769.52 Q790.145 1771.67 790.145 1775.4 Q790.145 1779.15 791.973 1781.3 Q793.825 1783.45 796.973 1783.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M827.691 1767.34 Q824.08 1767.34 822.251 1770.9 Q820.445 1774.45 820.445 1781.58 Q820.445 1788.68 822.251 1792.25 Q824.08 1795.79 827.691 1795.79 Q831.325 1795.79 833.131 1792.25 Q834.959 1788.68 834.959 1781.58 Q834.959 1774.45 833.131 1770.9 Q831.325 1767.34 827.691 1767.34 M827.691 1763.64 Q833.501 1763.64 836.556 1768.24 Q839.635 1772.83 839.635 1781.58 Q839.635 1790.3 836.556 1794.91 Q833.501 1799.49 827.691 1799.49 Q821.881 1799.49 818.802 1794.91 Q815.746 1790.3 815.746 1781.58 Q815.746 1772.83 818.802 1768.24 Q821.881 1763.64 827.691 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1176.05 1794.89 L1183.69 1794.89 L1183.69 1768.52 L1175.38 1770.19 L1175.38 1765.93 L1183.64 1764.26 L1188.32 1764.26 L1188.32 1794.89 L1195.95 1794.89 L1195.95 1798.82 L1176.05 1798.82 L1176.05 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1205.54 1798.1 L1205.54 1793.84 Q1207.3 1794.68 1209.1 1795.12 Q1210.91 1795.56 1212.64 1795.56 Q1217.27 1795.56 1219.7 1792.46 Q1222.16 1789.33 1222.51 1782.99 Q1221.16 1784.98 1219.1 1786.04 Q1217.04 1787.11 1214.54 1787.11 Q1209.36 1787.11 1206.32 1783.98 Q1203.32 1780.83 1203.32 1775.4 Q1203.32 1770.07 1206.46 1766.85 Q1209.61 1763.64 1214.84 1763.64 Q1220.84 1763.64 1223.99 1768.24 Q1227.16 1772.83 1227.16 1781.58 Q1227.16 1789.75 1223.27 1794.63 Q1219.4 1799.49 1212.85 1799.49 Q1211.09 1799.49 1209.29 1799.15 Q1207.48 1798.8 1205.54 1798.1 M1214.84 1783.45 Q1217.99 1783.45 1219.82 1781.3 Q1221.67 1779.15 1221.67 1775.4 Q1221.67 1771.67 1219.82 1769.52 Q1217.99 1767.34 1214.84 1767.34 Q1211.7 1767.34 1209.84 1769.52 Q1208.01 1771.67 1208.01 1775.4 Q1208.01 1779.15 1209.84 1781.3 Q1211.7 1783.45 1214.84 1783.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1235.7 1798.1 L1235.7 1793.84 Q1237.46 1794.68 1239.26 1795.12 Q1241.07 1795.56 1242.81 1795.56 Q1247.44 1795.56 1249.87 1792.46 Q1252.32 1789.33 1252.67 1782.99 Q1251.32 1784.98 1249.26 1786.04 Q1247.2 1787.11 1244.7 1787.11 Q1239.52 1787.11 1236.49 1783.98 Q1233.48 1780.83 1233.48 1775.4 Q1233.48 1770.07 1236.63 1766.85 Q1239.77 1763.64 1245.01 1763.64 Q1251 1763.64 1254.15 1768.24 Q1257.32 1772.83 1257.32 1781.58 Q1257.32 1789.75 1253.43 1794.63 Q1249.57 1799.49 1243.01 1799.49 Q1241.26 1799.49 1239.45 1799.15 Q1237.64 1798.8 1235.7 1798.1 M1245.01 1783.45 Q1248.15 1783.45 1249.98 1781.3 Q1251.83 1779.15 1251.83 1775.4 Q1251.83 1771.67 1249.98 1769.52 Q1248.15 1767.34 1245.01 1767.34 Q1241.86 1767.34 1240.01 1769.52 Q1238.18 1771.67 1238.18 1775.4 Q1238.18 1779.15 1240.01 1781.3 Q1241.86 1783.45 1245.01 1783.45 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1265.77 1764.26 L1284.13 1764.26 L1284.13 1768.2 L1270.05 1768.2 L1270.05 1776.67 Q1271.07 1776.32 1272.09 1776.16 Q1273.11 1775.97 1274.13 1775.97 Q1279.91 1775.97 1283.29 1779.15 Q1286.67 1782.32 1286.67 1787.73 Q1286.67 1793.31 1283.2 1796.41 Q1279.73 1799.49 1273.41 1799.49 Q1271.23 1799.49 1268.96 1799.12 Q1266.72 1798.75 1264.31 1798.01 L1264.31 1793.31 Q1266.39 1794.45 1268.62 1795 Q1270.84 1795.56 1273.32 1795.56 Q1277.32 1795.56 1279.66 1793.45 Q1282 1791.34 1282 1787.73 Q1282 1784.12 1279.66 1782.02 Q1277.32 1779.91 1273.32 1779.91 Q1271.44 1779.91 1269.57 1780.33 Q1267.71 1780.74 1265.77 1781.62 L1265.77 1764.26 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1627.17 1794.89 L1643.49 1794.89 L1643.49 1798.82 L1621.54 1798.82 L1621.54 1794.89 Q1624.21 1792.13 1628.79 1787.5 Q1633.4 1782.85 1634.58 1781.51 Q1636.82 1778.98 1637.7 1777.25 Q1638.6 1775.49 1638.6 1773.8 Q1638.6 1771.04 1636.66 1769.31 Q1634.74 1767.57 1631.64 1767.57 Q1629.44 1767.57 1626.98 1768.34 Q1624.55 1769.1 1621.78 1770.65 L1621.78 1765.93 Q1624.6 1764.79 1627.05 1764.21 Q1629.51 1763.64 1631.54 1763.64 Q1636.91 1763.64 1640.11 1766.32 Q1643.3 1769.01 1643.3 1773.5 Q1643.3 1775.63 1642.49 1777.55 Q1641.71 1779.45 1639.6 1782.04 Q1639.02 1782.71 1635.92 1785.93 Q1632.82 1789.12 1627.17 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1663.3 1767.34 Q1659.69 1767.34 1657.86 1770.9 Q1656.06 1774.45 1656.06 1781.58 Q1656.06 1788.68 1657.86 1792.25 Q1659.69 1795.79 1663.3 1795.79 Q1666.94 1795.79 1668.74 1792.25 Q1670.57 1788.68 1670.57 1781.58 Q1670.57 1774.45 1668.74 1770.9 Q1666.94 1767.34 1663.3 1767.34 M1663.3 1763.64 Q1669.11 1763.64 1672.17 1768.24 Q1675.25 1772.83 1675.25 1781.58 Q1675.25 1790.3 1672.17 1794.91 Q1669.11 1799.49 1663.3 1799.49 Q1657.49 1799.49 1654.41 1794.91 Q1651.36 1790.3 1651.36 1781.58 Q1651.36 1772.83 1654.41 1768.24 Q1657.49 1763.64 1663.3 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1693.47 1767.34 Q1689.85 1767.34 1688.03 1770.9 Q1686.22 1774.45 1686.22 1781.58 Q1686.22 1788.68 1688.03 1792.25 Q1689.85 1795.79 1693.47 1795.79 Q1697.1 1795.79 1698.9 1792.25 Q1700.73 1788.68 1700.73 1781.58 Q1700.73 1774.45 1698.9 1770.9 Q1697.1 1767.34 1693.47 1767.34 M1693.47 1763.64 Q1699.28 1763.64 1702.33 1768.24 Q1705.41 1772.83 1705.41 1781.58 Q1705.41 1790.3 1702.33 1794.91 Q1699.28 1799.49 1693.47 1799.49 Q1687.65 1799.49 1684.58 1794.91 Q1681.52 1790.3 1681.52 1781.58 Q1681.52 1772.83 1684.58 1768.24 Q1687.65 1763.64 1693.47 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1723.63 1767.34 Q1720.02 1767.34 1718.19 1770.9 Q1716.38 1774.45 1716.38 1781.58 Q1716.38 1788.68 1718.19 1792.25 Q1720.02 1795.79 1723.63 1795.79 Q1727.26 1795.79 1729.07 1792.25 Q1730.9 1788.68 1730.9 1781.58 Q1730.9 1774.45 1729.07 1770.9 Q1727.26 1767.34 1723.63 1767.34 M1723.63 1763.64 Q1729.44 1763.64 1732.49 1768.24 Q1735.57 1772.83 1735.57 1781.58 Q1735.57 1790.3 1732.49 1794.91 Q1729.44 1799.49 1723.63 1799.49 Q1717.82 1799.49 1714.74 1794.91 Q1711.68 1790.3 1711.68 1781.58 Q1711.68 1772.83 1714.74 1768.24 Q1717.82 1763.64 1723.63 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2075.2 1794.89 L2091.52 1794.89 L2091.52 1798.82 L2069.58 1798.82 L2069.58 1794.89 Q2072.24 1792.13 2076.82 1787.5 Q2081.43 1782.85 2082.61 1781.51 Q2084.85 1778.98 2085.73 1777.25 Q2086.64 1775.49 2086.64 1773.8 Q2086.64 1771.04 2084.69 1769.31 Q2082.77 1767.57 2079.67 1767.57 Q2077.47 1767.57 2075.02 1768.34 Q2072.59 1769.1 2069.81 1770.65 L2069.81 1765.93 Q2072.63 1764.79 2075.09 1764.21 Q2077.54 1763.64 2079.58 1763.64 Q2084.95 1763.64 2088.14 1766.32 Q2091.34 1769.01 2091.34 1773.5 Q2091.34 1775.63 2090.52 1777.55 Q2089.74 1779.45 2087.63 1782.04 Q2087.05 1782.71 2083.95 1785.93 Q2080.85 1789.12 2075.2 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2111.33 1767.34 Q2107.72 1767.34 2105.9 1770.9 Q2104.09 1774.45 2104.09 1781.58 Q2104.09 1788.68 2105.9 1792.25 Q2107.72 1795.79 2111.33 1795.79 Q2114.97 1795.79 2116.77 1792.25 Q2118.6 1788.68 2118.6 1781.58 Q2118.6 1774.45 2116.77 1770.9 Q2114.97 1767.34 2111.33 1767.34 M2111.33 1763.64 Q2117.15 1763.64 2120.2 1768.24 Q2123.28 1772.83 2123.28 1781.58 Q2123.28 1790.3 2120.2 1794.91 Q2117.15 1799.49 2111.33 1799.49 Q2105.52 1799.49 2102.45 1794.91 Q2099.39 1790.3 2099.39 1781.58 Q2099.39 1772.83 2102.45 1768.24 Q2105.52 1763.64 2111.33 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2141.5 1767.34 Q2137.89 1767.34 2136.06 1770.9 Q2134.25 1774.45 2134.25 1781.58 Q2134.25 1788.68 2136.06 1792.25 Q2137.89 1795.79 2141.5 1795.79 Q2145.13 1795.79 2146.94 1792.25 Q2148.77 1788.68 2148.77 1781.58 Q2148.77 1774.45 2146.94 1770.9 Q2145.13 1767.34 2141.5 1767.34 M2141.5 1763.64 Q2147.31 1763.64 2150.36 1768.24 Q2153.44 1772.83 2153.44 1781.58 Q2153.44 1790.3 2150.36 1794.91 Q2147.31 1799.49 2141.5 1799.49 Q2135.69 1799.49 2132.61 1794.91 Q2129.55 1790.3 2129.55 1781.58 Q2129.55 1772.83 2132.61 1768.24 Q2135.69 1763.64 2141.5 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2161.7 1764.26 L2180.06 1764.26 L2180.06 1768.2 L2165.99 1768.2 L2165.99 1776.67 Q2167.01 1776.32 2168.02 1776.16 Q2169.04 1775.97 2170.06 1775.97 Q2175.85 1775.97 2179.23 1779.15 Q2182.61 1782.32 2182.61 1787.73 Q2182.61 1793.31 2179.14 1796.41 Q2175.66 1799.49 2169.34 1799.49 Q2167.17 1799.49 2164.9 1799.12 Q2162.65 1798.75 2160.25 1798.01 L2160.25 1793.31 Q2162.33 1794.45 2164.55 1795 Q2166.77 1795.56 2169.25 1795.56 Q2173.26 1795.56 2175.59 1793.45 Q2177.93 1791.34 2177.93 1787.73 Q2177.93 1784.12 2175.59 1782.02 Q2173.26 1779.91 2169.25 1779.91 Q2167.38 1779.91 2165.5 1780.33 Q2163.65 1780.74 2161.7 1781.62 L2161.7 1764.26 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2522.24 1794.89 L2538.56 1794.89 L2538.56 1798.82 L2516.61 1798.82 L2516.61 1794.89 Q2519.27 1792.13 2523.86 1787.5 Q2528.46 1782.85 2529.64 1781.51 Q2531.89 1778.98 2532.77 1777.25 Q2533.67 1775.49 2533.67 1773.8 Q2533.67 1771.04 2531.73 1769.31 Q2529.81 1767.57 2526.7 1767.57 Q2524.51 1767.57 2522.05 1768.34 Q2519.62 1769.1 2516.84 1770.65 L2516.84 1765.93 Q2519.67 1764.79 2522.12 1764.21 Q2524.58 1763.64 2526.61 1763.64 Q2531.98 1763.64 2535.18 1766.32 Q2538.37 1769.01 2538.37 1773.5 Q2538.37 1775.63 2537.56 1777.55 Q2536.77 1779.45 2534.67 1782.04 Q2534.09 1782.71 2530.99 1785.93 Q2527.89 1789.12 2522.24 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2558.37 1767.34 Q2554.76 1767.34 2552.93 1770.9 Q2551.13 1774.45 2551.13 1781.58 Q2551.13 1788.68 2552.93 1792.25 Q2554.76 1795.79 2558.37 1795.79 Q2562.01 1795.79 2563.81 1792.25 Q2565.64 1788.68 2565.64 1781.58 Q2565.64 1774.45 2563.81 1770.9 Q2562.01 1767.34 2558.37 1767.34 M2558.37 1763.64 Q2564.18 1763.64 2567.24 1768.24 Q2570.32 1772.83 2570.32 1781.58 Q2570.32 1790.3 2567.24 1794.91 Q2564.18 1799.49 2558.37 1799.49 Q2552.56 1799.49 2549.48 1794.91 Q2546.43 1790.3 2546.43 1781.58 Q2546.43 1772.83 2549.48 1768.24 Q2552.56 1763.64 2558.37 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2579.34 1794.89 L2586.98 1794.89 L2586.98 1768.52 L2578.67 1770.19 L2578.67 1765.93 L2586.94 1764.26 L2591.61 1764.26 L2591.61 1794.89 L2599.25 1794.89 L2599.25 1798.82 L2579.34 1798.82 L2579.34 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M2618.7 1767.34 Q2615.08 1767.34 2613.26 1770.9 Q2611.45 1774.45 2611.45 1781.58 Q2611.45 1788.68 2613.26 1792.25 Q2615.08 1795.79 2618.7 1795.79 Q2622.33 1795.79 2624.13 1792.25 Q2625.96 1788.68 2625.96 1781.58 Q2625.96 1774.45 2624.13 1770.9 Q2622.33 1767.34 2618.7 1767.34 M2618.7 1763.64 Q2624.51 1763.64 2627.56 1768.24 Q2630.64 1772.83 2630.64 1781.58 Q2630.64 1790.3 2627.56 1794.91 Q2624.51 1799.49 2618.7 1799.49 Q2612.88 1799.49 2609.81 1794.91 Q2606.75 1790.3 2606.75 1781.58 Q2606.75 1772.83 2609.81 1768.24 Q2612.88 1763.64 2618.7 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1385.72 1835.78 L1392.63 1835.78 L1405.81 1855.32 L1418.89 1835.78 L1425.79 1835.78 L1408.99 1860.67 L1408.99 1883.3 L1402.53 1883.3 L1402.53 1860.67 L1385.72 1835.78 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1453.64 1864.01 L1453.64 1866.88 L1426.72 1866.88 Q1427.1 1872.92 1430.35 1876.11 Q1433.62 1879.26 1439.45 1879.26 Q1442.82 1879.26 1445.97 1878.43 Q1449.16 1877.6 1452.28 1875.95 L1452.28 1881.49 Q1449.13 1882.82 1445.82 1883.52 Q1442.5 1884.22 1439.1 1884.22 Q1430.57 1884.22 1425.57 1879.26 Q1420.61 1874.29 1420.61 1865.83 Q1420.61 1857.07 1425.32 1851.95 Q1430.06 1846.79 1438.08 1846.79 Q1445.27 1846.79 1449.44 1851.44 Q1453.64 1856.06 1453.64 1864.01 M1447.79 1862.29 Q1447.72 1857.49 1445.08 1854.62 Q1442.47 1851.76 1438.14 1851.76 Q1433.24 1851.76 1430.28 1854.53 Q1427.35 1857.3 1426.91 1862.33 L1447.79 1862.29 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1479.46 1865.38 Q1472.36 1865.38 1469.62 1867 Q1466.89 1868.63 1466.89 1872.54 Q1466.89 1875.66 1468.92 1877.51 Q1470.99 1879.32 1474.52 1879.32 Q1479.39 1879.32 1482.32 1875.88 Q1485.28 1872.42 1485.28 1866.69 L1485.28 1865.38 L1479.46 1865.38 M1491.14 1862.96 L1491.14 1883.3 L1485.28 1883.3 L1485.28 1877.89 Q1483.28 1881.14 1480.29 1882.7 Q1477.29 1884.22 1472.96 1884.22 Q1467.49 1884.22 1464.24 1881.17 Q1461.03 1878.08 1461.03 1872.92 Q1461.03 1866.91 1465.04 1863.85 Q1469.08 1860.8 1477.07 1860.8 L1485.28 1860.8 L1485.28 1860.23 Q1485.28 1856.18 1482.61 1853.99 Q1479.97 1851.76 1475.16 1851.76 Q1472.11 1851.76 1469.21 1852.49 Q1466.31 1853.22 1463.64 1854.69 L1463.64 1849.28 Q1466.85 1848.03 1469.88 1847.43 Q1472.9 1846.79 1475.77 1846.79 Q1483.5 1846.79 1487.32 1850.8 Q1491.14 1854.81 1491.14 1862.96 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M1523.86 1853.13 Q1522.87 1852.55 1521.69 1852.3 Q1520.55 1852.01 1519.15 1852.01 Q1514.18 1852.01 1511.51 1855.26 Q1508.87 1858.47 1508.87 1864.52 L1508.87 1883.3 L1502.98 1883.3 L1502.98 1847.65 L1508.87 1847.65 L1508.87 1853.19 Q1510.71 1849.94 1513.67 1848.39 Q1516.63 1846.79 1520.87 1846.79 Q1521.47 1846.79 1522.2 1846.89 Q1522.94 1846.95 1523.83 1847.11 L1523.86 1853.13 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="268.826,1647.08 2640.76,1647.08 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="268.826,1272.4 2640.76,1272.4 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="268.826,897.717 2640.76,897.717 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="268.826,523.036 2640.76,523.036 "></polyline>
-<polyline clip-path="url(#clip562)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="268.826,148.354 2640.76,148.354 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,1734.12 268.826,47.2441 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,1647.08 287.723,1647.08 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,1272.4 287.723,1272.4 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,897.717 287.723,897.717 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,523.036 287.723,523.036 "></polyline>
-<polyline clip-path="url(#clip560)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="268.826,148.354 287.723,148.354 "></polyline>
-<path clip-path="url(#clip560)" d="M146.376 1663.64 L146.376 1659.38 Q148.136 1660.22 149.941 1660.66 Q151.747 1661.1 153.483 1661.1 Q158.112 1661.1 160.543 1657.99 Q162.997 1654.87 163.344 1648.53 Q162.001 1650.52 159.941 1651.58 Q157.881 1652.65 155.381 1652.65 Q150.196 1652.65 147.163 1649.52 Q144.154 1646.37 144.154 1640.93 Q144.154 1635.61 147.302 1632.39 Q150.45 1629.17 155.682 1629.17 Q161.677 1629.17 164.825 1633.78 Q167.997 1638.36 167.997 1647.11 Q167.997 1655.29 164.108 1660.17 Q160.242 1665.03 153.691 1665.03 Q151.932 1665.03 150.126 1664.68 Q148.321 1664.34 146.376 1663.64 M155.682 1648.99 Q158.83 1648.99 160.659 1646.84 Q162.51 1644.68 162.51 1640.93 Q162.51 1637.21 160.659 1635.05 Q158.83 1632.88 155.682 1632.88 Q152.534 1632.88 150.682 1635.05 Q148.853 1637.21 148.853 1640.93 Q148.853 1644.68 150.682 1646.84 Q152.534 1648.99 155.682 1648.99 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M186.399 1632.88 Q182.788 1632.88 180.959 1636.44 Q179.154 1639.98 179.154 1647.11 Q179.154 1654.22 180.959 1657.79 Q182.788 1661.33 186.399 1661.33 Q190.033 1661.33 191.839 1657.79 Q193.668 1654.22 193.668 1647.11 Q193.668 1639.98 191.839 1636.44 Q190.033 1632.88 186.399 1632.88 M186.399 1629.17 Q192.209 1629.17 195.265 1633.78 Q198.344 1638.36 198.344 1647.11 Q198.344 1655.84 195.265 1660.45 Q192.209 1665.03 186.399 1665.03 Q180.589 1665.03 177.51 1660.45 Q174.455 1655.84 174.455 1647.11 Q174.455 1638.36 177.51 1633.78 Q180.589 1629.17 186.399 1629.17 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M216.561 1632.88 Q212.95 1632.88 211.121 1636.44 Q209.316 1639.98 209.316 1647.11 Q209.316 1654.22 211.121 1657.79 Q212.95 1661.33 216.561 1661.33 Q220.195 1661.33 222.001 1657.79 Q223.83 1654.22 223.83 1647.11 Q223.83 1639.98 222.001 1636.44 Q220.195 1632.88 216.561 1632.88 M216.561 1629.17 Q222.371 1629.17 225.427 1633.78 Q228.506 1638.36 228.506 1647.11 Q228.506 1655.84 225.427 1660.45 Q222.371 1665.03 216.561 1665.03 Q210.751 1665.03 207.672 1660.45 Q204.617 1655.84 204.617 1647.11 Q204.617 1638.36 207.672 1633.78 Q210.751 1629.17 216.561 1629.17 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M116.886 1285.74 L124.525 1285.74 L124.525 1259.38 L116.214 1261.04 L116.214 1256.78 L124.478 1255.12 L129.154 1255.12 L129.154 1285.74 L136.793 1285.74 L136.793 1289.68 L116.886 1289.68 L116.886 1285.74 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M156.237 1258.2 Q152.626 1258.2 150.798 1261.76 Q148.992 1265.3 148.992 1272.43 Q148.992 1279.54 150.798 1283.1 Q152.626 1286.65 156.237 1286.65 Q159.872 1286.65 161.677 1283.1 Q163.506 1279.54 163.506 1272.43 Q163.506 1265.3 161.677 1261.76 Q159.872 1258.2 156.237 1258.2 M156.237 1254.49 Q162.048 1254.49 165.103 1259.1 Q168.182 1263.68 168.182 1272.43 Q168.182 1281.16 165.103 1285.77 Q162.048 1290.35 156.237 1290.35 Q150.427 1290.35 147.349 1285.77 Q144.293 1281.16 144.293 1272.43 Q144.293 1263.68 147.349 1259.1 Q150.427 1254.49 156.237 1254.49 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M186.399 1258.2 Q182.788 1258.2 180.959 1261.76 Q179.154 1265.3 179.154 1272.43 Q179.154 1279.54 180.959 1283.1 Q182.788 1286.65 186.399 1286.65 Q190.033 1286.65 191.839 1283.1 Q193.668 1279.54 193.668 1272.43 Q193.668 1265.3 191.839 1261.76 Q190.033 1258.2 186.399 1258.2 M186.399 1254.49 Q192.209 1254.49 195.265 1259.1 Q198.344 1263.68 198.344 1272.43 Q198.344 1281.16 195.265 1285.77 Q192.209 1290.35 186.399 1290.35 Q180.589 1290.35 177.51 1285.77 Q174.455 1281.16 174.455 1272.43 Q174.455 1263.68 177.51 1259.1 Q180.589 1254.49 186.399 1254.49 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M216.561 1258.2 Q212.95 1258.2 211.121 1261.76 Q209.316 1265.3 209.316 1272.43 Q209.316 1279.54 211.121 1283.1 Q212.95 1286.65 216.561 1286.65 Q220.195 1286.65 222.001 1283.1 Q223.83 1279.54 223.83 1272.43 Q223.83 1265.3 222.001 1261.76 Q220.195 1258.2 216.561 1258.2 M216.561 1254.49 Q222.371 1254.49 225.427 1259.1 Q228.506 1263.68 228.506 1272.43 Q228.506 1281.16 225.427 1285.77 Q222.371 1290.35 216.561 1290.35 Q210.751 1290.35 207.672 1285.77 Q204.617 1281.16 204.617 1272.43 Q204.617 1263.68 207.672 1259.1 Q210.751 1254.49 216.561 1254.49 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M116.886 911.062 L124.525 911.062 L124.525 884.696 L116.214 886.363 L116.214 882.104 L124.478 880.437 L129.154 880.437 L129.154 911.062 L136.793 911.062 L136.793 914.997 L116.886 914.997 L116.886 911.062 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M147.048 911.062 L154.686 911.062 L154.686 884.696 L146.376 886.363 L146.376 882.104 L154.64 880.437 L159.316 880.437 L159.316 911.062 L166.955 911.062 L166.955 914.997 L147.048 914.997 L147.048 911.062 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M186.399 883.516 Q182.788 883.516 180.959 887.08 Q179.154 890.622 179.154 897.752 Q179.154 904.858 180.959 908.423 Q182.788 911.964 186.399 911.964 Q190.033 911.964 191.839 908.423 Q193.668 904.858 193.668 897.752 Q193.668 890.622 191.839 887.08 Q190.033 883.516 186.399 883.516 M186.399 879.812 Q192.209 879.812 195.265 884.418 Q198.344 889.002 198.344 897.752 Q198.344 906.478 195.265 911.085 Q192.209 915.668 186.399 915.668 Q180.589 915.668 177.51 911.085 Q174.455 906.478 174.455 897.752 Q174.455 889.002 177.51 884.418 Q180.589 879.812 186.399 879.812 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M216.561 883.516 Q212.95 883.516 211.121 887.08 Q209.316 890.622 209.316 897.752 Q209.316 904.858 211.121 908.423 Q212.95 911.964 216.561 911.964 Q220.195 911.964 222.001 908.423 Q223.83 904.858 223.83 897.752 Q223.83 890.622 222.001 887.08 Q220.195 883.516 216.561 883.516 M216.561 879.812 Q222.371 879.812 225.427 884.418 Q228.506 889.002 228.506 897.752 Q228.506 906.478 225.427 911.085 Q222.371 915.668 216.561 915.668 Q210.751 915.668 207.672 911.085 Q204.617 906.478 204.617 897.752 Q204.617 889.002 207.672 884.418 Q210.751 879.812 216.561 879.812 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M116.886 536.38 L124.525 536.38 L124.525 510.015 L116.214 511.682 L116.214 507.422 L124.478 505.756 L129.154 505.756 L129.154 536.38 L136.793 536.38 L136.793 540.316 L116.886 540.316 L116.886 536.38 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M150.265 536.38 L166.585 536.38 L166.585 540.316 L144.64 540.316 L144.64 536.38 Q147.302 533.626 151.886 528.996 Q156.492 524.343 157.673 523.001 Q159.918 520.478 160.798 518.742 Q161.7 516.982 161.7 515.293 Q161.7 512.538 159.756 510.802 Q157.835 509.066 154.733 509.066 Q152.534 509.066 150.08 509.83 Q147.649 510.594 144.872 512.144 L144.872 507.422 Q147.696 506.288 150.149 505.709 Q152.603 505.131 154.64 505.131 Q160.011 505.131 163.205 507.816 Q166.399 510.501 166.399 514.992 Q166.399 517.121 165.589 519.043 Q164.802 520.941 162.696 523.533 Q162.117 524.205 159.015 527.422 Q155.913 530.617 150.265 536.38 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M186.399 508.834 Q182.788 508.834 180.959 512.399 Q179.154 515.941 179.154 523.07 Q179.154 530.177 180.959 533.742 Q182.788 537.283 186.399 537.283 Q190.033 537.283 191.839 533.742 Q193.668 530.177 193.668 523.07 Q193.668 515.941 191.839 512.399 Q190.033 508.834 186.399 508.834 M186.399 505.131 Q192.209 505.131 195.265 509.737 Q198.344 514.32 198.344 523.07 Q198.344 531.797 195.265 536.404 Q192.209 540.987 186.399 540.987 Q180.589 540.987 177.51 536.404 Q174.455 531.797 174.455 523.07 Q174.455 514.32 177.51 509.737 Q180.589 505.131 186.399 505.131 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M216.561 508.834 Q212.95 508.834 211.121 512.399 Q209.316 515.941 209.316 523.07 Q209.316 530.177 211.121 533.742 Q212.95 537.283 216.561 537.283 Q220.195 537.283 222.001 533.742 Q223.83 530.177 223.83 523.07 Q223.83 515.941 222.001 512.399 Q220.195 508.834 216.561 508.834 M216.561 505.131 Q222.371 505.131 225.427 509.737 Q228.506 514.32 228.506 523.07 Q228.506 531.797 225.427 536.404 Q222.371 540.987 216.561 540.987 Q210.751 540.987 207.672 536.404 Q204.617 531.797 204.617 523.07 Q204.617 514.32 207.672 509.737 Q210.751 505.131 216.561 505.131 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M116.886 161.699 L124.525 161.699 L124.525 135.334 L116.214 137 L116.214 132.741 L124.478 131.074 L129.154 131.074 L129.154 161.699 L136.793 161.699 L136.793 165.634 L116.886 165.634 L116.886 161.699 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M160.404 147 Q163.76 147.718 165.635 149.986 Q167.534 152.255 167.534 155.588 Q167.534 160.704 164.015 163.505 Q160.497 166.306 154.015 166.306 Q151.839 166.306 149.524 165.866 Q147.233 165.449 144.779 164.593 L144.779 160.079 Q146.724 161.213 149.038 161.792 Q151.353 162.37 153.876 162.37 Q158.274 162.37 160.566 160.634 Q162.881 158.898 162.881 155.588 Q162.881 152.533 160.728 150.82 Q158.598 149.084 154.779 149.084 L150.751 149.084 L150.751 145.241 L154.964 145.241 Q158.413 145.241 160.242 143.875 Q162.071 142.486 162.071 139.894 Q162.071 137.232 160.173 135.82 Q158.298 134.385 154.779 134.385 Q152.858 134.385 150.659 134.801 Q148.46 135.218 145.821 136.097 L145.821 131.931 Q148.483 131.19 150.798 130.82 Q153.136 130.449 155.196 130.449 Q160.52 130.449 163.622 132.88 Q166.723 135.287 166.723 139.408 Q166.723 142.278 165.08 144.269 Q163.436 146.236 160.404 147 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M186.399 134.153 Q182.788 134.153 180.959 137.718 Q179.154 141.259 179.154 148.389 Q179.154 155.496 180.959 159.06 Q182.788 162.602 186.399 162.602 Q190.033 162.602 191.839 159.06 Q193.668 155.496 193.668 148.389 Q193.668 141.259 191.839 137.718 Q190.033 134.153 186.399 134.153 M186.399 130.449 Q192.209 130.449 195.265 135.056 Q198.344 139.639 198.344 148.389 Q198.344 157.116 195.265 161.722 Q192.209 166.306 186.399 166.306 Q180.589 166.306 177.51 161.722 Q174.455 157.116 174.455 148.389 Q174.455 139.639 177.51 135.056 Q180.589 130.449 186.399 130.449 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M216.561 134.153 Q212.95 134.153 211.121 137.718 Q209.316 141.259 209.316 148.389 Q209.316 155.496 211.121 159.06 Q212.95 162.602 216.561 162.602 Q220.195 162.602 222.001 159.06 Q223.83 155.496 223.83 148.389 Q223.83 141.259 222.001 137.718 Q220.195 134.153 216.561 134.153 M216.561 130.449 Q222.371 130.449 225.427 135.056 Q228.506 139.639 228.506 148.389 Q228.506 157.116 225.427 161.722 Q222.371 166.306 216.561 166.306 Q210.751 166.306 207.672 161.722 Q204.617 157.116 204.617 148.389 Q204.617 139.639 207.672 135.056 Q210.751 130.449 216.561 130.449 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M20.4523 1347.52 L44.1009 1356.24 L44.1009 1338.76 L20.4523 1347.52 M14.1184 1351.14 L14.1184 1343.86 L61.6384 1325.74 L61.6384 1332.43 L49.4481 1336.76 L49.4481 1358.18 L61.6384 1362.51 L61.6384 1369.29 L14.1184 1351.14 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M25.9905 1327.08 L25.9905 1320.87 L55.9093 1309.74 L25.9905 1298.6 L25.9905 1292.39 L61.6384 1305.76 L61.6384 1313.71 L25.9905 1327.08 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M42.3504 1253.81 L45.2149 1253.81 L45.2149 1280.74 Q51.2623 1280.36 54.4452 1277.11 Q57.5962 1273.83 57.5962 1268.01 Q57.5962 1264.63 56.7687 1261.48 Q55.9411 1258.3 54.2861 1255.18 L59.8242 1255.18 Q61.161 1258.33 61.8612 1261.64 Q62.5615 1264.95 62.5615 1268.36 Q62.5615 1276.89 57.5962 1281.89 Q52.631 1286.85 44.1646 1286.85 Q35.4117 1286.85 30.2873 1282.14 Q25.1311 1277.4 25.1311 1269.38 Q25.1311 1262.18 29.7781 1258.01 Q34.3932 1253.81 42.3504 1253.81 M40.6316 1259.67 Q35.8255 1259.73 32.9609 1262.37 Q30.0964 1264.98 30.0964 1269.31 Q30.0964 1274.21 32.8654 1277.17 Q35.6345 1280.1 40.6634 1280.55 L40.6316 1259.67 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M31.465 1223.54 Q30.8921 1224.53 30.6375 1225.71 Q30.351 1226.85 30.351 1228.25 Q30.351 1233.22 33.5975 1235.89 Q36.8122 1238.53 42.8596 1238.53 L61.6384 1238.53 L61.6384 1244.42 L25.9905 1244.42 L25.9905 1238.53 L31.5287 1238.53 Q28.2821 1236.69 26.7225 1233.73 Q25.1311 1230.77 25.1311 1226.54 Q25.1311 1225.93 25.2266 1225.2 Q25.2903 1224.47 25.4494 1223.58 L31.465 1223.54 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M43.719 1201.2 Q43.719 1208.3 45.3422 1211.03 Q46.9655 1213.77 50.8804 1213.77 Q53.9996 1213.77 55.8457 1211.73 Q57.6599 1209.67 57.6599 1206.13 Q57.6599 1201.26 54.2224 1198.34 Q50.7531 1195.38 45.0239 1195.38 L43.719 1195.38 L43.719 1201.2 M41.3 1189.52 L61.6384 1189.52 L61.6384 1195.38 L56.2276 1195.38 Q59.4741 1197.38 61.0337 1200.37 Q62.5615 1203.36 62.5615 1207.69 Q62.5615 1213.17 59.5059 1216.41 Q56.4186 1219.63 51.2623 1219.63 Q45.2467 1219.63 42.1912 1215.62 Q39.1357 1211.58 39.1357 1203.59 L39.1357 1195.38 L38.5628 1195.38 Q34.5205 1195.38 32.3244 1198.05 Q30.0964 1200.69 30.0964 1205.5 Q30.0964 1208.55 30.8284 1211.45 Q31.5605 1214.34 33.0246 1217.02 L27.6137 1217.02 Q26.3724 1213.8 25.7677 1210.78 Q25.1311 1207.76 25.1311 1204.89 Q25.1311 1197.16 29.1415 1193.34 Q33.1519 1189.52 41.3 1189.52 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M43.4007 1154 Q37.035 1154 33.5338 1156.64 Q30.0327 1159.25 30.0327 1163.99 Q30.0327 1168.7 33.5338 1171.34 Q37.035 1173.95 43.4007 1173.95 Q49.7346 1173.95 53.2357 1171.34 Q56.7368 1168.7 56.7368 1163.99 Q56.7368 1159.25 53.2357 1156.64 Q49.7346 1154 43.4007 1154 M57.2143 1148.14 Q66.3172 1148.14 70.7414 1152.18 Q75.1974 1156.23 75.1974 1164.57 Q75.1974 1167.65 74.72 1170.39 Q74.2744 1173.13 73.3195 1175.71 L67.6222 1175.71 Q69.0227 1173.13 69.6911 1170.61 Q70.3595 1168.1 70.3595 1165.49 Q70.3595 1159.73 67.3358 1156.86 Q64.3439 1154 58.2646 1154 L55.3682 1154 Q58.5192 1155.81 60.0788 1158.64 Q61.6384 1161.48 61.6384 1165.42 Q61.6384 1171.98 56.6414 1175.99 Q51.6443 1180 43.4007 1180 Q35.1253 1180 30.1282 1175.99 Q25.1311 1171.98 25.1311 1165.42 Q25.1311 1161.48 26.6907 1158.64 Q28.2503 1155.81 31.4013 1154 L25.9905 1154 L25.9905 1148.14 L57.2143 1148.14 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M42.3504 1105.59 L45.2149 1105.59 L45.2149 1132.51 Q51.2623 1132.13 54.4452 1128.89 Q57.5962 1125.61 57.5962 1119.78 Q57.5962 1116.41 56.7687 1113.26 Q55.9411 1110.07 54.2861 1106.96 L59.8242 1106.96 Q61.161 1110.11 61.8612 1113.42 Q62.5615 1116.73 62.5615 1120.13 Q62.5615 1128.66 57.5962 1133.66 Q52.631 1138.62 44.1646 1138.62 Q35.4117 1138.62 30.2873 1133.91 Q25.1311 1129.17 25.1311 1121.15 Q25.1311 1113.96 29.7781 1109.79 Q34.3932 1105.59 42.3504 1105.59 M40.6316 1111.44 Q35.8255 1111.51 32.9609 1114.15 Q30.0964 1116.76 30.0964 1121.09 Q30.0964 1125.99 32.8654 1128.95 Q35.6345 1131.88 40.6634 1132.32 L40.6316 1111.44 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M14.1184 1079.23 L14.1184 1072.74 L54.2861 1062.75 L14.1184 1052.78 L14.1184 1045.56 L54.2861 1035.56 L14.1184 1025.6 L14.1184 1019.08 L61.6384 1031.01 L61.6384 1039.1 L20.3887 1049.12 L61.6384 1059.24 L61.6384 1067.33 L14.1184 1079.23 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M42.3504 984.129 L45.2149 984.129 L45.2149 1011.06 Q51.2623 1010.67 54.4452 1007.43 Q57.5962 1004.15 57.5962 998.325 Q57.5962 994.951 56.7687 991.8 Q55.9411 988.617 54.2861 985.498 L59.8242 985.498 Q61.161 988.649 61.8612 991.959 Q62.5615 995.269 62.5615 998.675 Q62.5615 1007.2 57.5962 1012.2 Q52.631 1017.17 44.1646 1017.17 Q35.4117 1017.17 30.2873 1012.46 Q25.1311 1007.71 25.1311 999.693 Q25.1311 992.5 29.7781 988.33 Q34.3932 984.129 42.3504 984.129 M40.6316 989.986 Q35.8255 990.049 32.9609 992.691 Q30.0964 995.301 30.0964 999.63 Q30.0964 1004.53 32.8654 1007.49 Q35.6345 1010.42 40.6634 1010.87 L40.6316 989.986 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M12.1132 974.517 L12.1132 968.66 L61.6384 968.66 L61.6384 974.517 L12.1132 974.517 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M12.1132 938.36 L16.983 938.36 L16.983 943.962 Q16.983 947.113 18.2562 948.354 Q19.5293 949.563 22.8395 949.563 L25.9905 949.563 L25.9905 939.919 L30.542 939.919 L30.542 949.563 L61.6384 949.563 L61.6384 955.452 L30.542 955.452 L30.542 961.053 L25.9905 961.053 L25.9905 955.452 L23.5079 955.452 Q17.5559 955.452 14.8505 952.683 Q12.1132 949.913 12.1132 943.898 L12.1132 938.36 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M43.719 917.257 Q43.719 924.355 45.3422 927.092 Q46.9655 929.83 50.8804 929.83 Q53.9996 929.83 55.8457 927.793 Q57.6599 925.724 57.6599 922.191 Q57.6599 917.321 54.2224 914.393 Q50.7531 911.433 45.0239 911.433 L43.719 911.433 L43.719 917.257 M41.3 905.576 L61.6384 905.576 L61.6384 911.433 L56.2276 911.433 Q59.4741 913.438 61.0337 916.43 Q62.5615 919.422 62.5615 923.75 Q62.5615 929.225 59.5059 932.471 Q56.4186 935.686 51.2623 935.686 Q45.2467 935.686 42.1912 931.676 Q39.1357 927.633 39.1357 919.645 L39.1357 911.433 L38.5628 911.433 Q34.5205 911.433 32.3244 914.106 Q30.0964 916.748 30.0964 921.554 Q30.0964 924.61 30.8284 927.506 Q31.5605 930.403 33.0246 933.076 L27.6137 933.076 Q26.3724 929.861 25.7677 926.838 Q25.1311 923.814 25.1311 920.949 Q25.1311 913.215 29.1415 909.396 Q33.1519 905.576 41.3 905.576 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M31.465 872.857 Q30.8921 873.843 30.6375 875.021 Q30.351 876.167 30.351 877.567 Q30.351 882.532 33.5975 885.206 Q36.8122 887.848 42.8596 887.848 L61.6384 887.848 L61.6384 893.736 L25.9905 893.736 L25.9905 887.848 L31.5287 887.848 Q28.2821 886.002 26.7225 883.042 Q25.1311 880.082 25.1311 875.848 Q25.1311 875.244 25.2266 874.512 Q25.2903 873.78 25.4494 872.888 L31.465 872.857 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M42.3504 837.654 L45.2149 837.654 L45.2149 864.581 Q51.2623 864.199 54.4452 860.953 Q57.5962 857.674 57.5962 851.85 Q57.5962 848.476 56.7687 845.325 Q55.9411 842.142 54.2861 839.023 L59.8242 839.023 Q61.161 842.174 61.8612 845.484 Q62.5615 848.794 62.5615 852.2 Q62.5615 860.73 57.5962 865.727 Q52.631 870.692 44.1646 870.692 Q35.4117 870.692 30.2873 865.982 Q25.1311 861.239 25.1311 853.218 Q25.1311 846.025 29.7781 841.856 Q34.3932 837.654 42.3504 837.654 M40.6316 843.511 Q35.8255 843.574 32.9609 846.216 Q30.0964 848.826 30.0964 853.155 Q30.0964 858.056 32.8654 861.016 Q35.6345 863.945 40.6634 864.39 L40.6316 843.511 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M19.402 800.638 L37.2578 800.638 L37.2578 792.553 Q37.2578 788.065 34.9343 785.615 Q32.6108 783.164 28.314 783.164 Q24.0489 783.164 21.7255 785.615 Q19.402 788.065 19.402 792.553 L19.402 800.638 M14.1184 807.067 L14.1184 792.553 Q14.1184 784.564 17.7469 780.49 Q21.3435 776.384 28.314 776.384 Q35.3481 776.384 38.9447 780.49 Q42.5413 784.564 42.5413 792.553 L42.5413 800.638 L61.6384 800.638 L61.6384 807.067 L14.1184 807.067 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M43.719 754.741 Q43.719 761.839 45.3422 764.576 Q46.9655 767.313 50.8804 767.313 Q53.9996 767.313 55.8457 765.276 Q57.6599 763.207 57.6599 759.674 Q57.6599 754.805 54.2224 751.876 Q50.7531 748.916 45.0239 748.916 L43.719 748.916 L43.719 754.741 M41.3 743.06 L61.6384 743.06 L61.6384 748.916 L56.2276 748.916 Q59.4741 750.921 61.0337 753.913 Q62.5615 756.905 62.5615 761.234 Q62.5615 766.708 59.5059 769.955 Q56.4186 773.17 51.2623 773.17 Q45.2467 773.17 42.1912 769.159 Q39.1357 765.117 39.1357 757.128 L39.1357 748.916 L38.5628 748.916 Q34.5205 748.916 32.3244 751.59 Q30.0964 754.232 30.0964 759.038 Q30.0964 762.093 30.8284 764.99 Q31.5605 767.886 33.0246 770.56 L27.6137 770.56 Q26.3724 767.345 25.7677 764.321 Q25.1311 761.298 25.1311 758.433 Q25.1311 750.699 29.1415 746.879 Q33.1519 743.06 41.3 743.06 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M31.465 710.34 Q30.8921 711.327 30.6375 712.504 Q30.351 713.65 30.351 715.051 Q30.351 720.016 33.5975 722.69 Q36.8122 725.331 42.8596 725.331 L61.6384 725.331 L61.6384 731.22 L25.9905 731.22 L25.9905 725.331 L31.5287 725.331 Q28.2821 723.485 26.7225 720.525 Q25.1311 717.565 25.1311 713.332 Q25.1311 712.727 25.2266 711.995 Q25.2903 711.263 25.4494 710.372 L31.465 710.34 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M15.869 698.404 L25.9905 698.404 L25.9905 686.341 L30.542 686.341 L30.542 698.404 L49.8937 698.404 Q54.2542 698.404 55.4955 697.227 Q56.7368 696.017 56.7368 692.357 L56.7368 686.341 L61.6384 686.341 L61.6384 692.357 Q61.6384 699.136 59.124 701.715 Q56.5777 704.293 49.8937 704.293 L30.542 704.293 L30.542 708.59 L25.9905 708.59 L25.9905 704.293 L15.869 704.293 L15.869 698.404 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M25.9905 678.639 L25.9905 672.782 L61.6384 672.782 L61.6384 678.639 L25.9905 678.639 M12.1132 678.639 L12.1132 672.782 L19.5293 672.782 L19.5293 678.639 L12.1132 678.639 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M27.3591 634.875 L32.8336 634.875 Q31.465 637.357 30.7966 639.872 Q30.0964 642.354 30.0964 644.901 Q30.0964 650.598 33.7248 653.749 Q37.3214 656.9 43.8463 656.9 Q50.3711 656.9 53.9996 653.749 Q57.5962 650.598 57.5962 644.901 Q57.5962 642.354 56.9278 639.872 Q56.2276 637.357 54.859 634.875 L60.2698 634.875 Q61.4156 637.325 61.9886 639.967 Q62.5615 642.577 62.5615 645.537 Q62.5615 653.59 57.5007 658.332 Q52.44 663.075 43.8463 663.075 Q35.1253 663.075 30.1282 658.3 Q25.1311 653.494 25.1311 645.155 Q25.1311 642.45 25.704 639.872 Q26.2451 637.294 27.3591 634.875 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M25.9905 624.689 L25.9905 618.833 L61.6384 618.833 L61.6384 624.689 L25.9905 624.689 M12.1132 624.689 L12.1132 618.833 L19.5293 618.833 L19.5293 624.689 L12.1132 624.689 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M56.2912 600.914 L75.1974 600.914 L75.1974 606.802 L25.9905 606.802 L25.9905 600.914 L31.4013 600.914 Q28.2185 599.068 26.6907 596.267 Q25.1311 593.434 25.1311 589.519 Q25.1311 583.026 30.2873 578.984 Q35.4436 574.91 43.8463 574.91 Q52.249 574.91 57.4052 578.984 Q62.5615 583.026 62.5615 589.519 Q62.5615 593.434 61.0337 596.267 Q59.4741 599.068 56.2912 600.914 M43.8463 580.989 Q37.3851 580.989 33.7248 583.663 Q30.0327 586.304 30.0327 590.951 Q30.0327 595.598 33.7248 598.272 Q37.3851 600.914 43.8463 600.914 Q50.3075 600.914 53.9996 598.272 Q57.6599 595.598 57.6599 590.951 Q57.6599 586.304 53.9996 583.663 Q50.3075 580.989 43.8463 580.989 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M43.719 549.001 Q43.719 556.099 45.3422 558.836 Q46.9655 561.574 50.8804 561.574 Q53.9996 561.574 55.8457 559.536 Q57.6599 557.468 57.6599 553.935 Q57.6599 549.065 54.2224 546.137 Q50.7531 543.177 45.0239 543.177 L43.719 543.177 L43.719 549.001 M41.3 537.32 L61.6384 537.32 L61.6384 543.177 L56.2276 543.177 Q59.4741 545.182 61.0337 548.174 Q62.5615 551.166 62.5615 555.494 Q62.5615 560.969 59.5059 564.215 Q56.4186 567.43 51.2623 567.43 Q45.2467 567.43 42.1912 563.42 Q39.1357 559.377 39.1357 551.388 L39.1357 543.177 L38.5628 543.177 Q34.5205 543.177 32.3244 545.85 Q30.0964 548.492 30.0964 553.298 Q30.0964 556.354 30.8284 559.25 Q31.5605 562.146 33.0246 564.82 L27.6137 564.82 Q26.3724 561.605 25.7677 558.582 Q25.1311 555.558 25.1311 552.693 Q25.1311 544.959 29.1415 541.14 Q33.1519 537.32 41.3 537.32 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M15.869 519.464 L25.9905 519.464 L25.9905 507.401 L30.542 507.401 L30.542 519.464 L49.8937 519.464 Q54.2542 519.464 55.4955 518.287 Q56.7368 517.077 56.7368 513.417 L56.7368 507.401 L61.6384 507.401 L61.6384 513.417 Q61.6384 520.196 59.124 522.775 Q56.5777 525.353 49.8937 525.353 L30.542 525.353 L30.542 529.649 L25.9905 529.649 L25.9905 525.353 L15.869 525.353 L15.869 519.464 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M25.9905 499.699 L25.9905 493.842 L61.6384 493.842 L61.6384 499.699 L25.9905 499.699 M12.1132 499.699 L12.1132 493.842 L19.5293 493.842 L19.5293 499.699 L12.1132 499.699 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M30.0964 467.775 Q30.0964 472.485 33.7885 475.223 Q37.4488 477.96 43.8463 477.96 Q50.2438 477.96 53.9359 475.255 Q57.5962 472.517 57.5962 467.775 Q57.5962 463.096 53.9041 460.359 Q50.212 457.622 43.8463 457.622 Q37.5124 457.622 33.8203 460.359 Q30.0964 463.096 30.0964 467.775 M25.1311 467.775 Q25.1311 460.136 30.0964 455.775 Q35.0616 451.415 43.8463 451.415 Q52.5991 451.415 57.5962 455.775 Q62.5615 460.136 62.5615 467.775 Q62.5615 475.445 57.5962 479.806 Q52.5991 484.135 43.8463 484.135 Q35.0616 484.135 30.0964 479.806 Q25.1311 475.445 25.1311 467.775 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip560)" d="M40.1224 412.075 L61.6384 412.075 L61.6384 417.931 L40.3133 417.931 Q35.2526 417.931 32.7381 419.905 Q30.2237 421.878 30.2237 425.825 Q30.2237 430.567 33.2474 433.305 Q36.2711 436.042 41.491 436.042 L61.6384 436.042 L61.6384 441.93 L25.9905 441.93 L25.9905 436.042 L31.5287 436.042 Q28.314 433.941 26.7225 431.108 Q25.1311 428.244 25.1311 424.52 Q25.1311 418.377 28.9505 415.226 Q32.7381 412.075 40.1224 412.075 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip562)" style="stroke:#009af9; stroke-linecap:round; stroke-linejoin:round; stroke-width:8; stroke-opacity:1; fill:none" points="335.956,1686.38 425.462,1568.25 514.969,1433.56 604.476,1277.86 693.983,1513.09 783.49,1386.71 872.996,1495.61 962.503,1412.28 1052.01,1114.19 1141.52,839.254 1231.02,670.136 1320.53,765.681 1499.54,143.702 1678.56,94.9858 1857.57,195.535 2036.58,292.351 2215.6,156.02 2394.61,405.413 2573.63,653.93 "></polyline>
-</svg>
-</div>
-</div>
-</section>
-<section id="question-2" class="level2">
-<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>Now write code to</p>
-<ol start="0" type="1">
-<li>Deflate earnings by CPI (<code>CPIU</code>).</li>
-<li>Calculate annual average earnings for each individual (identified by <code>MID</code>).</li>
-<li>Drop individuals with fewer than 10 years of data.</li>
-<li>Categorize individuals by whether their average earnings is below or above the median across individuals.</li>
-<li>Plot average participation in each year for individuals in each of these two categories.</li>
-</ol>
-<p>Do you think this pattern is likely to be generated by a model without persistent unobserved heterogeneity? No strictly correct answer here, just curious to read what you think.</p>
-<p>In case it helps, here is code for the first three steps. You could edit this to add additional operations to the chain or work with <code>d</code> directly.</p>
-<div id="d34c3d09" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="pp">@chain</span> data <span class="cf">begin</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@transform</span> <span class="op">:</span>earn <span class="op">=</span> <span class="op">:</span>earn <span class="op">./</span> <span class="op">:</span>CPIU</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">groupby</span>(<span class="op">:</span>MID)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@combine</span> <span class="op">:</span>T <span class="op">=</span> <span class="fu">sum</span>(.!<span class="fu">ismissing</span>.(<span class="op">:</span>earn)) <span class="op">:</span>earn <span class="op">=</span> <span class="fu">mean</span>(<span class="fu">skipmissing</span>(<span class="op">:</span>earn)) </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@subset</span> <span class="op">:</span>T <span class="op">.&gt;=</span> <span class="fl">10</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div><div style="float: left;"><span>1089×3 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">1064 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
-<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">MID</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">T</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">earn</th>
-</tr>
-<tr class="odd subheader headerLastRow">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">4031</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">40.0</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">4179</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">6089.12</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">7030</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">4500.53</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">41007</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">16147.7</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">41008</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">45030</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">14374.3</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: right;">45031</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">17693.5</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: right;">47031</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">15946.7</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: right;">84005</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">30769.6</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: right;">105030</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">4633.61</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
-<td style="text-align: right;">106173</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">17714.4</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
-<td style="text-align: right;">122173</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">56275.2</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
-<td style="text-align: right;">126003</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">6705.08</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1078</td>
-<td style="text-align: right;">6843006</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">1805.93</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1079</td>
-<td style="text-align: right;">6843173</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">5005.44</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1080</td>
-<td style="text-align: right;">6845005</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">19795.4</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1081</td>
-<td style="text-align: right;">6849005</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">2450.55</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1082</td>
-<td style="text-align: right;">6849188</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">23259.0</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1083</td>
-<td style="text-align: right;">6853003</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">4856.42</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1084</td>
-<td style="text-align: right;">6862005</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">18899.4</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1085</td>
-<td style="text-align: right;">6862008</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">26634.8</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1086</td>
-<td style="text-align: right;">6864002</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">8695.92</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1087</td>
-<td style="text-align: right;">6864003</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">13627.5</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1088</td>
-<td style="text-align: right;">6867013</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">389.097</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1089</td>
-<td style="text-align: right;">6872171</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">3294.07</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="question-3" class="level2">
-<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>This question is to familiarize you with the module <code>Tranfers.jl</code> which will enable you to calculate post-tax and transfer income for individuals given their earnings, non-labor income, state, year, and family size. The function <code>budget</code> in this module takes the arguments:</p>
-<ul>
-<li><code>E</code>: monthly earnings (either real or nominal)</li>
-<li><code>N</code>: monthly non-labor income (real or nominal)</li>
-<li><code>SOI</code>: the <a href="https://taxsim.nber.org/statesoi.html">SOI code</a> for state of residence</li>
-<li><code>year</code>: calendar year</li>
-<li><code>num_kids</code>: the number of children</li>
-<li><code>cpi</code>: set to 1. if <code>E</code> and <code>N</code> are nominal</li>
-<li><code>p</code>: equal to 0 if no programs, 1 if food stamps, 2 if food stamps + welfare.</li>
-</ul>
-<p>For example the function call:</p>
-<div id="a5381153" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Transfers.<span class="fu">budget</span>(<span class="fl">500</span>.,<span class="fl">0</span>.,<span class="fl">23</span>,<span class="fl">2000</span>,<span class="fl">2</span>,<span class="fl">1</span>.,<span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>calculates net income for a mother in Michigan (SOI code 23) with 2 kids, nominal labor income of $500 a month in the year 2000, and no non-labor income.</p>
-<div id="526cb857" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"../children-cash-transfers/src/Transfers.jl"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Transfers.<span class="fu">budget</span>(<span class="fl">500</span>.,<span class="fl">0</span>.,<span class="fl">23</span>,<span class="fl">2000</span>,<span class="fl">2</span>,<span class="fl">1</span>.,<span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>978.5408333333334</code></pre>
-</div>
-</div>
-<p>Create a graph that represents total net <strong>transfers</strong> for a single mother with two kids in the years 1990 and 2000 and in the states of Mississippi and New York. Depict these transfers as a function of earnings between the values of 0 and $1,000 a month (nominal). You can assume that all households are receiving both food stamps and welfare.</p>
-<p>What do you make of the differences in these transfers across states and over time?</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -923,18 +209,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -966,7 +241,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1001,7 +314,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1049,7 +366,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

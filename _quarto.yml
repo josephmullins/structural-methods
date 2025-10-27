@@ -12,7 +12,7 @@ website:
         menu:
           - assignments/Assignment-1.qmd
           - assignments/Assignment-2.qmd
-          - assignments/Assignment-3.ipynb
+          - assignments/Assignment-3.qmd
           - assignments/Assignment-4.qmd
           - assignments/Assignment-5.qmd
           - assignments/Assignment-6.qmd

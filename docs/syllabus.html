@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 6 – Econ8502</title>
+<title>Methods for Structural Microeconometrics – Econ8502</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Econ8502</span>
     </a>
   </div>
@@ -89,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -98,27 +118,27 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
         <li>
-    <a class="dropdown-item" href="../assignments/Assignment-1.html">
+    <a class="dropdown-item" href="./assignments/Assignment-1.html">
  <span class="dropdown-text">Assignment 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../assignments/Assignment-2.html">
+    <a class="dropdown-item" href="./assignments/Assignment-2.html">
  <span class="dropdown-text">Assignment 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../assignments/Assignment-3.html">
+    <a class="dropdown-item" href="./assignments/Assignment-3.html">
  <span class="dropdown-text">Assignment 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../assignments/Assignment-4.html">
+    <a class="dropdown-item" href="./assignments/Assignment-4.html">
  <span class="dropdown-text">Assignment 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../assignments/Assignment-5.html">
+    <a class="dropdown-item" href="./assignments/Assignment-5.html">
  <span class="dropdown-text">Assignment 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../assignments/Assignment-6.html">
+    <a class="dropdown-item" href="./assignments/Assignment-6.html">
  <span class="dropdown-text">Assignment 6</span></a>
   </li>  
     </ul>
@@ -129,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="../examples/LeastSquaresClustering.html">
+    <a class="dropdown-item" href="./examples/LeastSquaresClustering.html">
  <span class="dropdown-text">Clustering with Coefficients</span></a>
   </li>  
     </ul>
@@ -145,15 +165,30 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#topics" id="toc-topics" class="nav-link active" data-scroll-target="#topics">Topics</a>
+  <ul class="collapse">
+  <li><a href="#identification-credible-inference-and-marschaks-maxim" id="toc-identification-credible-inference-and-marschaks-maxim" class="nav-link" data-scroll-target="#identification-credible-inference-and-marschaks-maxim">Identification, Credible Inference, and Marschak’s Maxim</a></li>
+  <li><a href="#dynamic-discrete-choice" id="toc-dynamic-discrete-choice" class="nav-link" data-scroll-target="#dynamic-discrete-choice">Dynamic Discrete Choice</a></li>
+  <li><a href="#estimation-of-dynamic-models-with-unobserved-heterogeneity" id="toc-estimation-of-dynamic-models-with-unobserved-heterogeneity" class="nav-link" data-scroll-target="#estimation-of-dynamic-models-with-unobserved-heterogeneity">Estimation of Dynamic Models with Unobserved Heterogeneity</a></li>
+  <li><a href="#identification-of-dynamic-models-with-unobserved-heterogeneity" id="toc-identification-of-dynamic-models-with-unobserved-heterogeneity" class="nav-link" data-scroll-target="#identification-of-dynamic-models-with-unobserved-heterogeneity">Identification of Dynamic Models with Unobserved Heterogeneity</a></li>
+  </ul></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
+  <li><a href="#reading-list" id="toc-reading-list" class="nav-link" data-scroll-target="#reading-list">Reading List</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment 6</h1>
+<h1 class="title">Methods for Structural Microeconometrics</h1>
 </div>
 
 
@@ -170,10 +205,145 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Welcome to this course! Find details on the syllabus here, and check out the menu to find other materials.</p>
+<p><a href="https://github.com/josephmullins/structural-methods">Here is a link</a> to the git repo for this course, which by cloning is probably the simplest way for you to get access to the data, code, and assignments. I will continue to add materials throughout the course. You may prefer to selectively download these materials.</p>
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<section id="identification-credible-inference-and-marschaks-maxim" class="level3">
+<h3 class="anchored" data-anchor-id="identification-credible-inference-and-marschaks-maxim">Identification, Credible Inference, and Marschak’s Maxim</h3>
+<p>We formally define identification and discuss (via examples) what people really mean when they talk about identification and <strong>credible inference</strong>. We use the <strong>Generalized Roy Model</strong> to compare identification via functional form to nonparametric identification.</p>
+<p>We introduce <strong>Marschak’s Maxim</strong> as a guide for doing empirical model-based research.</p>
+<section id="reading" class="level4">
+<h4 class="anchored" data-anchor-id="reading">Reading</h4>
+<p>The two survey articles by <span class="citation" data-cites="Keane2010">Keane (<a href="#ref-Keane2010" role="doc-biblioref">2010</a>)</span> (<a href="./papers/KeaneJEP2010.pdf">link</a>) and <span class="citation" data-cites="AngristPischke2010">Angrist and Pischke (<a href="#ref-AngristPischke2010" role="doc-biblioref">2010</a>)</span> (<a href="./papers/TheCredibilityRevolutionInEmpiricalEconomics_AngristPischke_JEP_2010.pdf">link</a>) - although aging - provide two important perspectives on the issues of credible inference in economics. <span class="citation" data-cites="LowMeghir2017">Low and Meghir (<a href="#ref-LowMeghir2017" role="doc-biblioref">2017</a>)</span> <a href="./papers/TheUseOfStructuralModelsInEconometrics_LowMeghir_JEP_2017.pdf">provide</a> a nice review of the advantages of the structural approach.</p>
+<p><a href="./papers/Marschak1953.pdf">The original paper</a> by <span class="citation" data-cites="Marschak1953">Marschak (<a href="#ref-Marschak1953" role="doc-biblioref">1953</a>)</span> may be of interest. <span class="citation" data-cites="HeckmanVytlacil2007">Heckman and Vytlacil (<a href="#ref-HeckmanVytlacil2007" role="doc-biblioref">2007</a>)</span> provide a <a href="./papers/HeckmanVytlacilHandbook2007.pdf">nice discussion</a> of Marschak’s Maxim in the context of policy evaluation. They introduce <span class="citation" data-cites="HeckmanVytlacil2005 Carneiro2011">(<a href="#ref-HeckmanVytlacil2005" role="doc-biblioref">Heckman and Vytlacil 2005</a>; <a href="#ref-Carneiro2011" role="doc-biblioref">Carneiro, Heckman, and Vytlacil 2011</a>)</span> the <em>Marginal Treatment Effect</em> as a tool for thinking about quasi-experimental estimators and policy evaluation.</p>
+</section>
+</section>
+<section id="dynamic-discrete-choice" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-discrete-choice">Dynamic Discrete Choice</h3>
+<p>We introduce the dynamic discrete choice model and briefly discuss identification when all persistent state variables are observed. We review some of the basics of discrete choice such as the generalized extreme value distribution, which produces tractable choice probabilities with relatively flexible cross-price elasticities.</p>
+<section id="reading-1" class="level4">
+<h4 class="anchored" data-anchor-id="reading-1">Reading</h4>
+<p><span class="citation" data-cites="Rust1987">Rust (<a href="#ref-Rust1987" role="doc-biblioref">1987</a>)</span> is the canonical example demonstrating estimation of dynamic discrete choice models with maximum likelihood and a nested solution method.</p>
+<p>We show that if one can directly estimate choice probabilities, several tractable approaches produce estimates of structural parameters without repeatedly solving the model. These include <span class="citation" data-cites="Hotz1993">Hotz and Miller (<a href="#ref-Hotz1993" role="doc-biblioref">1993</a>)</span>, <span class="citation" data-cites="AgMira2002">Aguirregabiria and Mira (<a href="#ref-AgMira2002" role="doc-biblioref">2002</a>)</span>, <span class="citation" data-cites="Aguirregabiria2007">Aguirregabiria and Mira (<a href="#ref-Aguirregabiria2007" role="doc-biblioref">2007</a>)</span>, <span class="citation" data-cites="Pesendorfer2008">Pesendorfer and Schmidt-Dengler (<a href="#ref-Pesendorfer2008" role="doc-biblioref">2008</a>)</span>, and <span class="citation" data-cites="Arcidiacono2011">Arcidiacono and Miller (<a href="#ref-Arcidiacono2011" role="doc-biblioref">2011</a>)</span>. We will review these methods and why they are not appropriate to use in <span class="citation" data-cites="Mullins2022">Mullins (<a href="#ref-Mullins2022" role="doc-biblioref">2022</a>)</span>.</p>
+</section>
+</section>
+<section id="estimation-of-dynamic-models-with-unobserved-heterogeneity" class="level3">
+<h3 class="anchored" data-anchor-id="estimation-of-dynamic-models-with-unobserved-heterogeneity">Estimation of Dynamic Models with Unobserved Heterogeneity</h3>
+<p>Using <span class="citation" data-cites="Mullins2022">Mullins (<a href="#ref-Mullins2022" role="doc-biblioref">2022</a>)</span> as an example, we talk about the inferential pitfalls that can occur when models fail to account for <strong>unobserved heterogeneity</strong>. We briefly discuss how this can depend on estimation approaches and sources of identification.</p>
+<p>We review methods for estimation of dynamic models, including the <strong>Expectation-Maximization</strong> algorithm (EM) (see, e.g. <span class="citation" data-cites="Arcidiacono2011">Arcidiacono and Miller (<a href="#ref-Arcidiacono2011" role="doc-biblioref">2011</a>)</span>) and the <strong>clustering</strong> approach of <span class="citation" data-cites="Manresa2015">Bonhomme and Manresa (<a href="#ref-Manresa2015" role="doc-biblioref">2015</a>)</span>. We review practical considerations for these approaches and introduce the <strong>Forward-Back algorithm</strong> for implementing <strong>EM</strong> in hidden Markov Models with <strong>time-varying unobserved state variables</strong>. We introduce a sparse matrix implementation of this algorithm.</p>
+</section>
+<section id="identification-of-dynamic-models-with-unobserved-heterogeneity" class="level3">
+<h3 class="anchored" data-anchor-id="identification-of-dynamic-models-with-unobserved-heterogeneity">Identification of Dynamic Models with Unobserved Heterogeneity</h3>
+<p>We discuss how either <strong>panel data</strong> or <strong>instrumental variables</strong> can facilitate identification of models with unobserved heterogeneity, and briefly review identification results for finite mixtures in panel data settings due to <span class="citation" data-cites="kasahara2009">Kasahara and Shimotsu (<a href="#ref-kasahara2009" role="doc-biblioref">2009</a>)</span> and <span class="citation" data-cites="bonhomme2016estimating">Bonhomme, Jochmans, and Robin (<a href="#ref-bonhomme2016estimating" role="doc-biblioref">2016</a>)</span>. <span class="citation" data-cites="berry2023">Berry and Compiani (<a href="#ref-berry2023" role="doc-biblioref">2023</a>)</span> analyze identification and estimation of dynamic models with persistent heterogeneity using instrumental variables.</p>
+</section>
+</section>
+<section id="assessment" class="level2">
+<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
+<p>There will be 6 problem sets. Your best 4 of these 6 problem sets will be worth 25%. Hence, you can skip two if you want.</p>
+<p>Here is the proposed timeline of due dates. Submissions <strong>must</strong> be made through Canvas as a notebook (e.g.&nbsp;jupyter or quarto) formatted to html with printed output.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assignment</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assignment 1</td>
+<td>November 7</td>
+</tr>
+<tr class="even">
+<td>Assignment 2</td>
+<td>November 14</td>
+</tr>
+<tr class="odd">
+<td>Assignment 3</td>
+<td>November 21</td>
+</tr>
+<tr class="even">
+<td>Assignment 4</td>
+<td>November 28</td>
+</tr>
+<tr class="odd">
+<td>Assignment 5</td>
+<td>December 5</td>
+</tr>
+<tr class="even">
+<td>Assignment 6</td>
+<td>December 12</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<p>For appointments and questions, please email.</p>
+</section>
+<section id="reading-list" class="level2">
 
 
 
-</main> <!-- /main -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reading List</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-AgMira2002" class="csl-entry" role="listitem">
+Aguirregabiria, Victor, and Pedro Mira. 2002. <span>“Swapping the Nested Fixed Point Algorithm: A Class of Estimators for Discrete Markov Decision Models.”</span> <em>Econometrica</em> 70 (4): 1519–43.
+</div>
+<div id="ref-Aguirregabiria2007" class="csl-entry" role="listitem">
+———. 2007. <span>“Sequential Estimation of Dynamic Discrete Games.”</span> <em>Econometrica</em> 75 (1): 1–53.
+</div>
+<div id="ref-AngristPischke2010" class="csl-entry" role="listitem">
+Angrist, Joshua D., and Jörn-Steffen Pischke. 2010. <span>“The Credibility Revolution in Empirical Economics: How Better Research Design Is Taking the Con Out of Econometrics.”</span> <em>Journal of Economic Perspectives</em> 24 (2).
+</div>
+<div id="ref-Arcidiacono2011" class="csl-entry" role="listitem">
+Arcidiacono, Peter, and Robert A Miller. 2011. <span>“Conditional Choice Probability Estimation of Dynamic Discrete Choice Models with Unobserved Heterogeneity.”</span> <em>Econometrica</em> 79 (6): 1823–67.
+</div>
+<div id="ref-berry2023" class="csl-entry" role="listitem">
+Berry, Steven T, and Giovanni Compiani. 2023. <span>“An Instrumental Variable Approach to Dynamic Models.”</span> <em>The Review of Economic Studies</em> 90 (4): 1724–58.
+</div>
+<div id="ref-bonhomme2016estimating" class="csl-entry" role="listitem">
+Bonhomme, Stéphane, Koen Jochmans, and Jean-Marc Robin. 2016. <span>“Estimating Multivariate Latent-Structure Models.”</span>
+</div>
+<div id="ref-Manresa2015" class="csl-entry" role="listitem">
+Bonhomme, Stéphane, and Elena Manresa. 2015. <span>“<span class="nocase">Grouped Patterns of Heterogeneity in Panel Data</span>.”</span> <em>Econometrica</em> 83.
+</div>
+<div id="ref-Carneiro2011" class="csl-entry" role="listitem">
+Carneiro, P., J. J. Heckman, and E. J. Vytlacil. 2011. <span>“Estimating Marginal Returns to Education.”</span> <em>American Economic Review</em> 101 (October): 2754–81. <a href="http://www.nber.org/papers/w16474">http://www.nber.org/papers/w16474</a>.
+</div>
+<div id="ref-HeckmanVytlacil2005" class="csl-entry" role="listitem">
+Heckman, James, and Edward Vytlacil. 2005. <span>“<span class="nocase">Structural equations, treatment effects, and econometric policy evaluation</span>.”</span> <em>Econometrica</em> 73 (3): 669–738.
+</div>
+<div id="ref-HeckmanVytlacil2007" class="csl-entry" role="listitem">
+———. 2007. <span>“Chapter 70 Econometric Evaluation of Social Programs, Part i: Causal Models, Structural Models and Econometric Policy Evaluation.”</span> In, edited by James J. Heckman and Edward E. Leamer, 6:4779–874. Handbook of Econometrics. Elsevier. https://doi.org/<a href="https://doi.org/10.1016/S1573-4412(07)06070-9">https://doi.org/10.1016/S1573-4412(07)06070-9</a>.
+</div>
+<div id="ref-Hotz1993" class="csl-entry" role="listitem">
+Hotz, V Joseph, and Robert A Miller. 1993. <span>“Conditional Choice Probabilities and the Estimation of Dynamic Models.”</span> <em>The Review of Economic Studies</em> 60 (3): 497–529.
+</div>
+<div id="ref-kasahara2009" class="csl-entry" role="listitem">
+Kasahara, Hiroyuki, and Katsumi Shimotsu. 2009. <span>“Nonparametric Identification of Finite Mixture Models of Dynamic Discrete Choices.”</span> <em>Econometrica</em> 77 (1): 135–75.
+</div>
+<div id="ref-Keane2010" class="csl-entry" role="listitem">
+Keane, Michael P. 2010. <span>“A Structural Perspective on the Experimentalist School.”</span> <em>Journal of Economic Perspectives</em> 24 (2).
+</div>
+<div id="ref-LowMeghir2017" class="csl-entry" role="listitem">
+Low, Hamish, and Costas Meghir. 2017. <span>“The Use of Structural Models in Econometrics.”</span> <em>Journal of Economic Perspectives</em> 31 (2).
+</div>
+<div id="ref-Marschak1953" class="csl-entry" role="listitem">
+Marschak, Jacob. 1953. <span>“Economic Measurements for Policy and Prediction.”</span> In <em>Studies in Econometric Method</em>, edited by W. Hood and C. Koopmans. John Wiley &amp; Sons.
+</div>
+<div id="ref-Mullins2022" class="csl-entry" role="listitem">
+Mullins, Joseph. 2022. <span>“Designing Cash Transfers in the Presence of Children’s Human Capital Formation.”</span> <em>Working Paper</em>.
+</div>
+<div id="ref-Pesendorfer2008" class="csl-entry" role="listitem">
+Pesendorfer, Martin, and Philipp Schmidt-Dengler. 2008. <span>“Asymptotic Least Squares Estimators for Dynamic Games.”</span> <em>The Review of Economic Studies</em> 75 (3): 901–28.
+</div>
+<div id="ref-Rust1987" class="csl-entry" role="listitem">
+Rust, John. 1987. <span>“Optimal Replacement of GMC Bus Engines: An Empirical Model of Harold Zurcher.”</span> <em>Econometrica: Journal of the Econometric Society</em>, 999–1033.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

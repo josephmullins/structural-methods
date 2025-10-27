@@ -11,8 +11,6 @@ Welcome to this course! Find details on the syllabus here, and check out the men
 
 ### Identification, Credible Inference, and Marschak's Maxim
 
-2024 is the last year I will make this topic a part of the course.
-
 We formally define identification and discuss (via examples) what people really mean when they talk about identification and **credible inference**. We use the **Generalized Roy Model** to compare identification via functional form to nonparametric identification.
 
 We introduce **Marschak's Maxim** as a guide for doing empirical model-based research.
@@ -28,8 +26,6 @@ The two survey articles by @Keane2010 ([link](/papers/KeaneJEP2010.pdf)) and @An
 We introduce the dynamic discrete choice model and briefly discuss identification when all persistent state variables are observed. We review some of the basics of discrete choice such as the generalized extreme value distribution, which produces tractable choice probabilities with relatively flexible cross-price elasticities.
 
 #### Reading
-
-The main example that we work with throughout the course can be found in @Mullins2022 ([pdf](/papers/DesigningCashTransfers_Children_Draft.pdf])). 
 
 @Rust1987 is the canonical example demonstrating estimation of dynamic discrete choice models with maximum likelihood and a nested solution method. 
 
@@ -48,22 +44,21 @@ We discuss how either **panel data** or **instrumental variables** can facilitat
 
 ## Assessment
 
-There will be 7 problem sets. Your best 5 of these 7 problem sets will be worth 20%. Hence, you can skip two if you want. 
+There will be 6 problem sets. Your best 4 of these 6 problem sets will be worth 25%. Hence, you can skip two if you want. 
 
 Here is the proposed timeline of due dates. Submissions **must** be made through Canvas as a notebook (e.g. jupyter or quarto) formatted to html with printed output. 
 
 | Assignment | Due Date |
 | ---------- | -------- |
-| [Assignment 1](assignments/Assignment-1.qmd) | March 22 |
-| [Assignment 2](assignments/Assignment-2.qmd) | March 29 | 
-| [Assignment 3](assignments/Assignment-3.ipynb) | April 5 | 
-| [Assignment 4](assignments/Assignment-4.qmd) | April 12 | 
-| [Assignment 5](assignments/Assignment-5.qmd) | ~~April 19~~ April 26 | 
-| [Assignment 6](assignments/Assignment-6.qmd) | ~~April 26~~ May 3 | 
-| Assignment 7 | ~~May 3~~ May 10 | 
+| Assignment 1 | November 7 |
+| Assignment 2 | November 14 | 
+| Assignment 3 | November 21 | 
+| Assignment 4 | November 28 | 
+| Assignment 5 | December 5 | 
+| Assignment 6 | December 12 | 
 
-## Office Hours
+## Contact
 
-I will provide a link on Canvas to sign up for my weekly office hours.
+For appointments and questions, please email.
 
-
+## Reading List

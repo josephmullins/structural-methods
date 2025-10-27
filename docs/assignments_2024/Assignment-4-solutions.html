@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Assignment 4 – Econ8502</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Econ8502</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-1.html">
+ <span class="dropdown-text">Assignment 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-2.html">
+ <span class="dropdown-text">Assignment 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-3.html">
+ <span class="dropdown-text">Assignment 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-4.html">
+ <span class="dropdown-text">Assignment 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-5.html">
+ <span class="dropdown-text">Assignment 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/Assignment-6.html">
+ <span class="dropdown-text">Assignment 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-examples" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Examples</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
+        <li>
+    <a class="dropdown-item" href="../examples/LeastSquaresClustering.html">
+ <span class="dropdown-text">Clustering with Coefficients</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link active" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
+  <li><a href="#extra-credit" id="toc-extra-credit" class="nav-link" data-scroll-target="#extra-credit">Extra credit</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 4</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This week you will estimate a simple hidden markov model using Expectation-Maximization.</p>
+<p>Here is the model. There is a discrete state variable <span class="math inline">\(k\in\{1,2,3,..,K\}\)</span> and a binary outcome <span class="math inline">\(j\in\{0,1\}\)</span> that:</p>
+<ol type="1">
+<li>Is determined probabilistically by the state; and</li>
+<li>Moves the state up one grid point if <span class="math inline">\(j=1\)</span>, i.e.&nbsp;<span class="math inline">\(k_{t+1} = \min\{K,k_{t} + j\}\)</span></li>
+</ol>
+<p>Let <span class="math inline">\(p\)</span> be a <span class="math inline">\(K\)</span>-dimensional vector where <span class="math inline">\(p_{k}\)</span> holds the probability that <span class="math inline">\(j=1\)</span> given that the model is in state <span class="math inline">\(k\)</span>.</p>
+<p>The state <span class="math inline">\(k\)</span> is never observed and the outcome <span class="math inline">\(j\)</span> is only observed half the time (i.e.&nbsp;it is missing with probability 0.5). Thus, define <span class="math inline">\(j^*\)</span> to be:</p>
+<p><span class="math display">\[ j^* = \left\{ \begin{array}{cl} j &amp; \text{with probability}\ 0.5 \\ -1 &amp; \text{with probability}\ 0.5 \end{array} \right. \]</span></p>
+<p>Your task is to estimate the vector of outcome probabilities <span class="math inline">\(p\)</span> non-parametrically using the EM algorithm with the Forward-Back routine to calculate the E-step.</p>
+<p>The chunk of code below parameterizes the true vector <span class="math inline">\(p\)</span> for this model and writes code to simulate panel data:</p>
+<p><span class="math display">\[ (j^*_{nt})_{t=1,n=1}^{T,N} \]</span></p>
+<p>To start with, we’ll assume <span class="math inline">\(k_{n,1} = 1\)</span> for all <span class="math inline">\(n\)</span>.</p>
+<div id="3707ae74" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span>, <span class="bu">Distributions</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Pj <span class="op">=</span> <span class="fl">1</span> <span class="op">./</span> (<span class="fl">1</span> <span class="op">.+</span> <span class="fu">exp</span>.(<span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,K))) <span class="co">#&lt;- choice probability as a function of k</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">knext</span>(k,j,K) <span class="op">=</span> <span class="fu">min</span>(K,k<span class="op">+</span>j) </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">simulate</span>(N,T,Pj)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    J <span class="op">=</span> <span class="fu">zeros</span>(<span class="dt">Int64</span>,T,N)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="fu">length</span>(Pj)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fu">axes</span>(J,<span class="fl">2</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="fu">axes</span>(J,<span class="fl">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> <span class="fu">rand</span>()<span class="op">&lt;</span>Pj[k]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># record j probabilistically</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="fu">rand</span>()<span class="op">&lt;</span><span class="fl">0.5</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                J[t,n] <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                J[t,n] <span class="op">=</span> j</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># update state:</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            k <span class="op">=</span> <span class="fu">knext</span>(k,j,K)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> J</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="fl">1000</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>J_data <span class="op">=</span> <span class="fu">simulate</span>(N,T,Pj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>10×1000 Matrix{Int64}:
+ -1  -1  -1   1   0   1  -1   0  -1  …   1  -1   1  -1  -1   1  -1   0  -1
+ -1  -1  -1  -1   1   1  -1  -1  -1      1  -1   1   1   1   1   1  -1  -1
+  1  -1   0   1  -1  -1  -1  -1   1      0  -1   1  -1  -1   0   0  -1   0
+  0  -1   0   0  -1  -1  -1   0  -1      1   0  -1   1  -1   1   1   0  -1
+ -1   0   1   1   0   0   0   1   1     -1  -1   0   0  -1  -1   1  -1  -1
+  0   1  -1   0  -1   1   1   1  -1  …   0  -1  -1   0   1  -1  -1  -1  -1
+ -1   1   0   0  -1  -1   0  -1   0     -1   1  -1  -1  -1  -1   0  -1  -1
+ -1   0   1   0  -1  -1  -1  -1  -1      0  -1   0  -1  -1   1  -1   0   0
+  0   1   0   1   0   0   1   0   1      1  -1  -1  -1   0  -1   0  -1  -1
+ -1   1   0   1   0   0   0  -1   0     -1   1  -1   1  -1  -1  -1  -1  -1</code></pre>
+</div>
+</div>
+<p>Since the outcomes <span class="math inline">\(j\)</span> are periodically unobserved, there are two ways to set up the EM problem:</p>
+<ol type="1">
+<li>Define a composite state variable <span class="math inline">\(s = (k,j)\)</span> that is partially unobserved and define your <span class="math inline">\(\alpha\)</span> and your <span class="math inline">\(\beta\)</span> over this composite state.</li>
+<li>Define your <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> over <span class="math inline">\(k\)</span> only and sum over potential realizations of <span class="math inline">\(j\)</span> when missing.</li>
+</ol>
+<p>When the number of discrete outcomes is larger, it becomes more difficult to integrate them out when missing. Since <span class="math inline">\(j\)</span> is only binary here, this homework will step you through using the second approach. You can use the first approach if you prefer.</p>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<p>Write a function that (given a guess of the parameters <span class="math inline">\(p\)</span>) takes a sequence of <span class="math inline">\((j^*)^{T}_{t=1}\)</span> and runs the forward-back algorithm. In doing so your function should fill in three objects: (1) A <span class="math inline">\(K\times T\)</span> array of backward looking probabilities (<span class="math inline">\(\alpha\)</span>); (2) a <span class="math inline">\(K\times T\)</span> array of forward probabilities (<span class="math inline">\(\beta\)</span>); and (3) a <span class="math inline">\(K\times T\)</span> array of posterior probabilities over each state <span class="math inline">\(k\)</span> (<span class="math inline">\(Q\)</span>).</p>
+<p>Recall from class that (1) <span class="math inline">\(\alpha\)</span> is the joint probability of the state today with the sequence of outcomes up until today; and (2) <span class="math inline">\(\beta\)</span> is the conditional probability of future outcomes given the state today.</p>
+<p><span class="math display">\[ \alpha[k,s] = \mathbb{P}[k_{s}=k,(j^*)^{s}_{t=1}] \]</span></p>
+<p><span class="math display">\[ \beta[k,s] = \mathbb{P}[(j^*)_{t=s+1}^{T} | k_{s}=k] \]</span></p>
+<p>and</p>
+<p><span class="math display">\[ Q[k,s] = \mathbb{P}[k_{s}=k | (j^*)_{t=1}^{T} ] \]</span></p>
+<p>This is a problem where there is a lot of sparseness. For the size of this problem we won’t have to worry about exploiting that, but it’s something you want to think about for larger problems. I’ll introduce you to a sparse implementation in class and in code.</p>
+<p>So, ignoring sparsenss, here is a function that gives transition probabilities given the three potential outcomes for <span class="math inline">\(j^*\)</span>.</p>
+<div id="6e9d37bc" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this function assumes Π is a K x K x 3 array of transition probabilities where</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">get_transitions!</span>(Π,p)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fill!</span>(Π,<span class="fl">0</span>.)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for j^*=-1 (i.e. missing)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="fu">axes</span>(Π,<span class="fl">2</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        Π[k,k,<span class="fl">1</span>] <span class="op">+=</span> p[k]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        k_up <span class="op">=</span> <span class="fu">min</span>(K,k<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        Π[k_up,k,<span class="fl">1</span>] <span class="op">+=</span> <span class="fl">1</span><span class="op">-</span>p[k]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for j^* = 0</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    Π[<span class="op">:</span>,<span class="op">:</span>,<span class="fl">2</span>] <span class="op">=</span> <span class="fu">I</span>(K) <span class="co">#&lt;- transitions are the identity matrix</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for j^*=1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="fu">axes</span>(Π,<span class="fl">2</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        k_up <span class="op">=</span> <span class="fu">min</span>(K,k<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        Π[k_up,k,<span class="fl">3</span>] <span class="op">=</span> <span class="fl">1</span>.</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>Π <span class="op">=</span> <span class="fu">zeros</span>(K,K,<span class="fl">3</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">get_transitions!</span>(Π,Pj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now a function for the forward-back routine:</p>
+<div id="19038b78" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">forward_back!</span>(Q,α,β,j_obs,Π,p)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    K,T <span class="op">=</span> <span class="fu">size</span>(α)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fill!</span>(β,<span class="fl">0</span>.)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@views</span> <span class="fu">fill!</span>(β[<span class="op">:</span>,T],<span class="fl">1</span>.)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fill!</span>(α,<span class="fl">0</span>.)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    α[<span class="fl">1</span>,<span class="fl">1</span>] <span class="op">=</span> <span class="fl">1</span>. <span class="co">#&lt;- since we know that all units begin in state 1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># run it forward</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>T</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        jlag_idx <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> j_obs[t<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="fu">axes</span>(α,<span class="fl">1</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> klag <span class="kw">in</span> <span class="fu">axes</span>(α,<span class="fl">1</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                α[k,t] <span class="op">+=</span> Π[k,klag,jlag_idx] <span class="op">*</span>  α[klag,t<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j_obs[t]<span class="op">&gt;-</span><span class="fl">1</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                α[k,t] <span class="op">*=</span> j_obs[t]<span class="op">*</span>p[k] <span class="op">+</span> (<span class="fl">1</span><span class="op">-</span>j_obs[t])<span class="fu">*</span>(<span class="fl">1</span><span class="op">-</span>p[k])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># run it back</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="fu">reverse</span>(<span class="fl">1</span><span class="op">:</span>T<span class="op">-</span><span class="fl">1</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        j_idx <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> j_obs[t]</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="fu">axes</span>(β,<span class="fl">1</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> knext <span class="kw">in</span> <span class="fu">axes</span>(β,<span class="fl">1</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> j_obs[t<span class="op">+</span><span class="fl">1</span>]<span class="op">!=-</span><span class="fl">1</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                    pj <span class="op">=</span> j_obs[t<span class="op">+</span><span class="fl">1</span>]<span class="op">*</span>p[knext] <span class="op">+</span> (<span class="fl">1</span><span class="op">-</span>j_obs[t<span class="op">+</span><span class="fl">1</span>])<span class="fu">*</span>(<span class="fl">1</span><span class="op">-</span>p[knext])</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                    pj <span class="op">=</span> <span class="fl">1</span>.</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                β[k,t] <span class="op">+=</span> pj <span class="op">*</span> Π[knext,k,j_idx]</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the posteriors</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="fu">axes</span>(Q,<span class="fl">2</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@views</span> Q[<span class="op">:</span>,t] <span class="op">.=</span> α[<span class="op">:</span>,t] <span class="op">.*</span> β[<span class="op">:</span>,t]</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@views</span> Q[<span class="op">:</span>,t] <span class="op">./=</span> <span class="fu">sum</span>(Q[<span class="op">:</span>,t])</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>α <span class="op">=</span> <span class="fu">zeros</span>(K,T)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>β <span class="op">=</span> <span class="fu">zeros</span>(K,T)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> <span class="fu">zeros</span>(K,T)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">forward_back!</span>(Q,α,β,J_data[<span class="op">:</span>,<span class="fl">1</span>],Π,Pj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<p>Write a function that iterates over all observations and calculates posterior state probabilities for every observation. i.e.&nbsp;fill in a <span class="math inline">\(K\times T \times N\)</span> array of posterior weights.</p>
+<p>I’ll also add a line of code to update the transition matrices <span class="math inline">\(\Pi\)</span>.</p>
+<div id="c2074769" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">forward_back!</span>(Q,α,β,J_obs<span class="op">::</span><span class="dt">Array{Int64}</span>,Π,p)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_transitions!</span>(Π,p)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fu">axes</span>(J_obs,<span class="fl">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@views</span> <span class="fu">forward_back!</span>(Q[<span class="op">:</span>,<span class="op">:</span>,n],α,β,J_obs[<span class="op">:</span>,n],Π,p)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> <span class="fu">zeros</span>(K,T,N)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">forward_back!</span>(Q,α,β,J_data,Π,Pj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
+<p>Take as given a set of posterior weights <span class="math inline">\(q_{ntk} = Q[n,t,k]\)</span>. The expected log-likelihood for the M-step is:</p>
+<p><span class="math display">\[ \mathcal{L}(p) = \sum_{n}\sum_{t}\sum_{k}q_{ntk}\left(\mathbf{1}\{j^*_{nt}=1\}\log(p_{k}) + \mathbf{1}\{j^*_{nt}=0\}\log(1-p_{k})\right) \]</span></p>
+<p>Show that the non-parametric maximum likelihood estimate of <span class="math inline">\(p\)</span> given the posterior weights is a frequency estimator:</p>
+<p><span class="math display">\[ \hat{p}_{k} = \frac{\sum_{n}\sum_{t}\mathbf{1}\{j^*_{nt}=1\} q_{ntk}}{\sum_{n}\sum_{t}\mathbf{1}\{j^*_{nt}\neq -1\} q_{ntk}} \]</span></p>
+<p>Write a function to calculate this frequency estimator given posterior weights.</p>
+<div id="169da07f" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">m_step</span>(Q,J_data)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="fu">size</span>(Q,<span class="fl">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="fu">zeros</span>(K)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> <span class="fu">zeros</span>(K)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fu">axes</span>(J_data,<span class="fl">2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="fu">axes</span>(J_data,<span class="fl">1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> J_data[t,n]<span class="op">!=-</span><span class="fl">1</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                <span class="pp">@views</span> denom <span class="op">.+=</span> Q[<span class="op">:</span>,t,n]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> J_data[t,n]<span class="op">==</span><span class="fl">1</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                    <span class="pp">@views</span> p <span class="op">.+=</span> Q[<span class="op">:</span>,t,n]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p <span class="op">./</span> denom</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>p_est <span class="op">=</span> <span class="fu">m_step</span>(Q,J_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>5-element Vector{Float64}:
+ 0.6979638286508735
+ 0.5838619353864428
+ 0.460315854103342
+ 0.3523262347640548
+ 0.26638099215665734</code></pre>
+</div>
+</div>
+</section>
+<section id="part-4" class="level2">
+<h2 class="anchored" data-anchor-id="part-4">Part 4</h2>
+<p>Run the E-M routine by iterating on this E-step and M-step until you get convergence in <span class="math inline">\(\hat{p}\)</span>. Does it look like you can recover the true parameters?</p>
+<div id="6256a4bb" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">EM_routine</span>(p0,Π,data ; max_iter <span class="op">=</span> <span class="fl">1000</span>, tol <span class="op">=</span> <span class="fl">1e-7</span>, verbose <span class="op">=</span> <span class="cn">true</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    (;α,β,Q,J_data) <span class="op">=</span> data</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    err <span class="op">=</span> <span class="cn">Inf</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    iter <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> err<span class="op">&gt;</span>tol <span class="op">&amp;&amp;</span> iter<span class="op">&lt;</span>max_iter</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">forward_back!</span>(Q,α,β,J_data,Π,p0)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        p1 <span class="op">=</span> <span class="fu">m_step</span>(Q,J_data)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        err <span class="op">=</span> <span class="fu">maximum</span>(<span class="fu">abs</span>.(p1 <span class="op">.-</span> p0))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        iter <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">mod</span>(iter,<span class="fl">10</span>)<span class="op">==</span><span class="fl">0</span> <span class="op">&amp;&amp;</span> verbose</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">println</span>(<span class="st">"Current error is </span><span class="sc">$</span>err<span class="st">"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        p0 <span class="op">=</span> p1</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p0</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> (;α,β,Q,J_data)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># let's try using a </span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>p_guess <span class="op">=</span> <span class="fu">fill</span>(<span class="fl">1</span> <span class="op">/</span> K, K)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>p_est <span class="op">=</span> <span class="fu">EM_routine</span>(p_guess,Π,data)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>[p_est Pj]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Current error is 0.0009160958113319517
+Current error is 0.00020857660656875554
+Current error is 5.858721547563617e-5
+Current error is 1.6799070472584e-5
+Current error is 4.82623428571527e-6
+Current error is 1.3868510386205735e-6
+Current error is 3.9853623212682265e-7
+Current error is 1.145274604597013e-7</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>5×2 Matrix{Float64}:
+ 0.699725  0.731059
+ 0.590775  0.622459
+ 0.44839   0.5
+ 0.352756  0.377541
+ 0.284563  0.268941</code></pre>
+</div>
+</div>
+<p>Looks good! You could test the estimator a bit more by running it over a number of samples to see how you do.</p>
+<div id="68bfb467" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>P_montecarlo <span class="op">=</span> <span class="fu">zeros</span>(K,B)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b <span class="kw">in</span> <span class="fu">axes</span>(P_montecarlo,<span class="fl">2</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    J_data <span class="op">=</span> <span class="fu">simulate</span>(N,T,Pj)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> (;data<span class="op">...</span>,J_data)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    P_montecarlo[<span class="op">:</span>,b] <span class="op">=</span> <span class="fu">EM_routine</span>(p_guess,Π,data ; verbose <span class="op">=</span> <span class="cn">false</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bd71f9dd" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(P_montecarlo[<span class="fl">1</span>,<span class="op">:</span>],legend <span class="op">=</span> <span class="cn">false</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>([Pj[<span class="fl">1</span>],Pj[<span class="fl">1</span>]],[<span class="fl">0</span>,<span class="fl">30</span>],linewidth<span class="op">=</span><span class="fl">3</span>,legend <span class="op">=</span> <span class="cn">false</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<!--?xml version="1.0" encoding="utf-8"?-->
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
+<defs>
+  <clippath id="clip340">
+    <rect x="0" y="0" width="2688" height="1920"></rect>
+  </clippath>
+</defs>
+<path clip-path="url(#clip340)" d="M0 1920 L2688 1920 L2688 -4.26326e-14 L0 -4.26326e-14  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<defs>
+  <clippath id="clip341">
+    <rect x="537" y="0" width="1883" height="1883"></rect>
+  </clippath>
+</defs>
+<path clip-path="url(#clip340)" d="M143.576 1800.78 L2640.76 1800.78 L2640.76 47.2441 L143.576 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<defs>
+  <clippath id="clip342">
+    <rect x="143" y="47" width="2498" height="1755"></rect>
+  </clippath>
+</defs>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="280.925,1800.78 280.925,47.2441 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="836.545,1800.78 836.545,47.2441 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1392.17,1800.78 1392.17,47.2441 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1947.79,1800.78 1947.79,47.2441 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2503.41,1800.78 2503.41,47.2441 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="143.576,1800.78 2640.76,1800.78 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="143.576,1216.27 2640.76,1216.27 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="143.576,631.756 2640.76,631.756 "></polyline>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="143.576,47.2441 2640.76,47.2441 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="143.576,1800.78 2640.76,1800.78 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="280.925,1800.78 280.925,1781.88 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="836.545,1800.78 836.545,1781.88 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1392.17,1800.78 1392.17,1781.88 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1947.79,1800.78 1947.79,1781.88 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2503.41,1800.78 2503.41,1781.88 "></polyline>
+<path clip-path="url(#clip340)" d="M243.275 1834 Q239.664 1834 237.835 1837.57 Q236.029 1841.11 236.029 1848.24 Q236.029 1855.34 237.835 1858.91 Q239.664 1862.45 243.275 1862.45 Q246.909 1862.45 248.714 1858.91 Q250.543 1855.34 250.543 1848.24 Q250.543 1841.11 248.714 1837.57 Q246.909 1834 243.275 1834 M243.275 1830.3 Q249.085 1830.3 252.14 1834.9 Q255.219 1839.49 255.219 1848.24 Q255.219 1856.96 252.14 1861.57 Q249.085 1866.15 243.275 1866.15 Q237.464 1866.15 234.386 1861.57 Q231.33 1856.96 231.33 1848.24 Q231.33 1839.49 234.386 1834.9 Q237.464 1830.3 243.275 1830.3 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M263.437 1859.6 L268.321 1859.6 L268.321 1865.48 L263.437 1865.48 L263.437 1859.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M289.085 1846.34 Q285.936 1846.34 284.085 1848.49 Q282.256 1850.65 282.256 1854.4 Q282.256 1858.12 284.085 1860.3 Q285.936 1862.45 289.085 1862.45 Q292.233 1862.45 294.061 1860.3 Q295.913 1858.12 295.913 1854.4 Q295.913 1850.65 294.061 1848.49 Q292.233 1846.34 289.085 1846.34 M298.367 1831.69 L298.367 1835.95 Q296.608 1835.11 294.802 1834.67 Q293.02 1834.23 291.26 1834.23 Q286.631 1834.23 284.177 1837.36 Q281.747 1840.48 281.399 1846.8 Q282.765 1844.79 284.825 1843.72 Q286.886 1842.64 289.362 1842.64 Q294.571 1842.64 297.58 1845.81 Q300.612 1848.96 300.612 1854.4 Q300.612 1859.72 297.464 1862.94 Q294.316 1866.15 289.085 1866.15 Q283.089 1866.15 279.918 1861.57 Q276.747 1856.96 276.747 1848.24 Q276.747 1840.04 280.636 1835.18 Q284.524 1830.3 291.075 1830.3 Q292.835 1830.3 294.617 1830.65 Q296.423 1830.99 298.367 1831.69 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M318.668 1849.07 Q315.334 1849.07 313.413 1850.85 Q311.515 1852.64 311.515 1855.76 Q311.515 1858.89 313.413 1860.67 Q315.334 1862.45 318.668 1862.45 Q322.001 1862.45 323.922 1860.67 Q325.844 1858.86 325.844 1855.76 Q325.844 1852.64 323.922 1850.85 Q322.024 1849.07 318.668 1849.07 M313.992 1847.08 Q310.983 1846.34 309.293 1844.28 Q307.626 1842.22 307.626 1839.26 Q307.626 1835.11 310.566 1832.71 Q313.529 1830.3 318.668 1830.3 Q323.83 1830.3 326.77 1832.71 Q329.709 1835.11 329.709 1839.26 Q329.709 1842.22 328.02 1844.28 Q326.353 1846.34 323.367 1847.08 Q326.746 1847.87 328.621 1850.16 Q330.52 1852.45 330.52 1855.76 Q330.52 1860.78 327.441 1863.47 Q324.385 1866.15 318.668 1866.15 Q312.95 1866.15 309.872 1863.47 Q306.816 1860.78 306.816 1855.76 Q306.816 1852.45 308.714 1850.16 Q310.612 1847.87 313.992 1847.08 M312.279 1839.7 Q312.279 1842.38 313.946 1843.89 Q315.635 1845.39 318.668 1845.39 Q321.677 1845.39 323.367 1843.89 Q325.08 1842.38 325.08 1839.7 Q325.08 1837.01 323.367 1835.51 Q321.677 1834 318.668 1834 Q315.635 1834 313.946 1835.51 Q312.279 1837.01 312.279 1839.7 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M798.849 1834 Q795.238 1834 793.409 1837.57 Q791.603 1841.11 791.603 1848.24 Q791.603 1855.34 793.409 1858.91 Q795.238 1862.45 798.849 1862.45 Q802.483 1862.45 804.289 1858.91 Q806.117 1855.34 806.117 1848.24 Q806.117 1841.11 804.289 1837.57 Q802.483 1834 798.849 1834 M798.849 1830.3 Q804.659 1830.3 807.714 1834.9 Q810.793 1839.49 810.793 1848.24 Q810.793 1856.96 807.714 1861.57 Q804.659 1866.15 798.849 1866.15 Q793.039 1866.15 789.96 1861.57 Q786.904 1856.96 786.904 1848.24 Q786.904 1839.49 789.96 1834.9 Q793.039 1830.3 798.849 1830.3 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M819.011 1859.6 L823.895 1859.6 L823.895 1865.48 L819.011 1865.48 L819.011 1859.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M832.9 1830.92 L855.122 1830.92 L855.122 1832.91 L842.575 1865.48 L837.691 1865.48 L849.497 1834.86 L832.9 1834.86 L832.9 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M874.242 1834 Q870.631 1834 868.802 1837.57 Q866.997 1841.11 866.997 1848.24 Q866.997 1855.34 868.802 1858.91 Q870.631 1862.45 874.242 1862.45 Q877.876 1862.45 879.682 1858.91 Q881.51 1855.34 881.51 1848.24 Q881.51 1841.11 879.682 1837.57 Q877.876 1834 874.242 1834 M874.242 1830.3 Q880.052 1830.3 883.108 1834.9 Q886.186 1839.49 886.186 1848.24 Q886.186 1856.96 883.108 1861.57 Q880.052 1866.15 874.242 1866.15 Q868.432 1866.15 865.353 1861.57 Q862.297 1856.96 862.297 1848.24 Q862.297 1839.49 865.353 1834.9 Q868.432 1830.3 874.242 1830.3 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1355.27 1834 Q1351.66 1834 1349.83 1837.57 Q1348.02 1841.11 1348.02 1848.24 Q1348.02 1855.34 1349.83 1858.91 Q1351.66 1862.45 1355.27 1862.45 Q1358.9 1862.45 1360.71 1858.91 Q1362.54 1855.34 1362.54 1848.24 Q1362.54 1841.11 1360.71 1837.57 Q1358.9 1834 1355.27 1834 M1355.27 1830.3 Q1361.08 1830.3 1364.13 1834.9 Q1367.21 1839.49 1367.21 1848.24 Q1367.21 1856.96 1364.13 1861.57 Q1361.08 1866.15 1355.27 1866.15 Q1349.46 1866.15 1346.38 1861.57 Q1343.32 1856.96 1343.32 1848.24 Q1343.32 1839.49 1346.38 1834.9 Q1349.46 1830.3 1355.27 1830.3 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1375.43 1859.6 L1380.31 1859.6 L1380.31 1865.48 L1375.43 1865.48 L1375.43 1859.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1389.32 1830.92 L1411.54 1830.92 L1411.54 1832.91 L1398.99 1865.48 L1394.11 1865.48 L1405.92 1834.86 L1389.32 1834.86 L1389.32 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1424.69 1861.55 L1441.01 1861.55 L1441.01 1865.48 L1419.06 1865.48 L1419.06 1861.55 Q1421.73 1858.79 1426.31 1854.16 Q1430.92 1849.51 1432.1 1848.17 Q1434.34 1845.65 1435.22 1843.91 Q1436.12 1842.15 1436.12 1840.46 Q1436.12 1837.71 1434.18 1835.97 Q1432.26 1834.23 1429.16 1834.23 Q1426.96 1834.23 1424.5 1835 Q1422.07 1835.76 1419.3 1837.31 L1419.3 1832.59 Q1422.12 1831.46 1424.57 1830.88 Q1427.03 1830.3 1429.06 1830.3 Q1434.43 1830.3 1437.63 1832.98 Q1440.82 1835.67 1440.82 1840.16 Q1440.82 1842.29 1440.01 1844.21 Q1439.23 1846.11 1437.12 1848.7 Q1436.54 1849.37 1433.44 1852.59 Q1430.34 1855.78 1424.69 1861.55 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1909.85 1834 Q1906.24 1834 1904.41 1837.57 Q1902.6 1841.11 1902.6 1848.24 Q1902.6 1855.34 1904.41 1858.91 Q1906.24 1862.45 1909.85 1862.45 Q1913.48 1862.45 1915.29 1858.91 Q1917.12 1855.34 1917.12 1848.24 Q1917.12 1841.11 1915.29 1837.57 Q1913.48 1834 1909.85 1834 M1909.85 1830.3 Q1915.66 1830.3 1918.71 1834.9 Q1921.79 1839.49 1921.79 1848.24 Q1921.79 1856.96 1918.71 1861.57 Q1915.66 1866.15 1909.85 1866.15 Q1904.04 1866.15 1900.96 1861.57 Q1897.9 1856.96 1897.9 1848.24 Q1897.9 1839.49 1900.96 1834.9 Q1904.04 1830.3 1909.85 1830.3 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1930.01 1859.6 L1934.89 1859.6 L1934.89 1865.48 L1930.01 1865.48 L1930.01 1859.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1943.9 1830.92 L1966.12 1830.92 L1966.12 1832.91 L1953.57 1865.48 L1948.69 1865.48 L1960.49 1834.86 L1943.9 1834.86 L1943.9 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M1988.09 1835 L1976.28 1853.45 L1988.09 1853.45 L1988.09 1835 M1986.86 1830.92 L1992.74 1830.92 L1992.74 1853.45 L1997.67 1853.45 L1997.67 1857.34 L1992.74 1857.34 L1992.74 1865.48 L1988.09 1865.48 L1988.09 1857.34 L1972.49 1857.34 L1972.49 1852.82 L1986.86 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M2465.63 1834 Q2462.02 1834 2460.19 1837.57 Q2458.38 1841.11 2458.38 1848.24 Q2458.38 1855.34 2460.19 1858.91 Q2462.02 1862.45 2465.63 1862.45 Q2469.26 1862.45 2471.07 1858.91 Q2472.9 1855.34 2472.9 1848.24 Q2472.9 1841.11 2471.07 1837.57 Q2469.26 1834 2465.63 1834 M2465.63 1830.3 Q2471.44 1830.3 2474.49 1834.9 Q2477.57 1839.49 2477.57 1848.24 Q2477.57 1856.96 2474.49 1861.57 Q2471.44 1866.15 2465.63 1866.15 Q2459.82 1866.15 2456.74 1861.57 Q2453.68 1856.96 2453.68 1848.24 Q2453.68 1839.49 2456.74 1834.9 Q2459.82 1830.3 2465.63 1830.3 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M2485.79 1859.6 L2490.68 1859.6 L2490.68 1865.48 L2485.79 1865.48 L2485.79 1859.6 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M2499.68 1830.92 L2521.9 1830.92 L2521.9 1832.91 L2509.36 1865.48 L2504.47 1865.48 L2516.28 1834.86 L2499.68 1834.86 L2499.68 1830.92 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M2541.6 1846.34 Q2538.45 1846.34 2536.6 1848.49 Q2534.77 1850.65 2534.77 1854.4 Q2534.77 1858.12 2536.6 1860.3 Q2538.45 1862.45 2541.6 1862.45 Q2544.75 1862.45 2546.58 1860.3 Q2548.43 1858.12 2548.43 1854.4 Q2548.43 1850.65 2546.58 1848.49 Q2544.75 1846.34 2541.6 1846.34 M2550.88 1831.69 L2550.88 1835.95 Q2549.12 1835.11 2547.32 1834.67 Q2545.54 1834.23 2543.78 1834.23 Q2539.15 1834.23 2536.69 1837.36 Q2534.26 1840.48 2533.92 1846.8 Q2535.28 1844.79 2537.34 1843.72 Q2539.4 1842.64 2541.88 1842.64 Q2547.09 1842.64 2550.1 1845.81 Q2553.13 1848.96 2553.13 1854.4 Q2553.13 1859.72 2549.98 1862.94 Q2546.83 1866.15 2541.6 1866.15 Q2535.61 1866.15 2532.43 1861.57 Q2529.26 1856.96 2529.26 1848.24 Q2529.26 1840.04 2533.15 1835.18 Q2537.04 1830.3 2543.59 1830.3 Q2545.35 1830.3 2547.13 1830.65 Q2548.94 1830.99 2550.88 1831.69 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="143.576,1800.78 143.576,47.2441 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="143.576,1800.78 162.473,1800.78 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="143.576,1216.27 162.473,1216.27 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="143.576,631.756 162.473,631.756 "></polyline>
+<polyline clip-path="url(#clip340)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="143.576,47.2441 162.473,47.2441 "></polyline>
+<path clip-path="url(#clip340)" d="M91.3112 1786.58 Q87.7001 1786.58 85.8714 1790.14 Q84.0658 1793.68 84.0658 1800.81 Q84.0658 1807.92 85.8714 1811.49 Q87.7001 1815.03 91.3112 1815.03 Q94.9454 1815.03 96.7509 1811.49 Q98.5796 1807.92 98.5796 1800.81 Q98.5796 1793.68 96.7509 1790.14 Q94.9454 1786.58 91.3112 1786.58 M91.3112 1782.87 Q97.1213 1782.87 100.177 1787.48 Q103.256 1792.06 103.256 1800.81 Q103.256 1809.54 100.177 1814.15 Q97.1213 1818.73 91.3112 1818.73 Q85.501 1818.73 82.4223 1814.15 Q79.3668 1809.54 79.3668 1800.81 Q79.3668 1792.06 82.4223 1787.48 Q85.501 1782.87 91.3112 1782.87 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M51.9595 1229.61 L59.5984 1229.61 L59.5984 1203.25 L51.2882 1204.91 L51.2882 1200.65 L59.5521 1198.99 L64.228 1198.99 L64.228 1229.61 L71.8668 1229.61 L71.8668 1233.55 L51.9595 1233.55 L51.9595 1229.61 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M91.3112 1202.07 Q87.7001 1202.07 85.8714 1205.63 Q84.0658 1209.17 84.0658 1216.3 Q84.0658 1223.41 85.8714 1226.97 Q87.7001 1230.52 91.3112 1230.52 Q94.9454 1230.52 96.7509 1226.97 Q98.5796 1223.41 98.5796 1216.3 Q98.5796 1209.17 96.7509 1205.63 Q94.9454 1202.07 91.3112 1202.07 M91.3112 1198.36 Q97.1213 1198.36 100.177 1202.97 Q103.256 1207.55 103.256 1216.3 Q103.256 1225.03 100.177 1229.64 Q97.1213 1234.22 91.3112 1234.22 Q85.501 1234.22 82.4223 1229.64 Q79.3668 1225.03 79.3668 1216.3 Q79.3668 1207.55 82.4223 1202.97 Q85.501 1198.36 91.3112 1198.36 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M55.1771 645.101 L71.4965 645.101 L71.4965 649.036 L49.5521 649.036 L49.5521 645.101 Q52.2141 642.346 56.7975 637.716 Q61.4039 633.064 62.5845 631.721 Q64.8298 629.198 65.7094 627.462 Q66.6122 625.703 66.6122 624.013 Q66.6122 621.258 64.6678 619.522 Q62.7465 617.786 59.6447 617.786 Q57.4456 617.786 54.9919 618.55 Q52.5614 619.314 49.7836 620.865 L49.7836 616.142 Q52.6077 615.008 55.0614 614.43 Q57.515 613.851 59.5521 613.851 Q64.9224 613.851 68.1168 616.536 Q71.3113 619.221 71.3113 623.712 Q71.3113 625.842 70.5011 627.763 Q69.7141 629.661 67.6076 632.254 Q67.0289 632.925 63.927 636.142 Q60.8252 639.337 55.1771 645.101 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M91.3112 617.555 Q87.7001 617.555 85.8714 621.119 Q84.0658 624.661 84.0658 631.791 Q84.0658 638.897 85.8714 642.462 Q87.7001 646.003 91.3112 646.003 Q94.9454 646.003 96.7509 642.462 Q98.5796 638.897 98.5796 631.791 Q98.5796 624.661 96.7509 621.119 Q94.9454 617.555 91.3112 617.555 M91.3112 613.851 Q97.1213 613.851 100.177 618.457 Q103.256 623.041 103.256 631.791 Q103.256 640.517 100.177 645.124 Q97.1213 649.707 91.3112 649.707 Q85.501 649.707 82.4223 645.124 Q79.3668 640.517 79.3668 631.791 Q79.3668 623.041 82.4223 618.457 Q85.501 613.851 91.3112 613.851 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M65.3159 45.8899 Q68.6724 46.6075 70.5474 48.876 Q72.4455 51.1445 72.4455 54.4779 Q72.4455 59.5936 68.927 62.3945 Q65.4085 65.1954 58.9271 65.1954 Q56.7512 65.1954 54.4364 64.7556 Q52.1447 64.3389 49.691 63.4824 L49.691 58.9686 Q51.6354 60.1028 53.9503 60.6815 Q56.2651 61.2602 58.7882 61.2602 Q63.1863 61.2602 65.478 59.5241 Q67.7928 57.788 67.7928 54.4779 Q67.7928 51.4223 65.64 49.7094 Q63.5104 47.9733 59.691 47.9733 L55.6632 47.9733 L55.6632 44.1307 L59.8761 44.1307 Q63.3252 44.1307 65.1539 42.765 Q66.9826 41.3761 66.9826 38.7835 Q66.9826 36.1215 65.0845 34.7094 Q63.2095 33.2743 59.691 33.2743 Q57.7697 33.2743 55.5706 33.6909 Q53.3715 34.1076 50.7327 34.9872 L50.7327 30.8206 Q53.3947 30.0798 55.7095 29.7095 Q58.0475 29.3391 60.1076 29.3391 Q65.4317 29.3391 68.5335 31.7696 Q71.6353 34.177 71.6353 38.2974 Q71.6353 41.1677 69.9918 43.1585 Q68.3483 45.1261 65.3159 45.8899 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip340)" d="M91.3112 33.0428 Q87.7001 33.0428 85.8714 36.6076 Q84.0658 40.1492 84.0658 47.2788 Q84.0658 54.3853 85.8714 57.9501 Q87.7001 61.4917 91.3112 61.4917 Q94.9454 61.4917 96.7509 57.9501 Q98.5796 54.3853 98.5796 47.2788 Q98.5796 40.1492 96.7509 36.6076 Q94.9454 33.0428 91.3112 33.0428 M91.3112 29.3391 Q97.1213 29.3391 100.177 33.9456 Q103.256 38.5289 103.256 47.2788 Q103.256 56.0056 100.177 60.6121 Q97.1213 65.1954 91.3112 65.1954 Q85.501 65.1954 82.4223 60.6121 Q79.3668 56.0056 79.3668 47.2788 Q79.3668 38.5289 82.4223 33.9456 Q85.501 29.3391 91.3112 29.3391 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip342)" d="M280.925 1450.07 L280.925 1800.78 L558.735 1800.78 L558.735 1450.07 L280.925 1450.07 L280.925 1450.07  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="280.925,1450.07 280.925,1800.78 558.735,1800.78 558.735,1450.07 280.925,1450.07 "></polyline>
+<path clip-path="url(#clip342)" d="M558.735 1040.91 L558.735 1800.78 L836.545 1800.78 L836.545 1040.91 L558.735 1040.91 L558.735 1040.91  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="558.735,1040.91 558.735,1800.78 836.545,1800.78 836.545,1040.91 558.735,1040.91 "></polyline>
+<path clip-path="url(#clip342)" d="M836.545 339.5 L836.545 1800.78 L1114.36 1800.78 L1114.36 339.5 L836.545 339.5 L836.545 339.5  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="836.545,339.5 836.545,1800.78 1114.36,1800.78 1114.36,339.5 836.545,339.5 "></polyline>
+<path clip-path="url(#clip342)" d="M1114.36 47.2441 L1114.36 1800.78 L1392.17 1800.78 L1392.17 47.2441 L1114.36 47.2441 L1114.36 47.2441  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1114.36,47.2441 1114.36,1800.78 1392.17,1800.78 1392.17,47.2441 1114.36,47.2441 "></polyline>
+<path clip-path="url(#clip342)" d="M1392.17 865.561 L1392.17 1800.78 L1669.98 1800.78 L1669.98 865.561 L1392.17 865.561 L1392.17 865.561  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1392.17,865.561 1392.17,1800.78 1669.98,1800.78 1669.98,865.561 1392.17,865.561 "></polyline>
+<path clip-path="url(#clip342)" d="M1669.98 1391.62 L1669.98 1800.78 L1947.79 1800.78 L1947.79 1391.62 L1669.98 1391.62 L1669.98 1391.62  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1669.98,1391.62 1669.98,1800.78 1947.79,1800.78 1947.79,1391.62 1669.98,1391.62 "></polyline>
+<path clip-path="url(#clip342)" d="M1947.79 1683.88 L1947.79 1800.78 L2225.6 1800.78 L2225.6 1683.88 L1947.79 1683.88 L1947.79 1683.88  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1947.79,1683.88 1947.79,1800.78 2225.6,1800.78 2225.6,1683.88 1947.79,1683.88 "></polyline>
+<path clip-path="url(#clip342)" d="M2225.6 1742.33 L2225.6 1800.78 L2503.41 1800.78 L2503.41 1742.33 L2225.6 1742.33 L2225.6 1742.33  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="1"></path>
+<polyline clip-path="url(#clip342)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2225.6,1742.33 2225.6,1800.78 2503.41,1800.78 2503.41,1742.33 2225.6,1742.33 "></polyline>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="419.83" cy="1450.07" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="697.64" cy="1040.91" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="975.45" cy="339.5" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="1253.26" cy="47.2441" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="1531.07" cy="865.561" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="1808.88" cy="1391.62" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="2086.69" cy="1683.88" r="2"></circle>
+<circle clip-path="url(#clip342)" style="fill:#009af9; stroke:none; fill-opacity:0" cx="2364.5" cy="1742.33" r="2"></circle>
+<polyline clip-path="url(#clip342)" style="stroke:#e26f46; stroke-linecap:round; stroke-linejoin:round; stroke-width:12; stroke-opacity:1; fill:none" points="1699.38,1800.78 1699.38,47.2441 "></polyline>
+</svg>
+</div>
+</div>
+<p>We can see a little bit of bias, but then MLE is not guaranteed to be unbiased. You could re-run this with a larger sample size if you wanted to convince yourself of consistency.</p>
+</section>
+<section id="extra-credit" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit">Extra credit</h2>
+<p>If you found this exercise too straightforward, try adjusting the model so that transitions depend probabilistically on the state <span class="math inline">\(k\)</span> and the choice <span class="math inline">\(j\)</span>. This requires you to update also posterior transition probabilities and estimate those transition probabilities as part of the maximization step.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
