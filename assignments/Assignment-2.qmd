@@ -1,3 +1,10 @@
 ---
 title: "Assignment 2"
 ---
+
+Use the same labor supply model as Assignment 1. Now we assume that .
+
+1. Does $Z$ necessarily satisfy the monotonicity condition? In other words, can the direction of the labor supply response differ for different joint values of $A_{n},\alpha_{n}
+2. What does this tell you about the estimated parameters?
+3. Linearize the model?
+4. Can we estimate by GMM? Implement!

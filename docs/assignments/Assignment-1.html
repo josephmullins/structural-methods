@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -145,8 +174,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setup-1-a-simple-labor-supply-model" id="toc-setup-1-a-simple-labor-supply-model" class="nav-link active" data-scroll-target="#setup-1-a-simple-labor-supply-model">Setup 1: A Simple Labor Supply Model</a></li>
+  <li><a href="#setup-2-a-diff-in-diff-analysis" id="toc-setup-2-a-diff-in-diff-analysis" class="nav-link" data-scroll-target="#setup-2-a-diff-in-diff-analysis">Setup 2: A Diff-in-Diff Analysis</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -170,8 +207,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="setup-1-a-simple-labor-supply-model" class="level2">
+<h2 class="anchored" data-anchor-id="setup-1-a-simple-labor-supply-model">Setup 1: A Simple Labor Supply Model</h2>
+<p>Consider a dynamic labor supply model (with no uncertainty) where each agent <span class="math inline">\(n\)</span> chooses a sequence of consumption and hours, <span class="math inline">\(\{c_{t},h_{t}\}_{t=1}^{\infty}\)</span>, to solve: <span class="math display">\[ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1\psi}h_{t}^{1+1/\psi}\right)\]</span> subject to the intertemporal budget constraint: <span class="math display">\[ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.\]</span> Let <span class="math inline">\(H_{n,t}\)</span> and <span class="math inline">\(C_{n,t}\)</span> be the realizations of labor supply for agent <span class="math inline">\(n\)</span> at time <span class="math inline">\(t\)</span>. Labor supply in this model obeys: <span class="math display">\[H_{n,t} = (\beta(1+r))^{-t}(\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.\]</span> To simplify below, assume that <span class="math inline">\(\beta=(1+r)^{-1}\)</span>, so that the optimal solution features perfectly smoothed consumption, <span class="math inline">\(C^*_{n}\)</span>. Making appropriate substitutions gives <span class="math inline">\(C^*_{n}\)</span> as the solution to: <span class="math display">\[ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C^*)^{-\sigma}_{n} + A_{n,0}.\]</span></p>
+</section>
+<section id="setup-2-a-diff-in-diff-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="setup-2-a-diff-in-diff-analysis">Setup 2: A Diff-in-Diff Analysis</h2>
+<p>You are talking to a friend (let’s call them Mr Straw Man) who has data on labor supply for two groups, <span class="math inline">\(A\)</span>, and <span class="math inline">\(B\)</span>, who are not directly comparable. Assume they have two periods of data (<span class="math inline">\(s=1,2\)</span>), and that group <span class="math inline">\(A\)</span> is subjected to a proportional wage subsidy, <span class="math inline">\(1+\tau\)</span>, in period 2 (<span class="math inline">\(s=2\)</span>). Your friend claims that they can estimate the elasticity of labor supply by first estimating the response to the tax using difference-in-differences, which has a population limit:</p>
+<p><span class="math display">\[ \alpha = \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1])\]</span> and then constructing the elasticity as: <span class="math display">\[ \tilde{\psi} = \frac{\alpha}{\log(1+\tau)}.\]</span></p>
+<p>Your friend <em>also</em> claims that this elasticity is sufficient to forecast the effects of any other labor supply subsidy in the future.</p>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<p>In answering the questions below, you can assume that the distribution of wages and preferences adhere to the following relationship for each group <span class="math inline">\(g\in\{A,B\}\)</span>: <span class="math display">\[\mathbb{E}[\log(W_{n,t})|G] = \mu_{W,g} + \gamma_{t}\]</span> <span class="math display">\[\mathbb{E}[\alpha_{n}|G] = \mu_{\alpha,g}\]</span></p>
+<ol type="1">
+<li>Show that this model satisfies the “parallel trends assumption”, namely that <strong>if the policy had never been introduced</strong>, we would get <span class="math display">\[ \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1]) = 0 \]</span></li>
+<li>Show that when the policy is introduced unexpectedly, in period 2, the population limit <span class="math inline">\(\tilde{\psi}\)</span> can be written as: <span class="math display">\[ \tilde{\psi} =  \psi - \sigma\frac{\Delta\mathbb{E}\left[\log(C^*)|A\right]}{\log(1+\tau)}\]</span> where <span class="math display">\[\Delta\mathbb{E}\left[\log(C^*)|A\right]\]</span> is the growth in induced by the policy.</li>
+<li>Derive a similar expression for <span class="math inline">\(\tilde{\psi}\)</span> for the case where the policy is <strong>announced in the first period</strong> (<span class="math inline">\(s=1\)</span>) and implemented in the second period (<span class="math inline">\(s=2\)</span>).</li>
+<li>Use the model to argue that the size of the effect depends on whether the subsidy is perceived temporary or permanent.</li>
+<li>Suppose that the <em>exact same policy</em> (same anticipation, same duration, same <span class="math inline">\(\tau\)</span>) were to be implemented on group <span class="math inline">\(B\)</span>. Under what assumptions on the distribution of assets could we expect the same labor supply response in the model? Does this seem reasonable?</li>
+<li>Use these derivations to argue that:
+<ol type="1">
+<li>The estimand <span class="math inline">\(\tilde{\psi}\)</span> does not map directly to an underlying structural parameter of interest; and</li>
+<li>The parameter <span class="math inline">\(\tilde{\psi}\)</span> cannot be used to forecast the effect of wage subsidies that are either (a) larger than <span class="math inline">\(\tau\)</span>; or (b) implemented over different horizons; or (c) implemented on group <span class="math inline">\(B\)</span>.</li>
+</ol></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

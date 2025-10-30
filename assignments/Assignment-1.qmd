@@ -1,3 +1,41 @@
 ---
 title: "Assignment 1"
 ---
+
+## Setup 1: A Simple Labor Supply Model
+
+Consider a dynamic labor supply model (with no uncertainty) where each agent $n$ chooses a sequence of consumption and hours, $\{c_{t},h_{t}\}_{t=1}^{\infty}$, to solve:
+$$ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1\psi}h_{t}^{1+1/\psi}\right)$$
+subject to the intertemporal budget constraint:
+$$ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.$$
+Let $H_{n,t}$ and $C_{n,t}$ be the realizations of labor supply for agent $n$ at time $t$. Labor supply in this model obeys:
+$$H_{n,t} = (\beta(1+r))^{-t}(\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.$$
+To simplify below, assume that $\beta=(1+r)^{-1}$, so that the optimal solution features perfectly smoothed consumption, $C^*_{n}$. Making appropriate substitutions gives $C^*_{n}$ as the solution to:
+$$ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C^*)^{-\sigma}_{n} + A_{n,0}.$$
+
+## Setup 2: A Diff-in-Diff Analysis
+
+You are talking to a friend (let's call them Mr Straw Man) who has data on labor supply for two groups, $A$, and $B$, who are not directly comparable. Assume they have two periods of data ($s=1,2$), and that group $A$ is subjected to a proportional wage subsidy, $1+\tau$, in period 2 ($s=2$). Your friend claims that they can estimate the elasticity of labor supply by first estimating the response to the tax using difference-in-differences, which has a population limit:
+
+$$ \alpha = \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1])$$
+and then constructing the elasticity as:
+$$ \tilde{\psi} = \frac{\alpha}{\log(1+\tau)}.$$
+
+Your friend *also* claims that this elasticity is sufficient to forecast the effects of any other labor supply subsidy in the future.
+
+## Questions
+In answering the questions below, you can assume that the distribution of wages and preferences adhere to the following relationship for each group $g\in\{A,B\}$:
+$$\mathbb{E}[\log(W_{n,t})|G] = \mu_{W,g} + \gamma_{t}$$
+$$\mathbb{E}[\alpha_{n}|G] = \mu_{\alpha,g}$$
+
+1. Show that this model satisfies the "parallel trends assumption", namely that **if the policy had never been introduced**, we would get
+$$ \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1]) = 0 $$
+2. Show that when the policy is introduced unexpectedly, in period 2, the population limit $\tilde{\psi}$ can be written as:
+$$ \tilde{\psi} =  \psi - \sigma\frac{\Delta\mathbb{E}\left[\log(C^*)|A\right]}{\log(1+\tau)}$$
+where $$\Delta\mathbb{E}\left[\log(C^*)|A\right]$$ is the growth in log consumption induced by the policy.
+3. Derive a similar expression for $\tilde{\psi}$ for the case where the policy is **announced in the first period** ($s=1$) and implemented in the second period ($s=2$).
+4. Use the model to argue that the size of the effect depends on whether the subsidy is perceived as temporary or permanent.
+5. Suppose that the *exact same policy* (same anticipation, same duration, same $\tau$) were to be implemented on group $B$. Under what assumptions on the distribution of assets could we expect the same labor supply response in the model? Does this seem reasonable?
+5. Use these derivations to argue that:
+    1. The estimand $\tilde{\psi}$ does not map directly to an underlying structural parameter of interest; and
+    2. The parameter $\tilde{\psi}$ cannot be used to forecast the effect of wage subsidies that are either (a) larger than $\tau$; or (b) implemented over different horizons; or (c) implemented on group $B$.
