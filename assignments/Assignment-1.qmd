@@ -25,8 +25,8 @@ Your friend *also* claims that this elasticity is sufficient to forecast the eff
 
 ## Questions
 In answering the questions below, you can assume that the distribution of wages and preferences adhere to the following relationship for each group $g\in\{A,B\}$:
-$$\mathbb{E}[\log(W_{n,t})|G] = \mu_{W,g} + \gamma_{t}$$
-$$\mathbb{E}[\alpha_{n}|G] = \mu_{\alpha,g}$$
+$$\mathbb{E}[\log(W_{n,t})|g] = \mu_{W,g} + \gamma_{t}$$
+$$\mathbb{E}[\alpha_{n}|g] = \mu_{\alpha,g}$$
 
 1. Show that this model satisfies the "parallel trends assumption", namely that **if the policy had never been introduced**, we would get
 $$ \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1]) = 0 $$
