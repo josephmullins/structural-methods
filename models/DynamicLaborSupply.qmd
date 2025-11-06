@@ -1,0 +1,90 @@
+---
+title: "A Simple Labor Supply Model"
+---
+
+## Model Setup and Solution
+
+Consider a dynamic labor supply model (with no uncertainty) where each agent $n$ chooses a sequence of consumption and hours, $\{c_{t},h_{t}\}_{t=1}^{\infty}$, to solve:
+$$ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1\psi}h_{t}^{1+1/\psi}\right)$$
+subject to the intertemporal budget constraint:
+$$ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.$$
+Let $H_{n,t}$ and $C_{n,t}$ be the realizations of labor supply for agent $n$ at time $t$. Labor supply in this model obeys:
+$$H_{n,t} = (\beta(1+r))^{-t}(\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.$$
+To simplify below, assume that $\beta=(1+r)^{-1}$, so that the optimal solution features perfectly smoothed consumption, $C^*_{n}$. Making appropriate substitutions gives $C^*_{n}$ as the solution to:
+$$ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C^*)^{-\sigma}_{n} + A_{n,0}.$$
+
+## Code to solve the model
+
+There is only one object to solve here which is consumption given a sequence of net wages. If one were to assume also constant wages (or net ages in the case of [Assignment 2](../assignments/Assignment-2.qmd), the function below solves optimal consumption.
+
+```{julia}
+using Optim
+function solve_consumption(r,α,W,A,σ,ψ)
+    Q = 1/ (1 - 1/(1+r))
+    f(c) = (Q * c - Q * W^(1 + ψ) * α^ψ * c^(-σ) - A)^2
+    r = Optim.optimize(f,0.,A+W)
+    return r.minimizer
+end
+```
+
+## Code to simulate a cross-section
+
+Here we'll assume that wages, tastes for work, and assets co-vary systematically. For simplicity we'll use a multivariate log-normal distribution.
+
+Below is code to simulate a cross-section of 1,000 observations.
+```{julia}
+using Distributions
+function simulate_data(σ,ψ,r,N)
+    ch = [1. 0. 0.; 0.4 0.9 0.; 0.4 1.1 3.1]
+    #ch = [1. 0. 0.; 0. 1. 0.; 0. 0. 3.1]
+    Σ = ch * ch'
+    X = rand(MvNormal(Σ),N)
+    α = exp.(X[1,:])
+    W = exp.(X[2,:])
+    A = exp.(X[3,:])
+    C = [solve_consumption(r,α[i],W[i],A[i],σ,ψ) for i in eachindex(A)]
+    @views H = exp.( X[1,:] .+ ψ .* X[2,:] .- σ .* log.(C) )
+    return (;α,W,A,C,H)
+end
+
+# assume risk-aversion of 2 and frisch of 0.5
+σ = 2.
+ψ = 0.5
+r = 0.05
+
+dat = simulate_data(σ,ψ,r,1_000)
+
+
+```
+
+## Simulating bias in OLS
+
+We know that OLS will be biased here, but let's run a simulation anyway to hammer the point home.
+
+```{julia}
+
+function simulate_bias(B,N,σ,ψ,r)
+    ψ_est = zeros(B)
+    σ_est = zeros(B)
+    for b in 1:B
+        dat = simulate_data(σ,ψ,r,N)
+        X = [ones(N) log.(dat.W) log.(dat.C)]
+        Y = log.(dat.H)
+        b_est = inv(X' * X) * X' * Y
+        ψ_est[b] = b_est[2]
+        σ_est[b] = -b_est[3]
+    end
+    return ψ_est,σ_est
+end
+
+ψ_est,σ_est = simulate_bias(500,1_000,σ,ψ,r)
+
+```
+
+Given the covariance structure, we can see a clear bias in the estimates.
+
+```{julia}
+using Plots
+histogram(ψ_est)
+```
+

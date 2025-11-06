@@ -19,6 +19,9 @@ website:
       - text: Examples
         menu:
           - examples/LeastSquaresClustering.qmd
+      - text: Models
+        menu:
+          - models/DynamicLaborSupply.qmd
 
 format:
   html:

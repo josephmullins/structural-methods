@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -134,6 +163,17 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models">    
+        <li>
+    <a class="dropdown-item" href="../models/DynamicLaborSupply.html">
+ <span class="dropdown-text">A Simple Labor Supply Model</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -145,8 +185,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -170,8 +219,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Use the <a href="../models/DynamicLaborSupply.html">same labor supply model</a> as Assignment 1. We now assume that net log wages follow a process: <span class="math display">\[ \log(\tilde{W}_{n,t}) = \gamma_{0} + \gamma_{1} Z_{n,t} + \epsilon_{n,t} \]</span> where <span class="math inline">\(Z_{n,t}\)</span> is independent of the pair (<span class="math inline">\(\alpha_{n},\epsilon_{n,t}\)</span>). You can think of <span class="math inline">\(Z_{n,t}\)</span> as an instrument for labor demand or an indicator for the presence of a wage subsidy. As before, we assume no uncertainty, so the path of <span class="math inline">\(Z_{n,t}\)</span> is treated as known.</p>
+<p>To begin, suppose that you have a single cross-section of data: <span class="math display">\[ (H_{n,0},\tilde{W}_{n,0},Z_{n,0},C_{n,0},A_{n,0})_{n=1}^{N} \]</span> where <span class="math inline">\(Z_{n,0}\in\{0,1\}\)</span> is perceived to be a permanent wage subsidy (so <span class="math inline">\(Z_{n,0}=Z_{n,t}\)</span> for all <span class="math inline">\(t&gt;0\)</span>).</p>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Suppose we estimate the following system via 2SLS: <span class="math display">\[ \log(\tilde{W}_{n,0}) = \gamma_{0} + \gamma_{1} Z_{n,t} + \epsilon_{n,t} \]</span> <span class="math display">\[ \log(H_{n,0}) = \alpha_{0} + \alpha_{1}\log(W_{n,0}) + \varepsilon_{n,0} \]</span> What is the population limit of the 2SLS estimator? Does it recover a structural or policy parameter of interest?</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>You are talking to your friend from Assignment 1 (Mr Straw Man) and you point out to him that the correct specification is the structural one: <span class="math display">\[ \log(H_{n,t}) = \mu + \psi\log(\tilde{W}_{n,0}) - \sigma\log(C_{n,0}) + \eta_{n,0}.\]</span> Your friend tells you that you have no hope here because you have two endogenous variables and only one instrument. You are going to use the model to prove him wrong! Define <span class="math inline">\(\tilde{Z}_{n,0} = M_{n,0}\times Z_{n,0}\)</span> where <span class="math inline">\(M_{n,0}\in\{0,1\}\)</span> is an indicator for whether <span class="math inline">\(A_{n,0}\)</span> is above or below the median. Note that the conditional expectation of log consumption can be written <em>wlog</em> as: <span class="math display">\[ \mathbb{E}[\log(C)|M,Z] = \delta_{0} + \delta_{1}M + \delta_{2}Z + \delta_{3}\underbrace{MZ}_{=\tilde{Z}}\]</span> <strong>Use the model to argue</strong> that <span class="math inline">\(\delta_{3}\neq0\)</span>.</p>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Now show that one can write: <span class="math display">\[ \mathbb{E}[\log(H)|M,Z] = \kappa_{0} + \kappa_{1}M + \psi\gamma Z - \sigma \delta_{2}Z - \sigma \tilde{Z}.\]</span> And combine these two expressions with the wage equation to argue that <span class="math inline">\(psi\)</span> and <span class="math inline">\(\sigma\)</span> are identified. Why is important that <span class="math inline">\(\delta_{3}\neq 0\)</span>?</p>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>Write code to estimate the structural parameters (via GMM or 2SLS) and use a monte-carlo simulation to evaluate the performance of your estimator. You can adapt the code I used in the <a href="../models/DynamicLaborSupply.html">example here</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
