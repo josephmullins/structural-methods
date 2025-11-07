@@ -109,7 +109,7 @@
     "href": "assignments/Assignment-2.html#question-4",
     "title": "Assignment 2",
     "section": "Question 4",
-    "text": "Question 4\nWrite code to estimate the structural parameters (via GMM or 2SLS) and use a monte-carlo simulation to evaluate the performance of your estimator. You can adapt the code I used in the example here."
+    "text": "Question 4\nWrite code to estimate the structural parameters (via GMM or 2SLS) and use a monte-carlo simulation to evaluate the performance of your estimator. You can adapt the code I used in the example here. The example assumes wages are constant, which you can assume also. You will have to adapt the example to include the variable \\(Z\\in\\{0,1\\}\\) and make your own choices for \\((\\gamma_{0},\\gamma_{1})\\)."
   },
   {
     "objectID": "assignments/Assignment-3.html",
