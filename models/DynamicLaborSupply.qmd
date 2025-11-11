@@ -5,13 +5,13 @@ title: "A Simple Labor Supply Model"
 ## Model Setup and Solution
 
 Consider a dynamic labor supply model (with no uncertainty) where each agent $n$ chooses a sequence of consumption and hours, $\{c_{t},h_{t}\}_{t=1}^{\infty}$, to solve:
-$$ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1\psi}h_{t}^{1+1/\psi}\right)$$
+$$ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1/\psi}h_{t}^{1+1/\psi}\right)$$
 subject to the intertemporal budget constraint:
 $$ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.$$
 Let $H_{n,t}$ and $C_{n,t}$ be the realizations of labor supply for agent $n$ at time $t$. Labor supply in this model obeys:
-$$H_{n,t} = (\beta(1+r))^{-t}(\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.$$
+$$H_{n,t}^{1/\psi} = (\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.$$
 To simplify below, assume that $\beta=(1+r)^{-1}$, so that the optimal solution features perfectly smoothed consumption, $C^*_{n}$. Making appropriate substitutions gives $C^*_{n}$ as the solution to:
-$$ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C^*)^{-\sigma}_{n} + A_{n,0}.$$
+$$ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C_{n}^*)^{-\psi\sigma} + A_{n,0}.$$
 
 ## Code to solve the model
 
@@ -21,7 +21,7 @@ There is only one object to solve here which is consumption given a sequence of 
 using Optim
 function solve_consumption(r,α,W,A,σ,ψ)
     Q = 1/ (1 - 1/(1+r))
-    f(c) = (Q * c - Q * W^(1 + ψ) * α^ψ * c^(-σ) - A)^2
+    f(c) = (Q * c - Q * W^(1 + ψ) * α^ψ * c^(-σ*ψ) - A)^2
     r = Optim.optimize(f,0.,A+W)
     return r.minimizer
 end

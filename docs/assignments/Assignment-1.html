@@ -163,6 +163,17 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models">    
+        <li>
+    <a class="dropdown-item" href="../models/DynamicLaborSupply.html">
+ <span class="dropdown-text">A Simple Labor Supply Model</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -209,7 +220,7 @@ window.Quarto = {
 
 <section id="setup-1-a-simple-labor-supply-model" class="level2">
 <h2 class="anchored" data-anchor-id="setup-1-a-simple-labor-supply-model">Setup 1: A Simple Labor Supply Model</h2>
-<p>Consider a dynamic labor supply model (with no uncertainty) where each agent <span class="math inline">\(n\)</span> chooses a sequence of consumption and hours, <span class="math inline">\(\{c_{t},h_{t}\}_{t=1}^{\infty}\)</span>, to solve: <span class="math display">\[ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1\psi}h_{t}^{1+1/\psi}\right)\]</span> subject to the intertemporal budget constraint: <span class="math display">\[ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.\]</span> Let <span class="math inline">\(H_{n,t}\)</span> and <span class="math inline">\(C_{n,t}\)</span> be the realizations of labor supply for agent <span class="math inline">\(n\)</span> at time <span class="math inline">\(t\)</span>. Labor supply in this model obeys: <span class="math display">\[H_{n,t} = (\beta(1+r))^{-t}(\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.\]</span> To simplify below, assume that <span class="math inline">\(\beta=(1+r)^{-1}\)</span>, so that the optimal solution features perfectly smoothed consumption, <span class="math inline">\(C^*_{n}\)</span>. Making appropriate substitutions gives <span class="math inline">\(C^*_{n}\)</span> as the solution to: <span class="math display">\[ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C^*)^{-\sigma}_{n} + A_{n,0}.\]</span></p>
+<p>Consider a dynamic labor supply model (with no uncertainty) where each agent <span class="math inline">\(n\)</span> chooses a sequence of consumption and hours, <span class="math inline">\(\{c_{t},h_{t}\}_{t=1}^{\infty}\)</span>, to solve: <span class="math display">\[ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1/\psi}h_{t}^{1+1/\psi}\right)\]</span> subject to the intertemporal budget constraint: <span class="math display">\[ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.\]</span> Let <span class="math inline">\(H_{n,t}\)</span> and <span class="math inline">\(C_{n,t}\)</span> be the realizations of labor supply for agent <span class="math inline">\(n\)</span> at time <span class="math inline">\(t\)</span>. Labor supply in this model obeys: <span class="math display">\[H_{n,t}^{1/\psi} = (\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.\]</span> To simplify below, assume that <span class="math inline">\(\beta=(1+r)^{-1}\)</span>, so that the optimal solution features perfectly smoothed consumption, <span class="math inline">\(C^*_{n}\)</span>. Making appropriate substitutions gives <span class="math inline">\(C^*_{n}\)</span> as the solution to: <span class="math display">\[ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C_{n}^*)^{-\psi\sigma} + A_{n,0}.\]</span></p>
 </section>
 <section id="setup-2-a-diff-in-diff-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="setup-2-a-diff-in-diff-analysis">Setup 2: A Diff-in-Diff Analysis</h2>
@@ -222,7 +233,7 @@ window.Quarto = {
 <p>In answering the questions below, you can assume that the distribution of wages and preferences adhere to the following relationship for each group <span class="math inline">\(g\in\{A,B\}\)</span>: <span class="math display">\[\mathbb{E}[\log(W_{n,t})|g] = \mu_{W,g} + \gamma_{t}\]</span> <span class="math display">\[\mathbb{E}[\alpha_{n}|g] = \mu_{\alpha,g}\]</span></p>
 <ol type="1">
 <li>Show that this model satisfies the “parallel trends assumption”, namely that <strong>if the policy had never been introduced</strong>, we would get <span class="math display">\[ \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1]) = 0 \]</span></li>
-<li>Show that when the policy is introduced unexpectedly, in period 2, the population limit <span class="math inline">\(\tilde{\psi}\)</span> can be written as: <span class="math display">\[ \tilde{\psi} =  \psi - \sigma\frac{\Delta\mathbb{E}\left[\log(C^*)|A\right]}{\log(1+\tau)}\]</span> where <span class="math display">\[\Delta\mathbb{E}\left[\log(C^*)|A\right]\]</span> is the growth in log consumption induced by the policy.</li>
+<li>Show that when the policy is introduced unexpectedly, in period 2, the population limit <span class="math inline">\(\tilde{\psi}\)</span> can be written as: <span class="math display">\[ \tilde{\psi} =  \psi\left(1 - \sigma\frac{\Delta\mathbb{E}\left[\log(C^*)|A\right]}{\log(1+\tau)}\right)\]</span> where <span class="math display">\[\Delta\mathbb{E}\left[\log(C^*)|A\right]\]</span> is the growth in log consumption induced by the policy.</li>
 <li>Derive a similar expression for <span class="math inline">\(\tilde{\psi}\)</span> for the case where the policy is <strong>announced in the first period</strong> (<span class="math inline">\(s=1\)</span>) and implemented in the second period (<span class="math inline">\(s=2\)</span>).</li>
 <li>Use the model to argue that the size of the effect depends on whether the subsidy is perceived as temporary or permanent.</li>
 <li>Suppose that the <em>exact same policy</em> (same anticipation, same duration, same <span class="math inline">\(\tau\)</span>) were to be implemented on group <span class="math inline">\(B\)</span>. Under what assumptions on the distribution of assets could we expect the same labor supply response in the model? Does this seem reasonable?</li>

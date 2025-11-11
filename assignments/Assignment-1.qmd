@@ -5,13 +5,13 @@ title: "Assignment 1"
 ## Setup 1: A Simple Labor Supply Model
 
 Consider a dynamic labor supply model (with no uncertainty) where each agent $n$ chooses a sequence of consumption and hours, $\{c_{t},h_{t}\}_{t=1}^{\infty}$, to solve:
-$$ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1\psi}h_{t}^{1+1/\psi}\right)$$
+$$ \max \sum_{t=0}^\infty \beta^{t} \left(\frac{c_{t}^{1-\sigma}}{1-\sigma} - \frac{\alpha_{n}^{-1}}{1 + 1/\psi}h_{t}^{1+1/\psi}\right)$$
 subject to the intertemporal budget constraint:
 $$ \sum_{t}q_{t}c_{t} \leq A_{n,0} + \sum_{t}q_{t}W_{n,t}h_{t},\qquad q_{t} = (1+r)^{-t}.$$
 Let $H_{n,t}$ and $C_{n,t}$ be the realizations of labor supply for agent $n$ at time $t$. Labor supply in this model obeys:
-$$H_{n,t} = (\beta(1+r))^{-t}(\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.$$
+$$H_{n,t}^{1/\psi} = (\alpha_{n}W_{n,t})C^{-\sigma}_{n,t}.$$
 To simplify below, assume that $\beta=(1+r)^{-1}$, so that the optimal solution features perfectly smoothed consumption, $C^*_{n}$. Making appropriate substitutions gives $C^*_{n}$ as the solution to:
-$$ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C^*)^{-\sigma}_{n} + A_{n,0}.$$
+$$ \left(\sum_{t}q_{t}\right)C^*_{n} = \sum_{t}\left(q_{t}W_{n,t}^{1+\psi}\right)\alpha_{n}^{\psi}(C_{n}^*)^{-\psi\sigma} + A_{n,0}.$$
 
 ## Setup 2: A Diff-in-Diff Analysis
 
@@ -31,7 +31,7 @@ $$\mathbb{E}[\alpha_{n}|g] = \mu_{\alpha,g}$$
 1. Show that this model satisfies the "parallel trends assumption", namely that **if the policy had never been introduced**, we would get
 $$ \mathbb{E}[\log(H)|A,s=2] - \mathbb{E}[\log(H)|B,s=2] - (\mathbb{E}[\log(H)|A,s=1] - \mathbb{E}[\log(H)|B,s=1]) = 0 $$
 2. Show that when the policy is introduced unexpectedly, in period 2, the population limit $\tilde{\psi}$ can be written as:
-$$ \tilde{\psi} =  \psi - \sigma\frac{\Delta\mathbb{E}\left[\log(C^*)|A\right]}{\log(1+\tau)}$$
+$$ \tilde{\psi} =  \psi\left(1 - \sigma\frac{\Delta\mathbb{E}\left[\log(C^*)|A\right]}{\log(1+\tau)}\right)$$
 where $$\Delta\mathbb{E}\left[\log(C^*)|A\right]$$ is the growth in log consumption induced by the policy.
 3. Derive a similar expression for $\tilde{\psi}$ for the case where the policy is **announced in the first period** ($s=1$) and implemented in the second period ($s=2$).
 4. Use the model to argue that the size of the effect depends on whether the subsidy is perceived as temporary or permanent.
