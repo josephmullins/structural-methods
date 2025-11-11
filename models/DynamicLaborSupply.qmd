@@ -35,15 +35,14 @@ Below is code to simulate a cross-section of 1,000 observations.
 ```{julia}
 using Distributions
 function simulate_data(σ,ψ,r,N)
-    ch = [1. 0. 0.; 0.4 0.9 0.; 0.4 1.1 3.1]
-    #ch = [1. 0. 0.; 0. 1. 0.; 0. 0. 3.1]
+    ch = [0.3 0. 0.; 0.5 0.5 0.; 0.4 0.8 1.8]
     Σ = ch * ch'
     X = rand(MvNormal(Σ),N)
     α = exp.(X[1,:])
     W = exp.(X[2,:])
     A = exp.(X[3,:])
     C = [solve_consumption(r,α[i],W[i],A[i],σ,ψ) for i in eachindex(A)]
-    @views H = exp.( X[1,:] .+ ψ .* X[2,:] .- σ .* log.(C) )
+    @views H = exp.( X[1,:] .+ ψ .* X[2,:] .- ψ * σ .* log.(C) )
     return (;α,W,A,C,H)
 end
 
@@ -72,7 +71,7 @@ function simulate_bias(B,N,σ,ψ,r)
         Y = log.(dat.H)
         b_est = inv(X' * X) * X' * Y
         ψ_est[b] = b_est[2]
-        σ_est[b] = -b_est[3]
+        σ_est[b] = -b_est[3] / b_est[2]
     end
     return ψ_est,σ_est
 end
