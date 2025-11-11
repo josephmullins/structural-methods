@@ -18,15 +18,15 @@ What is the population limit of the 2SLS estimator? Does it recover a structural
 
 ## Question 2
 You are talking to your friend from Assignment 1 (Mr Straw Man) and you point out to him that the correct specification is the structural one:
-$$ \log(H_{n,t}) = \mu + \psi\log(\tilde{W}_{n,0}) - \sigma\log(C_{n,0}) + \eta_{n,0}.$$
+$$ \log(H_{n,t}) = \mu + \psi\log(\tilde{W}_{n,0}) - \psi\sigma\log(C_{n,0}) + \eta_{n,0}.$$
 Your friend tells you that you have no hope here because you have two endogenous variables and only one instrument. You are going to use the model to prove him wrong! Define $\tilde{Z}_{n,0} = M_{n,0}\times Z_{n,0}$ where $M_{n,0}\in\{0,1\}$ is an indicator for whether $A_{n,0}$ is above or below the median. Note that the conditional expectation of log consumption can be written *wlog* as:
 $$ \mathbb{E}[\log(C)|M,Z] = \delta_{0} + \delta_{1}M + \delta_{2}Z + \delta_{3}\underbrace{MZ}_{=\tilde{Z}}$$
 **Use the model to argue** that $\delta_{3}\neq0$.
 
 ## Question 3
 Now show that one can write:
-$$ \mathbb{E}[\log(H)|M,Z] = \kappa_{0} + \kappa_{1}M + \psi\gamma Z - \sigma \delta_{2}Z - \sigma \tilde{Z}.$$
-And combine these two expressions with the wage equation to argue that $psi$ and $\sigma$ are identified. Why is important that $\delta_{3}\neq 0$?
+$$ \mathbb{E}[\log(H)|M,Z] = \kappa_{0} + \kappa_{1}M + \psi\gamma_{1} Z - \psi\sigma \delta_{2}Z - \psi\sigma \delta_{3}\tilde{Z}.$$
+And combine these two expressions with the wage equation to argue that $\psi$ and $\sigma$ are identified. Why is important that $\delta_{3}\neq 0$?
 
 ## Question 4
 Write code to estimate the structural parameters (via GMM or 2SLS) and use a monte-carlo simulation to evaluate the performance of your estimator. You can adapt the code I used in the [example here](../models/DynamicLaborSupply.qmd). The example assumes wages are constant, which you can assume also. You will have to adapt the example to include the variable $Z\in\{0,1\}$ and make your own choices for $(\gamma_{0},\gamma_{1})$.
