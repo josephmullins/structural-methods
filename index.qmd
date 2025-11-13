@@ -29,7 +29,7 @@ We introduce the dynamic discrete choice model and briefly discuss identificatio
 
 @Rust1987 is the canonical example demonstrating estimation of dynamic discrete choice models with maximum likelihood and a nested solution method. 
 
-We show that if one can directly estimate choice probabilities, several tractable approaches produce estimates of structural parameters without repeatedly solving the model. These include @Hotz1993, @AgMira2002, @Aguirregabiria2007, @Pesendorfer2008, and @Arcidiacono2011. We will review these methods and why they are not appropriate to use in @Mullins2022.
+We show that if one can directly estimate choice probabilities, several tractable approaches produce estimates of structural parameters without repeatedly solving the model. These include @Hotz1993, @AgMira2002, @Aguirregabiria2007, @Pesendorfer2008, and @Arcidiacono2011. @MagnacThesmar discuss identification of this class of models.
 
 ### Estimation of Dynamic Models with Unobserved Heterogeneity
 
