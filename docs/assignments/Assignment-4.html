@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -134,6 +163,17 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models">    
+        <li>
+    <a class="dropdown-item" href="../models/DynamicLaborSupply.html">
+ <span class="dropdown-text">A Simple Labor Supply Model</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -145,8 +185,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#estimating-a-finite-mixture-model-with-em" id="toc-estimating-a-finite-mixture-model-with-em" class="nav-link active" data-scroll-target="#estimating-a-finite-mixture-model-with-em">Estimating a Finite Mixture Model with EM</a>
+  <ul class="collapse">
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -170,8 +221,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="estimating-a-finite-mixture-model-with-em" class="level1">
+<h1>Estimating a Finite Mixture Model with EM</h1>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<p>Take the model from <a href="../assignments/Assignment-3.html">Assignment 3</a> and introduce some <strong>time-invariant unobserved heterogeneity</strong> by allowing the cost parameter <span class="math inline">\(\kappa\)</span> to depend on an individuals type <span class="math inline">\(k\in\{1,2,...,K\}\)</span>.</p>
+<p>Write code to simulate data from a model with <span class="math inline">\(K=2\)</span>. You can choose your own parameters for <span class="math inline">\((\kappa_{1},\kappa_{2})\)</span>. You can assume mixing probabilities <span class="math inline">\(P[k=1]=P[k=2]=0.5\)</span>.</p>
+<p>To simplify estimating initial conditions, you can assume that everyone in the data begins with <span class="math inline">\(j_{0}=0\)</span>.</p>
+</section>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<p>Now consider the problem of estimating the following set of probabilities:</p>
+<p><span class="math display">\[ \mathbf{P} = \{P[k], P[j=1|j_{t-1}=0,k,w], P[j=1|j_{t-1}=0,k,w] \}_{k\in\{1,2\},\ w\in\{L,H\}} \]</span></p>
+<p>Write code to estimate these probabilities using the Expectation-Maximization algorithm. You can, as before, assume that <span class="math inline">\(\pi\)</span> and (<span class="math inline">\(w_{L},w_{H})\)</span> are known.</p>
+<p>You may find the following formulae helpful. Given a guess of <span class="math inline">\(\mathbf{P}^{m}\)</span>, let <span class="math inline">\(q_{nk}\)</span> be the posterior probability that person <span class="math inline">\(n\)</span> is of type <span class="math inline">\(k\)</span>. It can be written as:</p>
+<p><span class="math display">\[ q_{nk} = \frac{P^{m}[k]\prod_{t=1}^{T}P^{m}[j=1|d_{n,t-1},k,w_{t}]^{d_{n,t}}(1 - P^{m}[j=1|d_{n,t-1},k,w_{t})^{1 - d_{n,t}}}{\sum_{k'}P^{m}[k']\prod_{t=1}^{T}P^{m}[j=1|d_{n,t-1},k',w_{t}]^{d_{n,t}}(1 - P^{m}[j=1|d_{n,t-1},k',w_{t})^{1 - d_{n,t}}} \]</span></p>
+<p>where <span class="math inline">\(d_{n,t}=1\)</span> if person <span class="math inline">\(n\)</span> works in period <span class="math inline">\(t\)</span>.</p>
+<p>With these posteriors in hand, the m-step can be calculated using weighted frequency estimators. For example:</p>
+<p><span class="math display">\[ P^{m+1}[j=1|j_{-1}=1,k,w_{H}] = \frac{\sum_{n,t}d_{n,t-1}d_{n,t}\mathbf{1}\{w_{t}=w_{H}\}q_{nk}}{\sum_{n,t}d_{n,t-1}\mathbf{1}\{w_{t}=w_{H}\}q_{nk}}.\]</span></p>
+</section>
+<section id="part-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
+<p>Demonstrate the performance of your estimation algorithm by running a monte-carlo simulation.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

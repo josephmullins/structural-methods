@@ -230,9 +230,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-model">The Model</h2>
 <p>Consider the following infinite horizon, dynamic labor supply problem.</p>
 <ul>
-<li>There are two choices in the model, work (<span class="math inline">\(j=0\)</span>), or don’t work (<span class="math inline">\(j=0\)</span>)</li>
-<li>The wage <span class="math inline">\(w\)</span> is a state variable with two values, <span class="math inline">\(w_{L}&lt;w_{H}\)</span>.</li>
-<li>The evolution of the wage depends on the current wage and work behavior as follows:
+<li>There are two choices in the model, work <span class="math inline">\(j=0\)</span> or don’t work (<span class="math inline">\(j=0\)</span>)</li>
+<li>The wage <span class="math inline">\(W\)</span> is a state variable with two values, <span class="math inline">\(w_{L}&lt;w_{H}\)</span>.</li>
+<li>The evolution of the wage depends on work behavior as follows:
 <ul>
 <li><span class="math inline">\(P(w_{t+1}=w_{H}|w_{t}=w_{H},j=1) = 1\)</span></li>
 <li><span class="math inline">\(P(w_{t+1}=w_{L}|w_{t}=w_{H},j=0) = \pi\)</span></li>
@@ -240,8 +240,7 @@ window.Quarto = {
 <li><span class="math inline">\(P(w_{t+1}=w_{H}|w_{t}=w_{L},j=1) = \pi\)</span></li>
 </ul></li>
 <li>Thus, human capital appreciates and depreciates with symmetric probabilities given by <span class="math inline">\(\pi\)</span> when working / not working.</li>
-<li>Per-period payoffs are given by: <span class="math display">\[ U_{n,t,j}(w) = j \times \left[w - \kappa (1-j_{t-1})\right] + \epsilon_{ntj} \]</span> where <span class="math inline">\(\epsilon_{ntj}\)</span> is an iid type 1 extreme value shock with location parameter 0 and scale parameter <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(j_{t-1}\)</span> indicates whether person <span class="math inline">\(n\)</span> worked in the previous period. You can interpret <span class="math inline">\(\kappa\)</span> therefore as a cost of joining the labor force.</li>
-<li>Agents discount future payoffs at an exponential rate, <span class="math inline">\(\beta\)</span>.</li>
+<li>Per-period payoffs are given by: <span class="math display">\[ U_{n,t,j}(w) = j \times w - \kappa (1-j_{t-1}) + \epsilon_{ntj} \]</span> where <span class="math inline">\(\epsilon_{ntj}\)</span> is a type 1 extreme value shock with location parameter 0 and scale parameter <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(j_{t-1}\)</span> indicates whether person <span class="math inline">\(n\)</span> worked in the previous period.</li>
 </ul>
 </section>
 <section id="part-1" class="level2">
@@ -250,17 +249,15 @@ window.Quarto = {
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
-<p>Write code to simulate a panel dataset of choices (<span class="math inline">\(j\)</span>) and wages (<span class="math inline">\(w\)</span>) from the model consisting of <span class="math inline">\(N\)</span> individuals and <span class="math inline">\(T\)</span> time periods per individual. You can make whatever assumption you like regarding initial conditions. You can set default parameters to whatever you like.</p>
+<p>Write code to simulate panel data from the model consisting of <span class="math inline">\(N\)</span> individuals and <span class="math inline">\(T\)</span> time periods per individual. You can make whatever assumption you like regarding initial conditions.</p>
 </section>
 <section id="part-3" class="level2">
 <h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
-<p>The complete set of model parameters is:</p>
-<p><span class="math display">\[ \theta = (\pi,\kappa,\beta,\sigma).\]</span></p>
-<p>Has this model specification already imposed a location normalization on utilities? What about a scale normalization? If not, state the normalization you are going to make. <strong>Note</strong>: wages and hence <span class="math inline">\(w_{L}\)</span> and <span class="math inline">\(w_{H}\)</span> should be treated as if they are data (i.e.&nbsp;known), not parameters.</p>
+<p>Has this model specification already imposed a location normalization on utilities? What about a scale normalization? If not, state the normalization you are going to make.</p>
 </section>
 <section id="part-4" class="level2">
 <h2 class="anchored" data-anchor-id="part-4">Part 4</h2>
-<p>Assume you know the values of <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\pi\)</span>, and (<span class="math inline">\(w_{L},w_{H}\)</span>). Write code to estimate – by maximizing the log-likelihood of observed choices – the remaining model parameters and write a monte-carlo simulation to document the performance of your estimator.</p>
+<p>Assume you know the values of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\pi\)</span>. Write code to estimate – by maximizing the log-likelihood of observed choices – the remaining model parameters and write a monte-carlo simulation to document the performance of your estimator.</p>
 </section>
 <section id="part-5" class="level2">
 <h2 class="anchored" data-anchor-id="part-5">Part 5</h2>
