@@ -225,20 +225,20 @@ window.Quarto = {
 <h1>Estimating a Finite Mixture Model with EM</h1>
 <section id="part-1" class="level2">
 <h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>Take the model from <a href="../assignments/Assignment-3.html">Assignment 3</a> and introduce some <strong>time-invariant unobserved heterogeneity</strong> by allowing the cost parameter <span class="math inline">\(\kappa\)</span> to depend on an individuals type <span class="math inline">\(k\in\{1,2,...,K\}\)</span>.</p>
-<p>Write code to simulate data from a model with <span class="math inline">\(K=2\)</span>. You can choose your own parameters for <span class="math inline">\((\kappa_{1},\kappa_{2})\)</span>. You can assume mixing probabilities <span class="math inline">\(P[k=1]=P[k=2]=0.5\)</span>.</p>
-<p>To simplify estimating initial conditions, you can assume that everyone in the data begins with <span class="math inline">\(j_{0}=0\)</span>.</p>
+<p>Take the model from <a href="../assignments/Assignment-3.html">Assignment 3</a> and introduce some <strong>time-invariant unobserved heterogeneity</strong> by allowing the cost parameter <span class="math inline">\(\kappa\)</span> to depend on an individual’s type <span class="math inline">\(k\in\{1,2,...,K\}\)</span>.</p>
+<p>Write code to simulate panel data <span class="math inline">\(\{d_{n,t},w_{n,t}\}_{n=1,t=1}^{N,T}\)</span> from a model with <span class="math inline">\(K=2\)</span>, where <span class="math inline">\(d_{n,t}\)</span> is a dummy variable indicating whether agent <span class="math inline">\(n\)</span> worked in period <span class="math inline">\(t\)</span>. You can choose your own parameters for <span class="math inline">\((\kappa_{1},\kappa_{2})\)</span>. You can assume mixing probabilities <span class="math inline">\(P[k=1]=P[k=2]=0.5\)</span>.</p>
+<p>To simplify estimating initial conditions, you can assume that everyone in the data begins with <span class="math inline">\(d_{0}=0\)</span>.</p>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
 <p>Now consider the problem of estimating the following set of probabilities:</p>
-<p><span class="math display">\[ \mathbf{P} = \{P[k], P[j=1|j_{t-1}=0,k,w], P[j=1|j_{t-1}=0,k,w] \}_{k\in\{1,2\},\ w\in\{L,H\}} \]</span></p>
+<p><span class="math display">\[ \mathbf{P} = \{P[k], P[j=1|d_{t-1},k,w] \}_{k\in\{1,2\},\ w\in\{L,H\}, d_{t-1}\in\{0,1\}} \]</span></p>
 <p>Write code to estimate these probabilities using the Expectation-Maximization algorithm. You can, as before, assume that <span class="math inline">\(\pi\)</span> and (<span class="math inline">\(w_{L},w_{H})\)</span> are known.</p>
 <p>You may find the following formulae helpful. Given a guess of <span class="math inline">\(\mathbf{P}^{m}\)</span>, let <span class="math inline">\(q_{nk}\)</span> be the posterior probability that person <span class="math inline">\(n\)</span> is of type <span class="math inline">\(k\)</span>. It can be written as:</p>
 <p><span class="math display">\[ q_{nk} = \frac{P^{m}[k]\prod_{t=1}^{T}P^{m}[j=1|d_{n,t-1},k,w_{t}]^{d_{n,t}}(1 - P^{m}[j=1|d_{n,t-1},k,w_{t})^{1 - d_{n,t}}}{\sum_{k'}P^{m}[k']\prod_{t=1}^{T}P^{m}[j=1|d_{n,t-1},k',w_{t}]^{d_{n,t}}(1 - P^{m}[j=1|d_{n,t-1},k',w_{t})^{1 - d_{n,t}}} \]</span></p>
 <p>where <span class="math inline">\(d_{n,t}=1\)</span> if person <span class="math inline">\(n\)</span> works in period <span class="math inline">\(t\)</span>.</p>
 <p>With these posteriors in hand, the m-step can be calculated using weighted frequency estimators. For example:</p>
-<p><span class="math display">\[ P^{m+1}[j=1|j_{-1}=1,k,w_{H}] = \frac{\sum_{n,t}d_{n,t-1}d_{n,t}\mathbf{1}\{w_{t}=w_{H}\}q_{nk}}{\sum_{n,t}d_{n,t-1}\mathbf{1}\{w_{t}=w_{H}\}q_{nk}}.\]</span></p>
+<p><span class="math display">\[ P^{m+1}[j=1|d_{-1}=1,k,w_{H}] = \frac{\sum_{n,t}d_{n,t-1}d_{n,t}\mathbf{1}\{w_{n,t}=w_{H}\}q_{nk}}{\sum_{n,t}d_{n,t-1}\mathbf{1}\{w_{n,t}=w_{H}\}q_{nk}}.\]</span></p>
 </section>
 <section id="part-3" class="level2">
 <h2 class="anchored" data-anchor-id="part-3">Part 3</h2>

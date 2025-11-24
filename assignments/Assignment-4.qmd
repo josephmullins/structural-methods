@@ -6,17 +6,17 @@ title: "Assignment 4"
 
 ## Part 1
 
-Take the model from [Assignment 3](Assignment-3.qmd) and introduce some **time-invariant unobserved heterogeneity** by allowing the cost parameter $\kappa$ to depend on an individuals type $k\in\{1,2,...,K\}$.
+Take the model from [Assignment 3](Assignment-3.qmd) and introduce some **time-invariant unobserved heterogeneity** by allowing the cost parameter $\kappa$ to depend on an individual's type $k\in\{1,2,...,K\}$.
 
-Write code to simulate data from a model with $K=2$. You can choose your own parameters for $(\kappa_{1},\kappa_{2})$. You can assume mixing probabilities $P[k=1]=P[k=2]=0.5$.
+Write code to simulate panel data $\{d_{n,t},w_{n,t}\}_{n=1,t=1}^{N,T}$ from a model with $K=2$, where $d_{n,t}$ is a dummy variable indicating whether agent $n$ worked in period $t$. You can choose your own parameters for $(\kappa_{1},\kappa_{2})$. You can assume mixing probabilities $P[k=1]=P[k=2]=0.5$.
 
-To simplify estimating initial conditions, you can assume that everyone in the data begins with $j_{0}=0$.
+To simplify estimating initial conditions, you can assume that everyone in the data begins with $d_{0}=0$.
 
 ## Part 2
 
 Now consider the problem of estimating the following set of probabilities:
 
-$$ \mathbf{P} = \{P[k], P[j=1|j_{t-1}=0,k,w], P[j=1|j_{t-1}=0,k,w] \}_{k\in\{1,2\},\ w\in\{L,H\}} $$
+$$ \mathbf{P} = \{P[k], P[j=1|d_{t-1},k,w] \}_{k\in\{1,2\},\ w\in\{L,H\}, d_{t-1}\in\{0,1\}} $$
 
 Write code to estimate these probabilities using the Expectation-Maximization algorithm. You can, as before, assume that $\pi$ and ($w_{L},w_{H})$ are known. 
 
@@ -28,7 +28,7 @@ where $d_{n,t}=1$ if person $n$ works in period $t$.
 
 With these posteriors in hand, the m-step can be calculated using weighted frequency estimators. For example:
 
-$$ P^{m+1}[j=1|j_{-1}=1,k,w_{H}] = \frac{\sum_{n,t}d_{n,t-1}d_{n,t}\mathbf{1}\{w_{t}=w_{H}\}q_{nk}}{\sum_{n,t}d_{n,t-1}\mathbf{1}\{w_{t}=w_{H}\}q_{nk}}.$$
+$$ P^{m+1}[j=1|d_{-1}=1,k,w_{H}] = \frac{\sum_{n,t}d_{n,t-1}d_{n,t}\mathbf{1}\{w_{n,t}=w_{H}\}q_{nk}}{\sum_{n,t}d_{n,t-1}\mathbf{1}\{w_{n,t}=w_{H}\}q_{nk}}.$$
 
 
 ## Part 3
