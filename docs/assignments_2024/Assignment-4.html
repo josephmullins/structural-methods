@@ -197,6 +197,17 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models">    
+        <li>
+    <a class="dropdown-item" href="../models/DynamicLaborSupply.html">
+ <span class="dropdown-text">A Simple Labor Supply Model</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -256,7 +267,7 @@ window.Quarto = {
 <p>The chunk of code below parameterizes the true vector <span class="math inline">\(p\)</span> for this model and writes code to simulate panel data:</p>
 <p><span class="math display">\[ (j^*_{nt})_{t=1,n=1}^{T,N} \]</span></p>
 <p>To start with, we’ll assume <span class="math inline">\(k_{n,1} = 1\)</span> for all <span class="math inline">\(n\)</span>.</p>
-<div id="29c6d870" class="cell" data-execution_count="1">
+<div id="603a79c6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span>, <span class="bu">Distributions</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="fl">5</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pj <span class="op">=</span> <span class="fl">1</span> <span class="op">./</span> (<span class="fl">1</span> <span class="op">.+</span> <span class="fu">exp</span>.(<span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,K))) <span class="co">#&lt;- choice probability as a function of k</span></span>
@@ -285,16 +296,16 @@ window.Quarto = {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>J_data <span class="op">=</span> <span class="fu">simulate</span>(<span class="fl">1000</span>,<span class="fl">10</span>,Pj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>10×1000 Matrix{Float64}:
- -1.0  -1.0  -1.0  -1.0  -1.0  -1.0  …   1.0   1.0  -1.0   1.0  -1.0   0.0
-  0.0  -1.0  -1.0  -1.0   1.0   0.0      1.0  -1.0  -1.0   1.0  -1.0   1.0
-  1.0   1.0   0.0   1.0   0.0   1.0      1.0  -1.0   0.0  -1.0  -1.0  -1.0
-  1.0   1.0   1.0   0.0  -1.0  -1.0     -1.0  -1.0   0.0  -1.0  -1.0  -1.0
- -1.0   1.0  -1.0  -1.0  -1.0   1.0     -1.0   0.0   1.0   1.0   1.0   0.0
- -1.0   0.0  -1.0   0.0  -1.0  -1.0  …  -1.0  -1.0   0.0  -1.0   0.0  -1.0
- -1.0   0.0   0.0  -1.0   0.0   1.0      0.0  -1.0   0.0  -1.0   1.0  -1.0
- -1.0   1.0   0.0  -1.0   0.0   0.0     -1.0   1.0  -1.0   0.0  -1.0  -1.0
- -1.0  -1.0  -1.0   0.0   0.0   1.0      0.0   0.0  -1.0   1.0   0.0  -1.0
-  0.0   0.0  -1.0   0.0  -1.0   1.0     -1.0  -1.0   1.0   1.0  -1.0   1.0</code></pre>
+ -1.0  -1.0   0.0   1.0   1.0  -1.0  …  -1.0  -1.0   0.0   1.0  -1.0   1.0
+ -1.0   1.0  -1.0  -1.0  -1.0  -1.0     -1.0  -1.0  -1.0  -1.0   1.0  -1.0
+ -1.0  -1.0  -1.0   0.0  -1.0   0.0      0.0   1.0  -1.0  -1.0  -1.0  -1.0
+ -1.0   0.0   1.0   1.0  -1.0  -1.0     -1.0  -1.0  -1.0   1.0   1.0   0.0
+  1.0   0.0   1.0  -1.0   0.0  -1.0     -1.0   0.0   0.0   0.0  -1.0  -1.0
+  0.0  -1.0  -1.0   0.0   0.0  -1.0  …  -1.0   1.0  -1.0  -1.0   0.0  -1.0
+  0.0   0.0  -1.0  -1.0  -1.0   0.0     -1.0  -1.0   0.0  -1.0  -1.0  -1.0
+ -1.0   0.0  -1.0   0.0  -1.0   1.0     -1.0   1.0  -1.0  -1.0  -1.0  -1.0
+  0.0   0.0  -1.0   0.0  -1.0  -1.0     -1.0  -1.0  -1.0  -1.0  -1.0   0.0
+ -1.0   0.0  -1.0   0.0  -1.0  -1.0     -1.0  -1.0  -1.0  -1.0  -1.0   1.0</code></pre>
 </div>
 </div>
 <p>Since the outcomes <span class="math inline">\(j\)</span> are periodically unobserved, there are two ways to set up the EM problem:</p>

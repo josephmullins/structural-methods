@@ -1,3 +1,100 @@
 ---
 title: "Assignment 5"
 ---
+
+This week you will estimate a simple hidden markov model using Expectation-Maximization.
+
+Here is the model. There is a discrete state variable $k\in\{1,2,3,..,K\}$ and a binary outcome $j\in\{0,1\}$ that: 
+
+1. Is determined probabilistically by the state; and
+2. Moves the state up one grid point if $j=1$, i.e. $k_{t+1} = \min\{K,k_{t} + j\}$
+
+Let $p$ be a $K$-dimensional vector where $p_{k}$ holds the probability that $j=1$ given that the model is in state $k$.
+
+The state $k$ is never observed and the outcome $j$ is only observed half the time (i.e. it is missing with probability 0.5). Thus, define $j^*$ to be:
+
+$$ j^* = \left\{ \begin{array}{cl} j & \text{with probability}\ 0.5 \\ -1 & \text{with probability}\ 0.5 \end{array} \right. $$
+
+Your task is to estimate the vector of outcome probabilities $p$ non-parametrically using the EM algorithm with the Forward-Back routine to calculate the E-step.
+
+The chunk of code below parameterizes the true vector $p$ for this model and writes code to simulate panel data:
+
+$$ (j^*_{nt})_{t=1,n=1}^{T,N} $$
+
+To start with, we'll assume $k_{n,1} = 1$ for all $n$.
+
+```{julia}
+using Random, Distributions
+K = 5
+Pj = 1 ./ (1 .+ exp.(LinRange(-1,1,K))) #<- choice probability as a function of k
+knext(k,j,K) = min(K,k+j) 
+
+function simulate(N,T,Pj)
+    J = zeros(T,N)
+    K = length(Pj)
+    for n in axes(J,2)
+        k = 1
+        for t in axes(J,1)
+            j = rand()<Pj[k]
+            # record j probabilistically
+            if rand()<0.5
+                J[t,n] = -1
+            else
+                J[t,n] = j
+            end
+            # update state:
+            k = knext(k,j,K)
+        end
+    end
+    return J
+end
+
+J_data = simulate(1000,10,Pj)
+
+```
+
+Since the outcomes $j$ are periodically unobserved, there are two ways to set up the EM problem:
+
+1. Define a composite state variable $s = (k,j)$ that is partially unobserved and define your $\alpha$ and your $\beta$ over this composite state.
+2. Define your $\alpha$ and $\beta$ over $k$ only and sum over potential realizations of $j$ when missing.
+
+When the number of discrete outcomes is larger, it becomes more difficult to integrate them out when missing. Since $j$ is only binary here, this homework will step you through using the second approach. You can use the first approach if you prefer. 
+
+## Part 1
+
+Write a function that (given a guess of the parameters $p$) takes a sequence of $(j^*)^{T}_{t=1}$ and runs the forward-back algorithm. In doing so your function should fill in three objects: (1) A $K\times T$ array of backward looking probabilities ($\alpha$); (2) a $K\times T$ array of forward probabilities ($\beta$); and (3) a $K\times T$ array of posterior probabilities over each state $k$ ($Q$).
+
+Recall from class that (1) $\alpha$ is the joint probability of the state today with the sequence of outcomes up until today; and (2) $\beta$ is the conditional probability of future outcomes given the state today.
+
+$$ \alpha[k,s] = \mathbb{P}[k_{s}=k,(j^*)^{s}_{t=1}] $$
+
+$$ \beta[k,s] = \mathbb{P}[(j^*)_{t=s+1}^{T} | k_{s}=k] $$
+
+and
+
+$$ Q[k,s] = \mathbb{P}[k_{s}=k | (j^*)_{t=1}^{T} ] $$
+
+## Part 2
+
+Write a function that iterates over all observations and calculates posterior state probabilities for every observation. i.e. fill in a $K\times T \times N$ array of posterior weights.
+
+## Part 3
+
+Take as given a set of posterior weights $q_{ntk} = Q[n,t,k]$. The expected log-likelihood for the M-step is:
+
+$$ \mathcal{L}(p) = \sum_{n}\sum_{t}\sum_{k}q_{ntk}\left(\mathbf{1}\{j^*_{nt}=1\}\log(p_{k}) + \mathbf{1}\{j^*_{nt}=0\}\log(1-p_{k})\right) $$
+
+Show that the non-parametric maximum likelihood estimate of $p$ given the posterior weights is a frequency estimator:
+
+$$ \hat{p}_{k} = \frac{\sum_{n}\sum_{t}\mathbf{1}\{j^*_{nt}=1\} q_{ntk}}{\sum_{n}\sum_{t}\mathbf{1}\{j^*_{nt}\neq -1\} q_{ntk}} $$
+
+Write a function to calculate this frequency estimator given posterior weights.
+
+## Part 4
+
+Run the E-M routine by iterating on this E-step and M-step until you get convergence in $\hat{p}$. Does it look like you can recover the true parameters?
+
+## Extra credit
+
+If you found this exercise too straightforward, try adjusting the model so that transitions depend probabilistically on the state $k$ and the choice $j$. This requires you to update also posterior transition probabilities and estimate those transition probabilities as part of the maximization step.
+

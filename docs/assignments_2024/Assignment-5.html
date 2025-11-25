@@ -197,6 +197,17 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models">    
+        <li>
+    <a class="dropdown-item" href="../models/DynamicLaborSupply.html">
+ <span class="dropdown-text">A Simple Labor Supply Model</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -294,7 +305,7 @@ window.Quarto = {
 <section id="model-solution" class="level3">
 <h3 class="anchored" data-anchor-id="model-solution">Model Solution</h3>
 <p>Here is code to solve the model for a default set of parameters.</p>
-<div id="10161c43" class="cell" data-execution_count="1">
+<div id="634b0991" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">10</span> <span class="co">#&lt;- length of life-cycle</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ϕ <span class="op">=</span> [<span class="fl">2</span>., <span class="fl">0.05</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Ω <span class="op">=</span> <span class="fl">4</span> <span class="co">#&lt;- time limit</span></span>
