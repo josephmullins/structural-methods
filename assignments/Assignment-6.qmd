@@ -1,3 +1,120 @@
 ---
 title: "Assignment 6"
 ---
+
+## Introduction and Setup
+
+In this assignment you will implement a choice probability estimator for a toy model of dynamic labor supply. 
+
+### Choices 
+
+Agents in the model make one of four choices ($j \in \{0,1,2,3\}$) that correspond to a binary work decision ($H_{j}$) and a binary program participation decision ($P_{j}$):
+
+$$ \{H_0,\ H_1,\ H_2,\ H_3\} = \{0,1,0,1\},\qquad \{P_0,\ P_1,\ P_2,\ P_3\} = \{0,0,1,1\} $$
+
+### Income and Transfers
+
+Potential earnings are given by:
+
+$$ \log(W) = \phi_0 + \phi_1 \kappa $$
+
+where $\kappa$ is accumulated labor market experience that evolves according to:
+
+$$ \kappa_{t+1} = \kappa_{t} + H_{jt} $$
+
+Weekly net income is a function of this work decision and the participation decision:
+
+$$ Y_{j}(W,\omega) = H_{j}W + P_{j}\mathbf{1}\{\omega<\Omega\}(200 - 0.5\times H_{j}W) $$
+
+where: 
+
+- $W$ is the individual's potential wage
+- $\Omega$ is the lifetime limit on program participation
+- $\omega$ is the individual's cumulative prior program use.
+
+### Utility
+
+Individuals discount the future at an exponential rate of $1-\beta$. Per-period payoffs are given by:
+
+$$ u_{j}(W) = \log(\gamma + Y_{j}(W,\omega)) - \alpha P_{j} - \varphi H_{j} $$
+
+The per-period payoff for any individual $n$ at time $t$ is given by
+
+$$ U_{ntj} = u_{j}(W_{nt}) + \epsilon_{ntj} $$
+
+where $\epsilon_{nt}$ is a preference shock that has a type 1 extreme value distribution with scale parameter $\sigma$. It is iid across individuals and time periods and us only observed by individuals when period $t$ arrives.
+
+### Life-Cycle
+
+All individuals begin in $t=1$ with $\omega_{1}=0$ and $\kappa_{1}=0$ and live for $T$ periods.
+
+### Measurement
+
+Assume that log-wages are observed with measurement error:
+
+$$ \log(W^o) = \log(W) + \xi,\qquad \xi\sim\mathcal{N}(0,\sigma^2_\xi) $$
+
+### Model Solution
+
+Here is code to solve the model for a default set of parameters.
+
+```{julia}
+T = 10 #<- length of life-cycle
+ϕ = [2., 0.05]
+Ω = 4 #<- time limit
+wagefunc(κ,ϕ) = exp(ϕ[1] + ϕ[2]*κ)
+net_income(W,H,P,eligible) = W*H + P*eligible*(200 - 0.5*W*H) 
+j_idx(H,P) = P*2 + H + 1
+utility(W,H,P,eligible,pars) = log(pars.γ + net_income(W,H,P,eligible)) - pars.α*P - pars.φ*H   
+pars = (;α = 1., φ = 1., σ = 1., γ = 1., Ω, T,ϕ,β = 0.9)
+
+function iterate!(P,v,V,pars,ω_idx,κ_idx,t)
+    (;β,ϕ,Ω,σ) = pars
+    ω = ω_idx - 1
+    κ = κ_idx - 1
+    W = wagefunc(κ,ϕ)
+    eligible = ω<Ω
+    for P in 0:1, H in 0:1
+        j = j_idx(H,P)
+        κ_next = min(κ_idx + H,T)
+        ω_next = min(ω_idx + P,Ω+1)
+        v[j]  = utility(W,H,P,eligible,pars) + β*V[ω_next,κ_next,t+1]
+    end
+    norm = sum(exp.(v ./ σ))
+    P[:,ω_idx,κ_idx,t] = exp.(v ./ σ) ./ norm
+    V[ω_idx,κ_idx,t] = σ * log(norm)
+end
+
+function solve!(P,v,V,pars)
+    for t in reverse(axes(P,4))
+        for κ_idx in axes(P,3), ω_idx in axes(P,2)
+            iterate!(P,v,V,pars,ω_idx,κ_idx,t)
+        end
+    end
+end
+
+V = zeros(Ω+1,T,T+1)
+P = zeros(4,Ω+1,T,T)
+v = zeros(4)
+
+solve!(P,v,V,pars)
+
+```
+
+## Part 1
+
+Write a function that simulates a panel dataset consisting of choices and wages for $N$ individuals in every period $t$ of their life-cycle.
+
+## Part 2
+
+For a simulated sample of size $N=1000$, write a function to estimate the array $P$ of choice probabilities using a frequency estimator. Note that in period $t$, only experience levels up to $t-1$ can be observed so you do not need to estimate this array in its entirety.
+
+## Part 3
+
+Write an estimation routine for the structural parameters $(\phi,\alpha,\varphi,\sigma,\gamma,\beta)$ that utilizes the first stage estimates $\hat{P}$ from part 2. You can either work backwards from $T$ or exploit shorter finite dependence horizons.
+
+One small hint: you can estimate $\phi$ directly using OLS.
+
+## Part 4
+
+If you can, write a monte-carlo simulation in which you repeatedly draw a sample of size $N=1000$ and produce an estimate. Use this sample to look at how the estimates are distributed around the true parameters and therefore check that your estimator is working properly.
