@@ -155,6 +155,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Assignments</span>
@@ -194,6 +198,17 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../examples/LeastSquaresClustering.html">
  <span class="dropdown-text">Clustering with Coefficients</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Models</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models">    
+        <li>
+    <a class="dropdown-item" href="../models/DynamicLaborSupply.html">
+ <span class="dropdown-text">A Simple Labor Supply Model</span></a>
   </li>  
     </ul>
   </li>
@@ -254,7 +269,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="reading-in-data">Reading in Data</h3>
 <p>You are going to build on the code below that estimates a <em>very</em> simple model of labor supply and program participation.</p>
 <p>First, here is a chunk of code to read in the data and prepare it. The variables in <code>julia</code> DataFrames are typically not type stable which can slow down your code considerably. So you will note that in the final step here I bring the variables I want to use out of a DataFrame and into a named tuple with vectors containing a fixed type.</p>
-<div id="bd9a9f48" class="cell" data-execution_count="1">
+<div id="3f4bbfa3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>, <span class="bu">DataFrames</span>, <span class="bu">DataFramesMeta</span>, <span class="bu">Optim</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"../children-cash-transfers/src/Transfers.jl"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -296,7 +311,7 @@ window.Quarto = {
 <p>and are measured with normally distributed iid measurement error:</p>
 <p><span class="math display">\[ \log(W^{o}_{it}) = \log(W_{it}) + \zeta_{it},\qquad\zeta_{it}\sim\mathcal{N}(0,\sigma^2_{W}) \]</span></p>
 <p>The code below calculates utility and indexes choices.</p>
-<div id="75f4696b" class="cell" data-execution_count="2">
+<div id="e882c508" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">j_idx</span>(p,h) <span class="op">=</span> p<span class="op">*</span><span class="fl">3</span> <span class="op">+</span> h <span class="op">+</span> <span class="fl">1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">utility</span>(p,h,soi,cpi,year,num_kids,wage,pars)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (;αl,Hgrid,σ,αP) <span class="op">=</span> pars</span>
@@ -313,7 +328,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Choice probabilities are given by the logit formula.</p>
-<div id="a01694fb" class="cell" data-execution_count="3">
+<div id="93ffa41a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">choice_prob!</span>(logP,it,data,pars)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (;σ,γ) <span class="op">=</span> pars</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    wage <span class="op">=</span> <span class="fu">exp</span>(γ[<span class="fl">1</span>] <span class="op">+</span> γ[<span class="fl">2</span>] <span class="op">*</span> data.age[it] <span class="op">+</span> γ[<span class="fl">3</span>] <span class="op">*</span> data.age[it]<span class="op">^</span><span class="fl">2</span>)</span>
@@ -336,7 +351,7 @@ window.Quarto = {
 </div>
 </div>
 <p>And so the log-likelihood takes a simple form.</p>
-<div id="825de994" class="cell" data-execution_count="4">
+<div id="93253c93" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(logP,it,data,pars)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    (;γ,σW) <span class="op">=</span> pars</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
@@ -372,7 +387,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We can use <code>Optim</code> to maximize the log-likelihood:</p>
-<div id="22df7722" class="cell" data-execution_count="5">
+<div id="b327618e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">8</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> [<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fu">log</span>(<span class="fl">10</span>.),<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.,<span class="fl">0</span>.]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">optimize</span>(<span class="fu">x-&gt;-log_likelihood</span>(x,data_mle,pars),x0,<span class="fu">BFGS</span>(),autodiff<span class="op">=:</span>forward,Optim.<span class="fu">Options</span>(show_trace <span class="op">=</span> <span class="cn">true</span>))</span>
@@ -380,61 +395,61 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Iter     Function value   Gradient norm 
      0     7.234596e+04     3.085114e+06
- * time: 0.010443925857543945
+ * time: 0.009824037551879883
      1     7.219007e+04     7.930873e+05
- * time: 0.5091629028320312
+ * time: 0.4919400215148926
      2     7.189756e+04     8.240034e+05
- * time: 0.6059629917144775
+ * time: 0.5878689289093018
      3     6.129802e+04     3.337752e+06
- * time: 0.8256139755249023
+ * time: 0.8069250583648682
      4     5.904150e+04     1.232987e+06
- * time: 1.0926239490509033
+ * time: 1.0730750560760498
      5     5.781471e+04     2.641891e+05
- * time: 1.3318979740142822
+ * time: 1.3125169277191162
      6     5.696965e+04     1.198471e+06
- * time: 1.531810998916626
+ * time: 1.5116350650787354
      7     5.683014e+04     1.164517e+06
- * time: 1.7155508995056152
+ * time: 1.6919260025024414
      8     5.609242e+04     1.940285e+06
- * time: 1.7655789852142334
+ * time: 1.741912841796875
      9     5.480683e+04     3.811453e+06
- * time: 1.7998318672180176
+ * time: 1.7755110263824463
     10     5.274754e+04     2.634463e+06
- * time: 1.8343539237976074
+ * time: 1.8098180294036865
     11     5.214471e+04     7.076234e+05
- * time: 1.8681468963623047
+ * time: 1.8436028957366943
     12     5.191466e+04     9.933081e+04
- * time: 1.9020969867706299
+ * time: 1.8774068355560303
     13     5.187770e+04     1.158376e+05
- * time: 1.936262845993042
+ * time: 1.911531925201416
     14     5.187629e+04     1.626802e+05
- * time: 1.9702098369598389
+ * time: 1.9451918601989746
     15     5.187431e+04     4.376935e+04
- * time: 2.0381948947906494
+ * time: 2.0123770236968994
     16     5.186935e+04     8.792504e+04
- * time: 2.088542938232422
+ * time: 2.063161849975586
     17     5.186852e+04     7.387908e+02
- * time: 2.1225860118865967
+ * time: 2.0977530479431152
     18     5.186850e+04     2.434391e+03
- * time: 2.156467914581299
+ * time: 2.1315488815307617
     19     5.186850e+04     9.509518e+01
- * time: 2.1900689601898193
+ * time: 2.1651899814605713
     20     5.186850e+04     1.240425e+01
- * time: 2.2237679958343506
+ * time: 2.198758840560913
     21     5.186850e+04     2.647360e-02
- * time: 2.2577929496765137
+ * time: 2.2320730686187744
     22     5.186850e+04     6.262737e-03
- * time: 2.2917888164520264
+ * time: 2.2658698558807373
     23     5.186850e+04     6.902728e-05
- * time: 2.3260738849639893
+ * time: 2.299633026123047
     24     5.186850e+04     5.195348e-05
- * time: 2.3600308895111084
+ * time: 2.3337528705596924
     25     5.186850e+04     8.976889e-08
- * time: 2.3938188552856445
+ * time: 2.367387056350708
     26     5.186850e+04     1.102359e-08
- * time: 2.444626808166504
+ * time: 2.4176440238952637
     27     5.186850e+04     3.531738e-09
- * time: 2.4784388542175293</code></pre>
+ * time: 2.4514918327331543</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(αl = 2.8546233783929478, σ = 0.9509286759263833, σW = 0.7224860062936597, γ = [-0.023620750582814317, 0.10877398375254962, -0.0012722347394312208], Hgrid = [0.0, 20.0, 40.0], αP = [2.0353016361355523, 1.0137619542631455])</code></pre>

@@ -1,5 +1,6 @@
 using Optim
 using Distributions
+using Plots
 
 function solve_consumption(r,α,W,A,σ,ψ)
     Q = 1/ (1 - 1/(1+r))

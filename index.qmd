@@ -3,59 +3,36 @@ title: "Methods for Structural Microeconometrics"
 bibliography: CourseBibliography.bib
 ---
 
-Welcome to this course! Find details on the syllabus here, and check out the menu to find other materials.
+Welcome to this course! Find details on the syllabus here.
 
 [Here is a link](https://github.com/josephmullins/structural-methods) to the git repo for this course, which by cloning is probably the simplest way for you to get access to the data, code, and assignments. I will continue to add materials throughout the course. You may prefer to selectively download these materials.
 
 ## Topics
 
-### Identification, Credible Inference, and Marschak's Maxim
+The course follows three parts of the [online textbook](https://www.josephlyonmullins.com/structural-econometrics-julia/):
 
-We formally define identification and discuss (via examples) what people really mean when they talk about identification and **credible inference**. We use the **Generalized Roy Model** to compare identification via functional form to nonparametric identification.
-
-We introduce **Marschak's Maxim** as a guide for doing empirical model-based research.
-
-#### Reading
-
-The two survey articles by @Keane2010 ([link](/papers/KeaneJEP2010.pdf)) and @AngristPischke2010 ([link](/papers/TheCredibilityRevolutionInEmpiricalEconomics_AngristPischke_JEP_2010.pdf)) -  although aging - provide two important perspectives on the issues of credible inference in economics. @LowMeghir2017 [provide](/papers/TheUseOfStructuralModelsInEconometrics_LowMeghir_JEP_2017.pdf) a nice review of the advantages of the structural approach.
-
-[The original paper](/papers/Marschak1953.pdf) by @Marschak1953 may be of interest. @HeckmanVytlacil2007 provide a [nice discussion](/papers/HeckmanVytlacilHandbook2007.pdf) of Marschak's Maxim in the context of policy evaluation. They introduce [@HeckmanVytlacil2005; @Carneiro2011] the *Marginal Treatment Effect* as a tool for thinking about quasi-experimental estimators and policy evaluation.
-
-### Dynamic Discrete Choice
-
-We introduce the dynamic discrete choice model and briefly discuss identification when all persistent state variables are observed. We review some of the basics of discrete choice such as the generalized extreme value distribution, which produces tractable choice probabilities with relatively flexible cross-price elasticities.
-
-#### Reading
-
-@Rust1987 is the canonical example demonstrating estimation of dynamic discrete choice models with maximum likelihood and a nested solution method. 
-
-We show that if one can directly estimate choice probabilities, several tractable approaches produce estimates of structural parameters without repeatedly solving the model. These include @Hotz1993, @AgMira2002, @Aguirregabiria2007, @Pesendorfer2008, and @Arcidiacono2011. @MagnacThesmar discuss identification of this class of models.
-
-### Estimation of Dynamic Models with Unobserved Heterogeneity
-
-Using @Mullins2022 as an example, we talk about the inferential pitfalls that can occur when models fail to account for **unobserved heterogeneity**. We briefly discuss how this can depend on estimation approaches and sources of identification.
-
-We review methods for estimation of dynamic models, including the **Expectation-Maximization** algorithm (EM) (see, e.g. @Arcidiacono2011) and the **clustering** approach of @Manresa2015. We review practical considerations for these approaches and introduce the **Forward-Back algorithm** for implementing **EM** in hidden Markov Models with **time-varying unobserved state variables**. We introduce a sparse matrix implementation of this algorithm.
-
-
-### Identification of Dynamic Models with Unobserved Heterogeneity
-
-We discuss how either **panel data** or **instrumental variables** can facilitate identification of models with unobserved heterogeneity, and briefly review identification results for finite mixtures in panel data settings due to @kasahara2009 and @bonhomme2016estimating. @berry2023 analyze identification and estimation of dynamic models with persistent heterogeneity using instrumental variables.
+1. [Identification](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/identification.html). Key readings: @Keane2010, @AngristPischke2010, @Marschak1953, @HeckmanVytlacil2007.
+2. [Discrete Choice](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/discrete-choice-intro.html), static and dynamic. Key readings: @Rust1987, @Hotz1993, @AgMira2002, @Arcidiacono2011.
+3. [Unobserved Heterogeneity](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/unobserved-heterogeneity.html). Key readings: @Arcidiacono2011, @Manresa2015, @kasahara2009, @berry2023.
 
 ## Assessment
 
-There will be 6 problem sets. Your best 4 of these 6 problem sets will be worth 25%. Hence, you can skip two if you want. 
+Assessment is based solely on the [class project](project.qmd), which is due at the end of the semester. The project asks you to pose a research question, write down a model that can answer it, argue that the model is identified, and demonstrate with Monte Carlo simulations that your estimator recovers the answer. See the [project page](project.qmd) for full details.
 
-Here is the proposed timeline of due dates. Submissions **must** be made through Canvas as a notebook (e.g. jupyter or quarto) formatted to html or pdf with printed output. You can submit mathematical and programming questions separately if you wish.
+The project should be submitted as a single PDF by email.
 
-| Assignment | Due Date |
-| ---------- | -------- |
-| Assignment 1 | November 7 |
-| Assignment 2 | November 14 | 
-| Assignment 3 | November 21 | 
-| Assignment 4 | November 28 | 
-| Assignment 5 | December 5 | 
-| Assignment 6 | December 12 | 
+### Suggested Exercises
+
+The exercises below mirror the problem sets from previous years of this course. They are for **self-guided learning only** and will not be assessed. Working through them is the best way to build the skills you will need for the project, and I am happy to discuss them in office hours. All of them can be found in the [online textbook](https://www.josephlyonmullins.com/structural-econometrics-julia/).
+
+| Topic | Exercise |
+| ----- | -------- |
+| Difference-in-differences and the labor supply elasticity | [Exercise: Mr Straw Man](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/identification_labor_supply.html#exr-labor_supply_dd) |
+| Identification of the labor supply model with instruments | [Exercise: Labor Supply IV](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/identification_labor_supply.html#exr-labor_supply_IV) |
+| Solving and estimating a dynamic discrete choice model | [Exercise: Dynamic Labor Supply](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/ddc_models.html#exr-ddc_labor) |
+| Unobserved types and the EM algorithm | [Exercise: EM with Types](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/uh_em.html#exr-em_types) |
+| Hidden Markov models and the forward-back algorithm | [Exercise: HMM with Missing Outcomes](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/uh_em.html#exr-hmm_missing) |
+| CCP estimation with welfare time limits | [Exercise: CCP Estimation with Time Limits](https://www.josephlyonmullins.com/structural-econometrics-julia/lectures/ccp_estimators.html#exr-ccp_welfare) |
 
 ## Contact
 
